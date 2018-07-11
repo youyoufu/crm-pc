@@ -9,7 +9,6 @@
       { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
     ]"
   >
-
     <el-input v-model="dynamicValidateForm.email"></el-input>
   </el-form-item>
     <el-form-item label="密码" prop="pass">
@@ -28,41 +27,45 @@ import { actions } from '@/store/modules/user/CONSTANTS';
 // import { Getter } from 'vuex-class';
 
 @Component({
-  components: {
-  },
+  components: {}
 })
 export default class Sign extends Vue {
   // @Getter info;
-  dynamicValidateForm={
-    domains: [{
-      value: ''
-    }],
+  dynamicValidateForm = {
+    domains: [
+      {
+        value: ''
+      }
+    ],
     email: ''
   };
-  private  submitForm(formName) {
-      alert('submit!');
+  private submitForm(formName) {
+    alert('submit!');
 
-  // this.$refs[formName].validate((valid) => {
-  //   if (valid) {
-  //     alert('submit!');
-  //   } else {
-  //     console.log('error submit!!');
-  //     return false;
-  //   }
-  // });
-}}
+    // this.$refs[formName].validate((valid) => {
+    //   if (valid) {
+    //     alert('submit!');
+    //   } else {
+    //     console.log('error submit!!');
+    //     return false;
+    //   }
+    // });
+  }
+}
 </script>
 
 <style>
-.sign{
-  text-align:center;
-  border:1px solid #ebebeb;
-  padding:100px;
+.sign {
+  text-align: center;
+  border: 1px solid #ebebeb;
+  padding: 100px;
   width: 560px;
 }
-form{width: 460px;}
+form {
+  width: 460px;
+}
 input {
-  height:60px;
+  height: 60px;
 }
 </style>
 

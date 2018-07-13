@@ -1,14 +1,25 @@
 <template>
-  <div class="login" >
-    <div class="tips">欢迎首次登陆，请绑定手机号和淘宝账户</div>
-    <input v-model="user" placeholder="输入手机号"/>
-    <div class="psw">
-    <input v-model="otherid" placeholder="输入淘宝账户"/>
-    <!-- <div class="btn upload"><span class="hollow">上传账户截图</span></div> -->
-    </div>
-    <div class="tips gray">如何查看淘宝账号？</div>
-    <div class="btn" @click.stop.prevent="login"><span>登陆</span></div>
-    </div> 
+  <div class="sign">
+   <el-form :model="dynamicValidateForm" ref="dynamicValidateForm" label-width="100px" class="demo-dynamic">
+     <div class="sign-title">您好，请登陆</div>
+  <el-form-item
+    prop="email"
+    label="邮箱"
+    :rules="[
+      { required: true, message: '请输入邮箱地址', trigger: 'blur' },
+      { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
+    ]"
+  >
+    <el-input v-model="dynamicValidateForm.email"></el-input>
+  </el-form-item>
+    <el-form-item label="密码" prop="pass">
+    <el-input type="password" v-model="dynamicValidateForm.pass" auto-complete="off"></el-input>
+  </el-form-item>
+  <el-form-item>
+    <el-button type="primary" @click="submitForm('dynamicValidateForm')">提交</el-button>
+  </el-form-item>
+</el-form>
+  </div>
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
@@ -18,58 +29,37 @@ import { actions } from '@/store/modules/user/CONSTANTS';
   components: {}
 })
 export default class Login extends Vue {
-  private user: string = '';
-  private otherid: string = '';
-  private login() {
-    if (this.user && this.otherid) {
-      let cancelLoading = this.$loading();
-      this.$store.dispatch({
-        type: actions.login,
-        username: this.user,
-        otherid: this.otherid
-      })
-      .then(() => {
-        // cancelLoading();
-        // let redirect = this.$route.query.redirect;
-        // this.$router.push(redirect ? { path: redirect } : 'user');
-      })
-      .catch((e: Error) => {
-        cancelLoading();
-        this.$toast(e.message);
-
-        let redirect = this.$route.query.redirect;
-        this.$router.push(redirect ? { path: redirect } : 'user');
-      });
+  dynamicValidateForm = {
+    domains: [
+      {
+        value: ''
+      }
+    ],
+    email: ''
+  };
+  private submitForm(formName) {
+    alert('submit!');
   }
-}
 }
 </script>
 <style lang="scss" scoped>
-@import '../scss/theme.scss';
-@import '../scss/_px2px.scss';
-.login {
-  font-size: 28px;
-  margin: 80px auto 0 80px;
-  .tips {
-    margin: 10px auto;
-    line-height: 38px;
-    font-size: 32px;
+.sign {
+  text-align: center;
+  font-size: 24px;
+  text-align: center;
+  border: 1px solid #ebebeb;
+  margin-top: 20px;
+  padding:100px;
+  width: 400px;
+  &-title {
+    padding-bottom: 20px;
   }
-  .gray {
-    color: gray;
-    font-size: 28px;
+
+  form {
+    width: 460px;
   }
-  .psw {
-    height: 100px;
-    position: relative;
-    input {
-      position: absolute;
-    }
-    .upload {
-      top: 5px;
-      position: absolute;
-      left: 400px;
-    }
+  input {
+    height: 60px;
   }
 }
 </style>

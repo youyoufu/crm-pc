@@ -22,14 +22,12 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import VueClipboard from 'vue-clipboard2';
 import TopNav from '@/components/TopNav.vue';
 import UploadImg from '@/components/UploadImg.vue';
 import { getTaskList } from '@/api/task';
 import { isWifi } from '@/util/network';
 import { actions, PREFIX } from '@/store/modules/task/CONSTANTS';
 // import Toast from '../plugins/Toast/Toast.vue';
-Vue.use(VueClipboard);
 @Component({
   components: {
     TopNav,

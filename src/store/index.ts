@@ -1,14 +1,17 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-
 import user from './modules/user';
-import user1 from './modules/user1';
+// import list from './modules/list';
+import task from './modules/task';
+import { saveLogin, loginOut, TOKEN } from '@/util/session';
 import { getCookie } from '@/util/cookie';
-import { saveLogin, TOKEN } from '@/util/session';
 
 Vue.use(Vuex);
 
-const store = new Vuex.Store({
+const debug = process.env.NODE_ENV !== 'production';
+
+export default new Vuex.Store({
+  strict: debug,
   state: {
     token: getCookie(TOKEN),
   },
@@ -19,9 +22,9 @@ const store = new Vuex.Store({
     },
   },
   modules: {
-    user,
-    user1
-  }
+    task,
+    user
+    // list,
+    // filter,
+  },
 });
-
-export default store;

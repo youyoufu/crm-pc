@@ -6,13 +6,14 @@ const PATH = '/auth/token';
 
 export interface LoginInfo {
   username: string;
-  password: string;
+  otherid: string;
+  type: string;
 }
 
 /* 登陆 */
-export function login({ username, password }: LoginInfo) {
+export function login({ username, otherid, type }: LoginInfo) {
   return internalFetch('POST')(true)(stringifPath(PATH), {
-    body: { username, password },
+    body: { username, otherid, type }
   });
 }
 

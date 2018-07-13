@@ -6,7 +6,7 @@ export function hasLogin() {
   return !!getCookie(TOKEN);
 }
 
-/* 保持灯露台 */
+/* 保持登陆态 */
 export function saveLogin(token: string) {
   return setCookie(TOKEN, token);
 }

@@ -1,6 +1,17 @@
 {
-  "extends": "tslint-config-standard",
-  "globals": {
-    "require": true
+  "defaultSeverity": "warning",
+  "extends": ["tslint:recommended"],
+  "rules": {
+    "no-console": false,
+    "no-bitwise": false,
+    "no-shadowed-variable": false,
+    "prefer-const": false,
+    "no-string-literal": false,
+    "quotemark": [true, "single"],
+    "indent": [true, "spaces", 2],
+    "interface-name": false,
+    "ordered-imports": false,
+    "object-literal-sort-keys": false,
+    "no-consecutive-blank-lines": false
   }
 }

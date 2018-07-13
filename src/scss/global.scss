@@ -1,0 +1,28 @@
+//font-icon 类
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: text-bottom;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  width: 100%;
+}
+body {
+  width: 16rem;
+  margin: 0 auto;
+}
+
+@keyframes circle_rotating {
+  0% {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(1turn);
+  }
+}

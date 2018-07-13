@@ -1,6 +1,6 @@
 import { ActionTree, MutationTree, ActionContext } from 'vuex';
-import { login, loginOut, LoginInfo } from '@/api/login';
-import { getUserInfo, getUserActions } from '@/api/user';
+import { login, LoginInfo } from '@/api/login';
+import { getUserInfo } from '@/api/user';
 import { User } from './user';
 import { RootState } from '../../rootstate';
 
@@ -9,12 +9,7 @@ const namespaced = true;
 /* initial state */
 const state = () => ({
   id: null,
-  username: null,
-  email: null,
-  avatar: null,
-  likes_count: null,
-  goings_count: null,
-  past_count: null,
+  otherid: null,
 });
 
 /* user actions */
@@ -24,7 +19,7 @@ const actions: ActionTree<User, RootState> = {
       ({ token, user }: { token: string; user: User }) => {
         commit('saveToken', token, { root: true });
         commit('saveUser', user);
-      },
+      }
     );
   },
   getUserInfo({ commit, state }: ActionContext<User, RootState>) {

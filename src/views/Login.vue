@@ -17,6 +17,7 @@
   </el-form-item>
   <el-form-item>
     <el-button type="primary" @click="submitForm('dynamicValidateForm')">提交</el-button>
+       <el-button @click="submitForm()">忘记密码</el-button>
   </el-form-item>
 </el-form>
   </div>
@@ -39,6 +40,7 @@ export default class Login extends Vue {
   };
   private submitForm(formName) {
     alert('submit!');
+    this.$router.push('/');
   }
 }
 </script>
@@ -47,16 +49,15 @@ export default class Login extends Vue {
   text-align: center;
   font-size: 24px;
   text-align: center;
-  border: 1px solid #ebebeb;
   margin-top: 20px;
-  padding:100px;
+  padding: 100px;
   width: 400px;
   &-title {
     padding-bottom: 20px;
   }
 
   form {
-    width: 460px;
+    width: 300px;
   }
   input {
     height: 60px;

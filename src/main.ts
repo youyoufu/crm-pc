@@ -8,12 +8,12 @@ import App from './views/App.vue';
 import router from './router';
 import store from './store';
 import './plugins';
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 import './assets/fonticon/iconfont.js';
 import './registerServiceWorker';
 import './scss/_reset.scss';
 import './scss/global.scss';
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 Vue.config.productionTip = false;
 

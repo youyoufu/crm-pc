@@ -23,74 +23,9 @@ $channelColor: #d3c1e5;
 body {
   font-size: 28px;
 }
-.btn {
-  color: #fff;
-  display: inline-block;
-  line-height: 34px;
-  background: $themeMain;
-  border-radius: 4px;
-  padding: 10px 15px;
-  margin: 20px auto;
+.el-message-box__wrapper{
+  width: 100px;
 }
-.btn-gray {
-  color: #333;
-  display: inline-block;
-  line-height: 34px;
-  border: 1px solid #333;
-  border-radius: 4px;
-  padding: 10px 15px;
-  margin: 20px auto;
-}
-.btn-hollow,.upload {
-  color: $themeMain;
-  display: inline-block;
-  line-height: 1.3;
-  border-radius: 4px;
-  padding: 10px 15px;
-  margin: 20px auto;
-  border: 1px solid $themeMain;
-}
-input {
-  font-size: 34px;
-  width: 350px;
-  border: 1px solid #999;
-  padding: 10px 20px;
-  margin: 20px 0;
-  &::-webkit-input-placeholder {
-    color: #bbb;
-  }
-}
-.bgcolor {
-  background-color: #f4f4f8;
-  padding: 20px;
-  line-height: 1.5;
-}
-.longGoodimg {
-  width: 710px;
-  height: 100%;
-}
-.textcenter{
-  text-align: center;
-}
-.bottom-tips {
-  text-align: center;
-  font-size: 32px;
-  position: absolute;
-  left: 0;
-  right: 0;
-  color: #999;
-  background-color: #f4f4f8;
-  height: 56px;
-  padding-top: 20px;
-  color:$themeMain;
-}
-.mtop50 {
-  margin-top: 50px;
-}
-.mright40 {
-  margin-right: 40px;
-}
-.red {
-  color: brown;
-  font-weight: bold;
+.el-message-box {
+  width: 150px;
 }

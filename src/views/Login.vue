@@ -7,7 +7,7 @@
     label="邮箱"
     :rules="[
       { required: true, message: '请输入邮箱地址', trigger: 'blur' },
-      { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
+      { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur'] }
     ]"
   >
     <el-input v-model="dynamicValidateForm.email"></el-input>
@@ -17,7 +17,7 @@
   </el-form-item>
   <el-form-item>
     <el-button type="primary" @click="submitForm('dynamicValidateForm')">提交</el-button>
-       <el-button @click="submitForm()">忘记密码</el-button>
+       <el-button @click="forgetPsw(dynamicValidateForm)">忘记密码</el-button>
   </el-form-item>
 </el-form>
   </div>
@@ -39,28 +39,40 @@ export default class Login extends Vue {
     email: ''
   };
   private submitForm(formName) {
-    alert('submit!');
-    this.$router.push('/');
+    this.$refs[formName].validate(valid => {
+      console.log('valid', valid);
+      if (valid) {
+        alert('submit!');
+      } else {
+        console.log('error submit!!');
+        this.$notify({
+          title: '错误',
+          message: 'error submit!!',
+          type: 'warning'
+        });
+        return false;
+      }
+    });
+    // alert('submit!');
+    // this.$router.push('/');
+  }
+  private forgetPsw() {
+    this.$router.push('/task');
   }
 }
 </script>
 <style lang="scss" scoped>
 .sign {
-  text-align: center;
+  display: inline-block;
   font-size: 24px;
   text-align: center;
   margin-top: 20px;
   padding: 100px;
-  width: 400px;
+  width: 300px;
   &-title {
     padding-bottom: 20px;
   }
 
-  form {
-    width: 300px;
-  }
-  input {
-    height: 60px;
-  }
+ 
 }
 </style>

@@ -1,23 +1,20 @@
-//font-icon 类
-.icon {
-  width: 1em;
-  height: 1em;
-  vertical-align: text-bottom;
-  fill: currentColor;
-  overflow: hidden;
-}
-
-html,
-body,
 #app {
   height: 100%;
   width: 100%;
+  text-align: center;
 }
 body {
-  width: 16rem;
+  width: 90%;
   margin: 0 auto;
 }
 
+.el-message-box {
+  width: 200px;
+}
+.el-input__inner {
+  // height: 40px!important;
+  // line-height: 40px!important;
+}
 @keyframes circle_rotating {
   0% {
     transform: rotate(0);

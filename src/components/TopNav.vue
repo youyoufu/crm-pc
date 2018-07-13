@@ -51,6 +51,10 @@ import { Component, Prop, Emit, Vue } from 'vue-property-decorator';
   // },
 })
 export default class TopNav extends Vue {
+   private activeIndex: string = '1';
+  private handleSelect(key, keyPath) {
+    console.log(key, keyPath);
+  }
   // @Prop({required: true})
   // private left!: string;
   // @Prop({required: true})

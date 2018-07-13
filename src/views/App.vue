@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-
     <router-view />
-</el-container>
   </div>
 </template>
 <script lang="ts">

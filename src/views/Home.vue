@@ -96,7 +96,7 @@ export default class Login extends Vue {
     }
   ];
 
-  private handleClick(rows, type, index) {
+  private handleClick(rows:{}, type:string, index:number) {
     if (type === 'del') {
       this.$confirm('你确定要删除该行数据吗？', '提示', {
         confirmButtonText: '确定',
@@ -104,7 +104,7 @@ export default class Login extends Vue {
         type: 'warning'
       })
         .then(() => {
-          rows.splice(index, 1);
+          // rows.splice(index, 1);
           this.$message({
             type: 'success',
             message: '删除成功!'

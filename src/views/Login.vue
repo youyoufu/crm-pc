@@ -38,9 +38,10 @@ export default class Login extends Vue {
     ],
     email: ''
   };
-  private submitForm(formName) {
-    this.$refs[formName].validate(valid => {
-      console.log('valid', valid);
+  private submitForm(formName:string) {
+    // this.$refs[formName].validate((valid:boolean) => {
+    //   console.log('valid', valid);
+    let valid:boolean=true;
       if (valid) {
         alert('submit!');
       } else {
@@ -52,7 +53,7 @@ export default class Login extends Vue {
         });
         return false;
       }
-    });
+    // });
     // alert('submit!');
     // this.$router.push('/');
   }

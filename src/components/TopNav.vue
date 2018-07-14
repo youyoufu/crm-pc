@@ -1,6 +1,6 @@
 <template>
   <div class="topNav">
-    <div class="store-name">欢迎，***旗舰店</div>
+    <div class="store-name">欢迎您，***旗舰店</div>
  <el-container>
   <el-header>
 <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">

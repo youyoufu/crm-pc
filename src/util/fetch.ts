@@ -50,7 +50,7 @@ export function internalFetch(type: 'GET' | 'POST' | 'DELETE') {
         headers,
         method: type,
         body: stringifyBody,
-        mode: 'same-origin',
+        // mode: 'same-origin',
       }).then(checkStatus(type));
     };
   };

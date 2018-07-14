@@ -1,1 +1,0 @@
-export { WinInfo } from './mscroll';

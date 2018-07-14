@@ -1,6 +1,6 @@
-export const API_PRE = '/api/v1';
+export const API_PRE = 'http://www.yupianzhou.com/api/public/index.php?s=';
 
 /* 处理接口地址前缀 */
 export function stringifPath(path: string) {
-  return path;
+  return API_PRE+path;
 }

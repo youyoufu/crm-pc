@@ -29,13 +29,13 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import UploadImg from '@/components/UploadImg.vue';
+// import UploadImg from '@/components/UploadImg.vue';
 @Component({
   components: {
-    UploadImg
+    // UploadImg
   }
 })
-export default class Login extends Vue {
+export default class User extends Vue {
   private created() {}
 }
 </script>

@@ -2,7 +2,7 @@ import { internalFetch, deletx } from '@/util/fetch';
 import { saveLogin, loginOut as logout } from '@/util/session';
 import { stringifPath } from './index';
 
-const PATH = '/auth/token';
+const PATH = '/login/connect';
 
 export interface LoginInfo {
   username: string;

@@ -22,16 +22,16 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import TopNav from '@/components/TopNav.vue';
-import UploadImg from '@/components/UploadImg.vue';
+// import TopNav from '@/components/TopNav.vue';
+// import UploadImg from '@/components/UploadImg.vue';
 import { getTaskList } from '@/api/task';
-import { isWifi } from '@/util/network';
+// import { isWifi } from '@/util/network';
 import { actions, PREFIX } from '@/store/modules/task/CONSTANTS';
 // import Toast from '../plugins/Toast/Toast.vue';
 @Component({
   components: {
-    TopNav,
-    UploadImg
+    // TopNav,
+    // UploadImg
   }
 })
 export default class Task extends Vue {
@@ -44,7 +44,7 @@ export default class Task extends Vue {
     console.log('复制成功');
   }
   private send() {
-    console.log(isWifi());
+    // console.log(isWifi());
     // this.products = getTaskList();
     // console.log(123,this.products);
     // .then(() => {

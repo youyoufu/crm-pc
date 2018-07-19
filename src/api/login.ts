@@ -1,23 +1,21 @@
 import { internalFetch, deletx } from '@/util/fetch';
-import { saveLogin, loginOut as logout } from '@/util/session';
 import { stringifPath } from './index';
 
-const PATH = '/login/connect';
+const PATH = '/seller/login';
 
 export interface LoginInfo {
-  username: string;
-  otherid: string;
-  type: string;
+  account: string;
+  password: string;
 }
 
 /* 登陆 */
-export function login({ username, otherid, type }: LoginInfo) {
+export function loginAdmin({ account, password }: LoginInfo) {
   return internalFetch('POST')(true)(stringifPath(PATH), {
-    body: { username, otherid, type }
+    body: { account, password }
   });
 }
 
 /* 退出 */
-export function loginOut() {
-  return deletx(stringifPath(PATH)).then(logout);
-}
+// export function loginOut() {
+//   return deletx(stringifPath(PATH)).then(logout);
+// }

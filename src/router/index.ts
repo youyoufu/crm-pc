@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Login from '@/views/Login.vue';
 import Task from '@/views/Task.vue';
 import Home from '@/views/Home.vue';
+import PublicFree from '@/views/PublicFree.vue';
 import User from '@/views/User.vue';
 import { hasLogin, saveLogin } from '@/util/session';
 
@@ -15,19 +16,25 @@ const router = new Router({
       path: '/',
       name: 'home',
       component: Home,
-      meta: { title: '系统主页' }
+      meta: { title: '我的主页' }
     },
     {
       path: '/login',
       name: 'login',
       component: Login,
-      meta: { title: '欢迎首次登陆' }
+      meta: { title: '登陆' }
     },
     {
       path: '/user',
       name: 'user',
       component: User,
       meta: { title: '个人中心' }
+    },
+    {
+      path: '/publicfree',
+      name: 'PublicFree',
+      component: PublicFree,
+      meta: { title: '免单任务发布' }
     },
     {
       path: '/task',

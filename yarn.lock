@@ -7240,6 +7240,10 @@ vue-hot-reload-api@^2.2.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.0.tgz#97976142405d13d8efae154749e88c4e358cf926"
 
+vue-img-inputer@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/vue-img-inputer/-/vue-img-inputer-2.0.0.tgz#34bb1e4f3019a61aadfb3382d81581ba1c660644"
+
 vue-loader@^14.1.1:
   version "14.2.1"
   resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-14.2.1.tgz#3ace19f98187b1fa9e0709defa963a0a2396b6b3"

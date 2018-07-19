@@ -6,7 +6,7 @@
 <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
     <el-submenu index="1">
     <template slot="title">挖宝任务</template>
-    <el-menu-item index="1-1">发布任务</el-menu-item>
+    <el-menu-item index="1-1"><a href="/publicfree">发布任务</a></el-menu-item>
     <el-menu-item index="1-2">已发布任务</el-menu-item>
     <el-menu-item index="1-3">挖宝订单明细</el-menu-item>
     </el-submenu>
@@ -18,7 +18,7 @@
     <el-menu-item index="2-4">免单订单明细</el-menu-item>
     </el-submenu>
   <el-menu-item index="3">用户管理</el-menu-item>
-  <el-menu-item index="4"><a href="/login" target="_blank">评价管理</a></el-menu-item>
+  <el-menu-item index="4"><a href="/login">评价管理</a></el-menu-item>
     <el-submenu index="5">
     <template slot="title">返款</template>
     <el-menu-item index="5-1">批量返款</el-menu-item>
@@ -51,8 +51,8 @@ import { Component, Prop, Emit, Vue } from 'vue-property-decorator';
   // },
 })
 export default class TopNav extends Vue {
-   private activeIndex: string = '1';
-  private handleSelect(key:string, keyPath:string) {
+  private activeIndex: string = '1';
+  private handleSelect(key: string, keyPath: string) {
     console.log(key, keyPath);
   }
   // @Prop({required: true})
@@ -81,9 +81,21 @@ export default class TopNav extends Vue {
 @import '../scss/theme.scss';
 
 .topNav {
+  height: 40px;
   width: 100%;
-  padding:10px 0 40px;
+  padding: 10px 0 40px;
   font-size: 24px;
+  .el-header {
+    padding: 0;
+  }
+  ul.el-menu--horizontal {
+    border: none;
+    font-size: 32px;
+    font-weight: bold;
+    a {
+      text-decoration: none;
+    }
+  }
   .store-name {
     text-align: center;
   }

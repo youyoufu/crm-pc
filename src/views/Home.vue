@@ -5,41 +5,79 @@
 <el-table
     :data="tableData"
     border
-    style="width: 100%">
+    style="width: 1200px">
     <el-table-column
       fixed
       prop="date"
-      label="日期"
+      label="任务ID"
       width="150">
     </el-table-column>
     <el-table-column
       prop="name"
-      label="姓名"
+      label="用户淘宝账号"
       width="120">
     </el-table-column>
     <el-table-column
       prop="province"
-      label="省份"
+      label="订单编号"
       width="120">
     </el-table-column>
     <el-table-column
-      prop="city"
-      label="市区"
-      width="120">
+      label="账号验证截图1"
+      width="150">
+      <template slot-scope="scope">
+        <el-popover trigger="hover" placement="top">
+           <img class="tablebigimg" width="100%" src="https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg" />
+          <div slot="reference" class="name-wrapper">
+            <span size="medium">
+              <img class="tableimg" src="https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg" />
+            </span>
+          </div>
+        </el-popover>
+      </template>
+    </el-table-column>
+        <el-table-column
+      label="账号验证截图2"
+      width="150">
+      <template slot-scope="scope">
+        <el-popover trigger="hover" placement="top">
+           <img class="tablebigimg" width="100%" src="https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg" />
+          <div slot="reference" class="name-wrapper">
+            <span size="medium">
+                       <img class="tableimg"  src="https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg" />
+            </span>
+          </div>
+        </el-popover>
+      </template>
     </el-table-column>
     <el-table-column
-      prop="address"
-      label="地址"
-      width="300">
+      label="订单审批"
+      width="100">
+      <template v-if="scope" slot-scope="scope">
+        <el-button @click="handleClick(scope.$index,'detail')" type="text" size="small">审批通过</el-button>
+        <el-button @click="handleClick(scope.$index,'edit')" type="text" size="small">审批不过过</el-button>
+      </template>
+        <template v-if="scope" slot-scope="scope">
+          <span>已通过</span>
+      </template>
     </el-table-column>
     <el-table-column
-      prop="zip"
-      label="邮编"
+      label="订单截图"
       width="120">
+          <template slot-scope="scope">
+        <img class="tableimg" src="https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg" />
+      </template>
+    </el-table-column>  
+    <el-table-column
+      label="用户返款微信码"
+      width="150">
+      <template slot-scope="scope">
+        <img class="tableimg" src="https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg" />
+      </template>
     </el-table-column>
     <el-table-column
       fixed="right"
-      label="操作"
+      label="返款状态"
       width="150">
       <template slot-scope="scope">
         <el-button @click="handleClick(scope.$index,'detail')" type="text" size="small">查看</el-button>
@@ -96,7 +134,7 @@ export default class Login extends Vue {
     }
   ];
 
-  private handleClick(rows:{}, type:string, index:number) {
+  private handleClick(rows: [{}], type: string, index: number) {
     if (type === 'del') {
       this.$confirm('你确定要删除该行数据吗？', '提示', {
         confirmButtonText: '确定',
@@ -104,7 +142,7 @@ export default class Login extends Vue {
         type: 'warning'
       })
         .then(() => {
-          // rows.splice(index, 1);
+          rows.splice(index, 1);
           this.$message({
             type: 'success',
             message: '删除成功!'
@@ -136,5 +174,9 @@ export default class Login extends Vue {
 @import '../scss/theme.scss';
 .home {
   font-size: 24px;
+  .tableimg {
+    width: 40px;
+    height: 40px;
+  }
 }
 </style>

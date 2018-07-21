@@ -1,4 +1,4 @@
-export const API_PRE = 'http://www.yupianzhou.com/api/public/index.php?s=';
+export const API_PRE = 'http://134.175.2.105';
 
 /* 处理接口地址前缀 */
 export function stringifPath(path: string) {

@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Login from '@/views/Login.vue';
 import Task from '@/views/Task.vue';
 import Home from '@/views/Home.vue';
+import PublicRefund from '@/views/PublicRefund.vue';
 import PublicFree from '@/views/PublicFree.vue';
 import User from '@/views/User.vue';
 import { hasLogin, saveLogin } from '@/util/session';
@@ -14,15 +15,15 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home,
-      meta: { title: '我的主页' }
-    },
-    {
-      path: '/login',
       name: 'login',
       component: Login,
       meta: { title: '登陆' }
+    },
+    {
+      path: '/home',
+      name: 'home',
+      component: Home,
+      meta: { title: '我的主页' }
     },
     {
       path: '/user',
@@ -31,10 +32,16 @@ const router = new Router({
       meta: { title: '个人中心' }
     },
     {
+      path: '/publicrefund',
+      name: 'publicrefund',
+      component: PublicRefund,
+      meta: { title: '挖宝任务发布' }
+    },
+    {
       path: '/publicfree',
-      name: 'PublicFree',
+      name: 'publicfree',
       component: PublicFree,
-      meta: { title: '免单任务发布' }
+      meta: { title: '挖宝任务发布' }
     },
     {
       path: '/task',

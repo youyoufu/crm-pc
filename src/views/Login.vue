@@ -36,7 +36,7 @@ export default class Login extends Vue {
     if (valid) {
       loginAdmin(this.dynamicValidateForm.account, this.dynamicValidateForm.pass)
         .then((res: {}) => {
-          window.location.href='/';
+          // window.location.href='/';
         })
         .catch((err: { message: string }) => {
           this.$notify({
@@ -44,7 +44,7 @@ export default class Login extends Vue {
             message: err.message,
             type: 'warning'
           });
-          window.location.href='/';
+          // window.location.href='/';
         });
     } else {
       this.$notify({

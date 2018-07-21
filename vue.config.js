@@ -72,7 +72,7 @@ module.exports = {
     https: false,
     hotOnly: false,
     // See https://github.com/vuejs/vue-cli/blob/dev/docs/cli-service.md#configuring-proxy
-    proxy: devServer, // string | Object
+    // proxy: devServer, // string | Object
     before: (app) => {},
   },
 

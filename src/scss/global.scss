@@ -12,8 +12,12 @@ body {
   width: 200px;
 }
 .el-input__inner {
-  // height: 40px!important;
-  // line-height: 40px!important;
+  height: 40px!important;
+  line-height: 40px!important;
+}
+input{
+  height: 40px!important;
+  line-height: 40px!important;
 }
 @keyframes circle_rotating {
   0% {

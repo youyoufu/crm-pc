@@ -1,82 +1,241 @@
 <template>
-  <div class="sign">
-   <el-form :model="dynamicValidateForm" ref="dynamicValidateForm" style="width: 300px" label-width="100px" class="demo-dynamic">
-     <div class="sign-title">免单任务</div>
-  <el-form-item
-    label="宝贝ID">
-    <el-input v-model="dynamicValidateForm.account"   style="width: 180px"></el-input>
-<!-- <input type="file"  /> -->
-  </el-form-item>
-    <el-form-item label="关键字1">
-    <el-input v-model="dynamicValidateForm.pass" auto-complete="off"  style="width: 110px"></el-input>
-    比例
-    <el-input v-model="dynamicValidateForm.pass" auto-complete="off"  style="width: 20px"></el-input>
-  </el-form-item>
-      <el-form-item label="关键字2">
-    <el-input v-model="dynamicValidateForm.pass" auto-complete="off"  style="width: 110px"></el-input>
-    比例
-    <el-input v-model="dynamicValidateForm.pass" auto-complete="off"  style="width: 20px"></el-input>
-  </el-form-item>
-      <el-form-item label="关键字3">
-    <el-input v-model="dynamicValidateForm.pass" auto-complete="off"  style="width: 110px"></el-input>
-    比例
-    <el-input v-model="dynamicValidateForm.pass" auto-complete="off"  style="width: 20px"></el-input>
-  </el-form-item>
-      <el-form-item>
-        <img src="" />
-        <img src="" />
-  </el-form-item>
-    <el-form-item
-    label="任务要求">
-    <el-input v-model="dynamicValidateForm.account"   style="width: 180px"></el-input>
-  </el-form-item>
-    <el-form-item
-    label="24小时分布" >
- <p class="time">00点<el-input v-model="dynamicValidateForm.account"   style="width: 140px"></el-input></p>
- <p class="time">11点<el-input v-model="dynamicValidateForm.account"   style="width: 140px"></el-input></p>
-</el-form-item>
-      <el-form-item
-    label="发布时间" > 
-    <el-date-picker
-      v-model="value1"
-      type="date"
-      placeholder="选择日期"  style="width: 140px" @change="setSelectTime" value-format="timestamp">
-    </el-date-picker>
-    <span>{{selectTime}}</span>
-</el-form-item>
+  <div>
+    <TopNav />
+    <div class="sign">
+      <el-form :model="freeForm" ref="freeForm" :inline="true">
+        <div class="sign-title">发布免单任务</div>
+        <div class="first-line">
+          <el-form-item label="任务标题:">
+            <el-input v-model="freeForm.title" style="width: 180px"></el-input>
+          </el-form-item>
+          <el-form-item label="任务订单总金额:">
+            <el-input v-model="freeForm.amount" style="width: 180px"></el-input>
+          </el-form-item>
+          <el-form-item label="返现比例:">
+            <el-input v-model="freeForm.rate" style="width: 180px"></el-input>
+          </el-form-item>
+        </div>
+        <div class="goods">
+          <div class="good0">
+            <el-form-item label="宝贝02-ID:">
+              <el-input v-model="freeForm.goods[0].treasureId" style="width: 180px"></el-input>
+            </el-form-item>
+            <p>
+              <el-form-item label="关键字1">
+                <el-input v-model="freeForm.goods[0].keyword1" auto-complete="off" style="width: 110px"></el-input>
+                比例
+                <el-input v-model="freeForm.goods[0].keywordRate1" auto-complete="off" style="width: 20px"></el-input>
+              </el-form-item>
+            </p>
+            <p>
+              <el-form-item label="关键字2">
+                <el-input v-model="freeForm.goods[0].keyword2" auto-complete="off" style="width: 110px"></el-input>
+                比例
+                <el-input v-model="freeForm.goods[0].keywordRate2" auto-complete="off" style="width: 20px"></el-input>
+              </el-form-item>
+            </p>
+            <p>
+              <el-form-item label="关键字3">
+                <el-input v-model="freeForm.goods[0].keyword3" auto-complete="off" style="width: 110px"></el-input>
+                比例
+                <el-input v-model="freeForm.goods[0].keywordRate3" auto-complete="off" style="width: 20px"></el-input>
+              </el-form-item>
+            </p>
+            <el-form-item label="下单规格:">
+              <el-input v-model="freeForm.goods[0].sku" style="width: 180px"></el-input>
+            </el-form-item>
+            <div class="good-img">
+              <span>产品主图方图：</span>
+              <el-upload action="" accept="image/*" name="mainPictureUrl" class="avatar-uploader" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload0">
+                <img v-if="freeForm.goods[0].mainPictureUrl" :src="freeForm.goods[0].mainPictureUrl" class="avatar">
+                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+              </el-upload>
+            </div>
+            <div class="good-img">
+              <span>主图长图：</span>
+              <el-upload action="" accept="image/*" name="verticalPictureUrl" class="avatar-uploader" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload1">
+                <img v-if="freeForm.goods[0].verticalPictureUrl" :src="freeForm.goods[0].verticalPictureUrl" class="avatar">
+                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+              </el-upload>
+            </div>
+          </div>
+          <div class="good1">
+            <el-form-item label="宝贝01-ID:">
+              <el-input v-model="freeForm.goods[1].treasureId" style="width: 180px"></el-input>
+            </el-form-item>
+            <p>
+              <el-form-item label="关键字1">
+                <el-input v-model="freeForm.goods[1].keyword1" auto-complete="off" style="width: 110px"></el-input>
+                比例
+                <el-input v-model="freeForm.goods[1].keywordRate1" auto-complete="off" style="width: 20px"></el-input>
+              </el-form-item>
+            </p>
+            <p>
+              <el-form-item label="关键字2">
+                <el-input v-model="freeForm.goods[1].keyword2" auto-complete="off" style="width: 110px"></el-input>
+                比例
+                <el-input v-model="freeForm.goods[1].keywordRate2" auto-complete="off" style="width: 20px"></el-input>
+              </el-form-item>
+            </p>
+            <p>
+              <el-form-item label="关键字3">
+                <el-input v-model="freeForm.goods[1].keyword3" auto-complete="off" style="width: 110px"></el-input>
+                比例
+                <el-input v-model="freeForm.goods[1].keywordRate3" auto-complete="off" style="width: 20px"></el-input>
+              </el-form-item>
+            </p>
+            <el-form-item label="下单规格:">
+              <el-input v-model="freeForm.goods[1].sku" style="width: 180px"></el-input>
+            </el-form-item>
+            <div class="good-img">
+              <span>产品主图方图：</span>
+              <el-upload action="" accept="image/*" name="mainPictureUrl" class="avatar-uploader" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload2">
+                <img v-if="freeForm.goods[1].mainPictureUrl" :src="freeForm.goods[1].mainPictureUrl" class="avatar">
+                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+              </el-upload>
+            </div>
+            <div class="good-img">
+              <span>主图长图：</span>
+              <el-upload action="" accept="image/*" name="verticalPictureUrl" class="avatar-uploader" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload3">
+                <img v-if="freeForm.goods[1].verticalPictureUrl" :src="freeForm.goods[1].verticalPictureUrl" class="avatar">
+                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+              </el-upload>
+            </div>
+          </div>
+        </div>
+        <div class="order">
+          <div class="order-left">
+            <div class="good-img">
+              <span>订单截图参考：</span>
+              <el-upload action="" accept="image/*" name="verticalPictureUrl" class="avatar-uploader" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload4">
+                <img v-if="freeForm.goods[1].verticalPictureUrl" :src="freeForm.goods[1].verticalPictureUrl" class="avatar">
+                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+              </el-upload>
+            </div>
+            <div class="order-right">
+              <p>
+                <el-form-item label="任务总量:">
+                  <el-input v-model="freeForm.total" style="width: 180px"></el-input>
+                </el-form-item>
+              </p>
+              <p>
+                <el-form-item label="执行日期:">
+                  <el-date-picker v-model="freeForm.executeTime" type="date" placeholder="选择日期" style="width: 180px" @change="setSelectTime" value-format="timestamp">
+                  </el-date-picker>
+                  <span>{{selectTime}}</span>
+                </el-form-item>
 
-  <el-form-item>
-    <el-button type="primary" @click="submitForm('dynamicValidateForm')">登陆</el-button>
-       <!-- <el-button @click="forgetPsw(dynamicValidateForm)">忘记密码</el-button> -->
-  </el-form-item>
-</el-form>
+              </p>
+            </div>
+          </div>
+          <div class="time">
+            <el-form-item label="24小时分布:">
+              <div style="padding-left: 100px;margin-top: -60px;">
+                <el-form-item style="width:80px" :label="item.time" v-for="item in hourArry">
+                  <el-input v-model="item.val" style="width: 60px;padding:0"></el-input>
+                </el-form-item>
+              </div>
+            </el-form-item>
+          </div>
+          <div style="text-align:center">
+            <el-form-item>
+              <el-button type="primary" @click="submitForm('freeForm')">发布任务</el-button>
+            </el-form-item>
+          </div>
+        </div>
+      </el-form>
+    </div>
   </div>
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { loginAdmin } from '@/api/login';
+import { freeOrderPublic, freeOrderPublicInfo, HourData, setUploadImg } from '@/api/taskpublic';
+import TopNav from '@/components/TopNav.vue';
 
 @Component({
-  components: {}
+  components: { TopNav }
 })
-export default class PubilcFree extends Vue {
+export default class PubilcRefund extends Vue {
   private value1: string = '';
   private selectTime: string = '';
-  dynamicValidateForm = {
-    pass: '',
-    account: ''
+  private hourArry: Array<{ time: string; val: string }> = HourData;
+  private goodIndex: Array<string> = ['good0', 'good1'];
+  private imageUrl: string = '';
+  freeForm: freeOrderPublicInfo = {
+    title: '',
+    amount: '',
+    rate: '',
+    goods: [
+      {
+        treasureId: '',
+        keyword1: '',
+        keywordRate1: '',
+        keyword2: '',
+        keywordRate2: '',
+        keyword3: '',
+        keywordRate3: '',
+        sku: '',
+        mainPictureUrl: '',
+        verticalPictureUrl: ''
+      },
+      {
+        treasureId: '',
+        keyword1: '',
+        keywordRate1: '',
+        keyword2: '',
+        keywordRate2: '',
+        keyword3: '',
+        keywordRate3: '',
+        sku: '',
+        mainPictureUrl: '',
+        verticalPictureUrl: ''
+      }
+    ],
+    total: '',
+    orderPictureUrl: '',
+    executeTime: '',
+    time_range: ''
   };
   private setSelectTime() {
-    this.selectTime = '星期' + new Date(this.value1).getDay();
+    this.selectTime = '星期' + new Date(this.freeForm.executeTime).getDay();
+  }
+  private uploadIng(file: any) {
+    const isLt5M = file.size / 1024 / 1024 / 1024 / 1024 / 1024 < 5;
+    if (!isLt5M) {
+      this.$message.error('上传图片大小不能超过 5MB!');
+    }
+    return setUploadImg(file);
+  }
+  private beforeAvatarUpload4(file: any) {
+    this.freeForm.orderPictureUrl = this.uploadIng(file) || '';
+  }
+  private beforeAvatarUpload0(file: any) {
+    this.freeForm.goods[0].mainPictureUrl = this.uploadIng(file) || '';
+  }
+  private beforeAvatarUpload1(file: any) {
+    this.freeForm.goods[0].verticalPictureUrl = this.uploadIng(file) || '';
+  }
+  private beforeAvatarUpload2(file: any) {
+    this.freeForm.goods[1].mainPictureUrl = this.uploadIng(file) || '';
+  }
+  private beforeAvatarUpload3(file: any) {
+    this.freeForm.goods[1].verticalPictureUrl = this.uploadIng(file) || '';
+  }
+  private handleAvatarSuccess() {
+    // this.imageUrl = URL.createObjectURL(file.raw);
   }
   private submitForm(formName: string) {
-    // this.$refs[formName].validate((valid:boolean) => {
-    //   console.log('valid', valid);
-    let valid: boolean = this.dynamicValidateForm.account !== '' && this.dynamicValidateForm.pass !== '';
+    let valid: boolean = true;
     if (valid) {
-      loginAdmin(this.dynamicValidateForm.account, this.dynamicValidateForm.pass)
+      let hourStr = '';
+      this.hourArry.map((item, idx) => {
+        hourStr += item.val + ',';
+      });
+      this.freeForm.time_range = hourStr;
+      console.log('this.freeForm', this.freeForm);
+      freeOrderPublic(this.freeForm)
         .then((res: {}) => {
-          window.location.href = '/';
+          // window.location.href = '/';
         })
         .catch((err: { message: string }) => {
           this.$notify({
@@ -84,38 +243,100 @@ export default class PubilcFree extends Vue {
             message: err.message,
             type: 'warning'
           });
-          window.location.href = '/';
+          // window.location.href = '/';
         });
     } else {
-      this.$notify({
-        title: '错误',
-        message: '请填入正确的登陆信息',
-        type: 'error'
-      });
+      this.$message.error('请填写完整端发布数据');
       return false;
     }
-    // });
-    // alert('submit!');
-    // this.$router.push('/');
   }
-  // private forgetPsw() {
-  //   this.$router.push('/task');
-  // }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .sign {
   display: inline-block;
-  font-size: 24px;
-  text-align: center;
-  margin-top: 20px;
-  padding: 100px;
-  width: 300px;
+  font-size: 14px;
   &-title {
     padding-bottom: 20px;
+    font-size: 24px;
   }
+
   .time {
-    padding: 4px;
+    // padding: 4px;
+    display: inline-block;
+    width: 550px;
+    .time-item {
+      width: 100px;
+    }
+  }
+  .first-line {
+    float: left;
+  }
+
+  .goods {
+    min-height: 900px;
+    .good0 {
+      text-align: left;
+      float: left;
+      width: 40%;
+      padding: 20px;
+      border: 1px solid #ebebeb;
+    }
+    .good1 {
+      text-align: left;
+      float: right;
+      width: 40%;
+      padding: 20px;
+      border: 1px solid #ebebeb;
+    }
+  }
+
+  .order {
+    border: 1px solid #ebebeb;
+    padding: 20px 10px;
+    text-align: left;
+  }
+  .order-left {
+    float: left;
+    width: 400px;
+  }
+  .order-right {
+    float: right;
+    width: 400px;
+  }
+  .good-img {
+    position: relative;
+    height: 200px;
+  }
+  .avatar-uploader {
+    position: absolute;
+    left: 85px;
+    top: 0;
+    width: 178px;
+  }
+  .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+  }
+  .avatar-uploader-icon {
+    border: 1px dashed #d9d9d9;
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  }
+  .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+  }
+  input {
+    height: 40px !important;
+    line-height: 40px !important;
   }
 }
 </style>

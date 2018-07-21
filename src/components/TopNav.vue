@@ -81,6 +81,7 @@ export default class TopNav extends Vue {
 @import '../scss/theme.scss';
 
 .topNav {
+  border-bottom: 1px solid #ebebeb;
   height: 40px;
   width: 100%;
   padding: 10px 0 40px;

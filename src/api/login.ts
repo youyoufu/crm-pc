@@ -9,13 +9,8 @@ export interface LoginInfo {
 }
 
 /* 登陆 */
-export function loginAdmin({ account, password }: LoginInfo) {
+export function loginAdmin(account: string, password: string) {
   return internalFetch('POST')(true)(stringifPath(PATH), {
     body: { account, password }
   });
 }
-
-/* 退出 */
-// export function loginOut() {
-//   return deletx(stringifPath(PATH)).then(logout);
-// }

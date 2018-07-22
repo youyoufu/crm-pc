@@ -2,7 +2,7 @@ import { internalFetch } from '@/util/fetch';
 import { stringifPath } from './index';
 const UPLOADPATH = '/uploadImage/upload';
 const refundOrderPublicPATH = '/taskOrder/refundOrderPublic';
-const freeOrderPublicPATH = '/taskOrder/freeOrderPublic';
+const freeOrderPublicPATH = '/freeTask/publish';
 export const HourData: Array<{ time: string; val: string }> = [
   { time: '00点', val: '' },
   { time: '01点', val: '' },
@@ -41,7 +41,7 @@ export interface refundOrderPublicInfo {
   mainPictureUrl: string;
   verticalPictureUrl: string;
   time_range: string;
-  require:string;
+  require: string;
 }
 export interface freeOrderPublicInfo {
   title: string;
@@ -68,23 +68,28 @@ export interface freeOrderPublicInfo {
 /* 挖宝任务*/
 export function refundOrderPublic(object: refundOrderPublicInfo) {
   return internalFetch('POST')(true)(stringifPath(refundOrderPublicPATH), {
-    body: { object }
+    body: { ...object }
   });
 }
 /*免单任务*/
 export function freeOrderPublic(object: freeOrderPublicInfo) {
   return internalFetch('POST')(true)(stringifPath(freeOrderPublicPATH), {
-    body: { object }
+    body: { ...object }
   });
 }
 /*上传图片*/
 export function setUploadImg(files: any) {
-  fetch(stringifPath(UPLOADPATH), { method: 'POST', body: files[0] })
-    .then((json: { url: string }) => {
-      return json.url;
-      // console.log('222222222', json);
-    })
-    .catch((err: {}) => {
-      return 'err';
-    });
+  let formData = new FormData();
+  formData.append('files', files);
+  return fetch(stringifPath(UPLOADPATH), {
+    method: 'POST',
+    body: formData
+  }).then(response => response.json());
+  // .then(result => {
+  //   let url = JSON.parse(result.data).url;
+  //   return url;
+  // })
+  // .catch((err: {}) => {
+  //   return '';
+  // });
 }

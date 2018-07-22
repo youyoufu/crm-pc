@@ -5,7 +5,7 @@
       <el-form :model="freeForm" ref="freeForm" :inline="true">
         <div class="sign-title">发布免单任务</div>
         <div class="first-line">
-          <el-form-item label="任务标题:">
+          <el-form-item :prop="freeForm.title" label="任务标题:" :rules="[{ required: true, message: '不能为空'}]">
             <el-input v-model="freeForm.title" style="width: 180px"></el-input>
           </el-form-item>
           <el-form-item label="任务订单总金额:">
@@ -24,21 +24,21 @@
               <el-form-item label="关键字1">
                 <el-input v-model="freeForm.goods[0].keyword1" auto-complete="off" style="width: 110px"></el-input>
                 比例
-                <el-input v-model="freeForm.goods[0].keywordRate1" auto-complete="off" style="width: 20px"></el-input>
+                <el-input v-model="freeForm.goods[0].keywordRate1" auto-complete="off" style="width: 60px"></el-input>
               </el-form-item>
             </p>
             <p>
               <el-form-item label="关键字2">
                 <el-input v-model="freeForm.goods[0].keyword2" auto-complete="off" style="width: 110px"></el-input>
                 比例
-                <el-input v-model="freeForm.goods[0].keywordRate2" auto-complete="off" style="width: 20px"></el-input>
+                <el-input v-model="freeForm.goods[0].keywordRate2" auto-complete="off" style="width: 60px"></el-input>
               </el-form-item>
             </p>
             <p>
               <el-form-item label="关键字3">
                 <el-input v-model="freeForm.goods[0].keyword3" auto-complete="off" style="width: 110px"></el-input>
                 比例
-                <el-input v-model="freeForm.goods[0].keywordRate3" auto-complete="off" style="width: 20px"></el-input>
+                <el-input v-model="freeForm.goods[0].keywordRate3" auto-complete="off" style="width: 60px"></el-input>
               </el-form-item>
             </p>
             <el-form-item label="下单规格:">
@@ -67,21 +67,21 @@
               <el-form-item label="关键字1">
                 <el-input v-model="freeForm.goods[1].keyword1" auto-complete="off" style="width: 110px"></el-input>
                 比例
-                <el-input v-model="freeForm.goods[1].keywordRate1" auto-complete="off" style="width: 20px"></el-input>
+                <el-input v-model="freeForm.goods[1].keywordRate1" auto-complete="off" style="width: 60px"></el-input>
               </el-form-item>
             </p>
             <p>
               <el-form-item label="关键字2">
                 <el-input v-model="freeForm.goods[1].keyword2" auto-complete="off" style="width: 110px"></el-input>
                 比例
-                <el-input v-model="freeForm.goods[1].keywordRate2" auto-complete="off" style="width: 20px"></el-input>
+                <el-input v-model="freeForm.goods[1].keywordRate2" auto-complete="off" style="width: 60px"></el-input>
               </el-form-item>
             </p>
             <p>
               <el-form-item label="关键字3">
                 <el-input v-model="freeForm.goods[1].keyword3" auto-complete="off" style="width: 110px"></el-input>
                 比例
-                <el-input v-model="freeForm.goods[1].keywordRate3" auto-complete="off" style="width: 20px"></el-input>
+                <el-input v-model="freeForm.goods[1].keywordRate3" auto-complete="off" style="width: 60px"></el-input>
               </el-form-item>
             </p>
             <el-form-item label="下单规格:">
@@ -108,7 +108,7 @@
             <div class="good-img">
               <span>订单截图参考：</span>
               <el-upload action="" accept="image/*" name="verticalPictureUrl" class="avatar-uploader" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload4">
-                <img v-if="freeForm.goods[1].verticalPictureUrl" :src="freeForm.goods[1].verticalPictureUrl" class="avatar">
+                <img v-if="freeForm.orderPictureUrl" :src="freeForm.orderPictureUrl" class="avatar">
                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
               </el-upload>
             </div>
@@ -162,181 +162,204 @@ export default class PubilcRefund extends Vue {
   private goodIndex: Array<string> = ['good0', 'good1'];
   private imageUrl: string = '';
   freeForm: freeOrderPublicInfo = {
-    title: '',
-    amount: '',
-    rate: '',
+    title: '1',
+    amount: '2',
+    rate: '3',
+    total: '4',
+    orderPictureUrl: '5',
+    executeTime: '6',
+    time_range: '7',
     goods: [
       {
-        treasureId: '',
-        keyword1: '',
-        keywordRate1: '',
-        keyword2: '',
-        keywordRate2: '',
-        keyword3: '',
-        keywordRate3: '',
-        sku: '',
-        mainPictureUrl: '',
-        verticalPictureUrl: ''
+        treasureId: '8',
+        keyword1: '9',
+        keywordRate1: '1',
+        keyword2: '12',
+        keywordRate2: '13',
+        keyword3: '14',
+        keywordRate3: '15',
+        sku: '16',
+        mainPictureUrl: '17',
+        verticalPictureUrl: '18'
       },
       {
-        treasureId: '',
-        keyword1: '',
-        keywordRate1: '',
-        keyword2: '',
-        keywordRate2: '',
-        keyword3: '',
-        keywordRate3: '',
-        sku: '',
-        mainPictureUrl: '',
-        verticalPictureUrl: ''
+        treasureId: '21',
+        keyword1: '31',
+        keywordRate1: '412',
+        keyword2: '423',
+        keywordRate2: '423',
+        keyword3: '423',
+        keywordRate3: '423',
+        sku: '423',
+        mainPictureUrl: '423',
+        verticalPictureUrl: '432'
       }
-    ],
-    total: '',
-    orderPictureUrl: '',
-    executeTime: '',
-    time_range: ''
+    ]
   };
   private setSelectTime() {
     this.selectTime = '星期' + new Date(this.freeForm.executeTime).getDay();
   }
-  private uploadIng(file: any) {
+  private uploadIng(file: any, type: string) {
     const isLt5M = file.size / 1024 / 1024 / 1024 / 1024 / 1024 < 5;
     if (!isLt5M) {
       this.$message.error('上传图片大小不能超过 5MB!');
     }
-    return setUploadImg(file);
+    setUploadImg(file)
+      .then(result => {
+        let url = JSON.parse(result.data).url;
+        // console.log('aaaaaaaaaaa', url);
+        // return url;
+        if (type === 'orderPictureUrl') {
+          this.freeForm.orderPictureUrl = url;
+        } else if (type === 'mainPictureUrl0') {
+          this.freeForm.goods[0].mainPictureUrl = url;
+        } else if (type === 'mainPictureUrl1') {
+          this.freeForm.goods[1].mainPictureUrl = url;
+        } else if (type === 'verticalPictureUrl0') {
+          this.freeForm.goods[0].verticalPictureUrl = url;
+        } else if (type === 'verticalPictureUrl1') {
+          this.freeForm.goods[1].verticalPictureUrl = url;
+        }
+      })
+      .catch(() => {
+        this.$message.error('图片上传错误');
+      });
   }
   private beforeAvatarUpload4(file: any) {
-    this.freeForm.orderPictureUrl = this.uploadIng(file) || '';
+    this.uploadIng(file, 'orderPictureUrl');
   }
   private beforeAvatarUpload0(file: any) {
-    this.freeForm.goods[0].mainPictureUrl = this.uploadIng(file) || '';
+    this.uploadIng(file, 'mainPictureUrl0');
   }
   private beforeAvatarUpload1(file: any) {
-    this.freeForm.goods[0].verticalPictureUrl = this.uploadIng(file) || '';
+    this.uploadIng(file, 'verticalPictureUrl0');
   }
   private beforeAvatarUpload2(file: any) {
-    this.freeForm.goods[1].mainPictureUrl = this.uploadIng(file) || '';
+    this.uploadIng(file, 'mainPictureUrl1');
   }
   private beforeAvatarUpload3(file: any) {
-    this.freeForm.goods[1].verticalPictureUrl = this.uploadIng(file) || '';
+    this.uploadIng(file, 'verticalPictureUrl1');
   }
   private handleAvatarSuccess() {
     // this.imageUrl = URL.createObjectURL(file.raw);
   }
   private submitForm(formName: string) {
-    let valid: boolean = true;
-    if (valid) {
-      let hourStr = '';
-      this.hourArry.map((item, idx) => {
-        hourStr += item.val + ',';
-      });
-      this.freeForm.time_range = hourStr;
-      console.log('this.freeForm', this.freeForm);
+    let hourStr = '';
+    this.hourArry.map((item, idx) => {
+      hourStr += item.val + ',';
+    });
+    this.freeForm.time_range = hourStr;
+    if (
+      this.freeForm.title === '' ||
+      this.freeForm.amount === '' ||
+      this.freeForm.rate === '' ||
+      this.freeForm.total === '' ||
+      this.freeForm.orderPictureUrl === '' ||
+      this.freeForm.executeTime === '' ||
+      this.freeForm.time_range === ''
+    ) {
+      this.$message.error('请填写完整的发布数据');
+      return;
+    } else if (
+      this.freeForm.goods[0].treasureId === '' ||
+      this.freeForm.goods[0].keyword1 === '' ||
+      this.freeForm.goods[0].keywordRate1 === '' ||
+      this.freeForm.goods[0].keyword2 === '' ||
+      this.freeForm.goods[0].keywordRate2 === '' ||
+      this.freeForm.goods[0].keyword2 === '' ||
+      this.freeForm.goods[0].keywordRate2 === '' ||
+      this.freeForm.goods[0].sku === '' ||
+      this.freeForm.goods[0].mainPictureUrl === '' ||
+      this.freeForm.goods[0].verticalPictureUrl === ''
+    ) {
+      this.$message.error('请填写完整的商品信息');
+      return;
+    } else if (
+      this.freeForm.goods[1].treasureId === '' ||
+      this.freeForm.goods[1].keyword1 === '' ||
+      this.freeForm.goods[1].keywordRate1 === '' ||
+      this.freeForm.goods[1].keyword2 === '' ||
+      this.freeForm.goods[1].keywordRate2 === '' ||
+      this.freeForm.goods[1].keyword2 === '' ||
+      this.freeForm.goods[1].keywordRate2 === '' ||
+      this.freeForm.goods[1].sku === '' ||
+      this.freeForm.goods[1].mainPictureUrl === '' ||
+      this.freeForm.goods[1].verticalPictureUrl === ''
+    ) {
+      this.$message.error('请填写完整的商品信息');
+      return;
+    } else {
       freeOrderPublic(this.freeForm)
         .then((res: {}) => {
           // window.location.href = '/';
         })
         .catch((err: { message: string }) => {
-          this.$notify({
-            title: '错误',
+          this.$message({
             message: err.message,
-            type: 'warning'
+            duration: 0
           });
-          // window.location.href = '/';
+          this.$message.error(err.message);
         });
-    } else {
-      this.$message.error('请填写完整端发布数据');
-      return false;
     }
   }
 }
 </script>
-<style lang="scss">
+
+<style lang="scss" scoped>
+@import '../scss/theme.scss';
+
 .sign {
   display: inline-block;
   font-size: 14px;
-  &-title {
-    padding-bottom: 20px;
-    font-size: 24px;
-  }
+}
+.sign-title {
+  padding: 20px 0;
+  font-size: 24px;
+}
 
-  .time {
-    // padding: 4px;
-    display: inline-block;
-    width: 550px;
-    .time-item {
-      width: 100px;
-    }
-  }
-  .first-line {
-    float: left;
-  }
+.time {
+  display: inline-block;
+  width: 550px;
+}
+.time-item {
+  width: 100px;
+}
+.first-line {
+  float: left;
+}
 
-  .goods {
-    min-height: 900px;
-    .good0 {
-      text-align: left;
-      float: left;
-      width: 40%;
-      padding: 20px;
-      border: 1px solid #ebebeb;
-    }
-    .good1 {
-      text-align: left;
-      float: right;
-      width: 40%;
-      padding: 20px;
-      border: 1px solid #ebebeb;
-    }
-  }
-
-  .order {
-    border: 1px solid #ebebeb;
-    padding: 20px 10px;
-    text-align: left;
-  }
-  .order-left {
-    float: left;
-    width: 400px;
-  }
-  .order-right {
-    float: right;
-    width: 400px;
-  }
-  .good-img {
-    position: relative;
-    height: 200px;
-  }
-  .avatar-uploader {
-    position: absolute;
-    left: 85px;
-    top: 0;
-    width: 178px;
-  }
-  .el-upload {
-    border: 1px dashed #d9d9d9;
-    border-radius: 6px;
-    position: relative;
-    overflow: hidden;
-  }
-  .avatar-uploader-icon {
-    border: 1px dashed #d9d9d9;
-    font-size: 28px;
-    color: #8c939d;
-    width: 178px;
-    height: 178px;
-    line-height: 178px;
-    text-align: center;
-  }
-  .avatar {
-    width: 178px;
-    height: 178px;
-    display: block;
-  }
-  input {
-    height: 40px !important;
-    line-height: 40px !important;
-  }
+.goods {
+  min-height: 900px;
+}
+.good0 {
+  text-align: left;
+  float: left;
+  width: 40%;
+  padding: 20px;
+  border: 1px solid #ebebeb;
+}
+.good1 {
+  text-align: left;
+  float: right;
+  width: 40%;
+  padding: 20px;
+  border: 1px solid #ebebeb;
+}
+.order {
+  border: 1px solid #ebebeb;
+  padding: 20px 10px;
+  text-align: left;
+}
+.order-left {
+  float: left;
+  width: 400px;
+}
+.order-right {
+  float: right;
+  width: 400px;
+}
+.good-img {
+  position: relative;
+  height: 200px;
 }
 </style>

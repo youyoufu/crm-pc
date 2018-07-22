@@ -173,6 +173,7 @@ export default class Login extends Vue {
 <style lang="scss" scoped>
 @import '../scss/theme.scss';
 .home {
+  margin-top: 10px;
   font-size: 24px;
   .tableimg {
     width: 40px;

@@ -22,11 +22,11 @@ const actions: ActionTree<User, RootState> = {
     //   }
     // );
   },
-  getUserInfo({ commit, state }: ActionContext<User, RootState>) {
-    return getUserInfo().then((user: User) => {
-      commit('saveUser', user);
-    });
-  },
+  // getUserInfo({ commit, state }: ActionContext<User, RootState>) {
+    // return getUserInfo().then((user: User) => {
+    //   commit('saveUser', user);
+    // });
+  // },
 };
 
 /* user mutations */

@@ -57,7 +57,7 @@ router.beforeEach((to, from, next) => {
     // this route requires auth, check if logged in
     // if not, redirect to autologin.
     if (!hasLogin()) {
-      saveLogin('youyoufu');
+      saveLogin('youyoufu'); 
       // next({
       //   path: '/task',
       //   query: { redirect: to.fullPath },

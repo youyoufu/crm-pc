@@ -32,7 +32,7 @@
           </el-upload>
         </div>
         <div class="good-img">
-          <span>主图长图：</span>
+          <span class="good-img-text">主图长图：</span>
           <el-upload action="" accept="image/*" name="verticalPictureUrl" class="avatar-uploader" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload1">
             <img v-if="refundForm.verticalPictureUrl" :src="refundForm.verticalPictureUrl" class="avatar">
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
@@ -125,20 +125,17 @@ export default class PubilcRefund extends Vue {
             message: err.message,
             type: 'warning'
           });
-          // window.location.href = '/';
+          window.location.href = '/home';
         });
     } else {
-      this.$notify({
-        title: '错误',
-        message: '请填入完整的登陆信息',
-        type: 'error'
-      });
+    
       return false;
     }
   }
 }
 </script>
 <style lang="scss">
+@import '../scss/theme.scss';
 .sign {
   display: inline-block;
   font-size: 14px;
@@ -159,32 +156,6 @@ export default class PubilcRefund extends Vue {
     .good-img-text {
       float: left;
     }
-  }
-  .avatar-uploader {
-    position: absolute;
-    left: 85px;
-    top: 0;
-    width: 178px;
-  }
-  .el-upload {
-    border: 1px dashed #d9d9d9;
-    border-radius: 6px;
-    position: relative;
-    overflow: hidden;
-  }
-  .avatar-uploader-icon {
-    border: 1px dashed #d9d9d9;
-    font-size: 28px;
-    color: #8c939d;
-    width: 178px;
-    height: 178px;
-    line-height: 178px;
-    text-align: center;
-  }
-  .avatar {
-    width: 178px;
-    height: 178px;
-    display: block;
   }
 }
 </style>

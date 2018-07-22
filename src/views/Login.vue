@@ -1,25 +1,24 @@
 <template>
   <div class="sign">
-   <el-form :model="dynamicValidateForm" ref="dynamicValidateForm" label-width="100px" class="demo-dynamic">
-     <div class="sign-title">您好，请登陆</div>
-  <el-form-item
-    prop="account"
-    label="账号">
-    <el-input v-model="dynamicValidateForm.account"></el-input>
-  </el-form-item>
-    <el-form-item label="密码" prop="pass">
-    <el-input type="password" v-model="dynamicValidateForm.pass" auto-complete="off"></el-input>
-  </el-form-item>
-  <el-form-item>
-    <el-button type="primary" @click="submitForm('dynamicValidateForm')">登陆</el-button>
-       <!-- <el-button @click="forgetPsw(dynamicValidateForm)">忘记密码</el-button> -->
-  </el-form-item>
-</el-form>
+    <el-form :model="dynamicValidateForm" ref="dynamicValidateForm" label-width="100px" class="demo-dynamic">
+      <div class="sign-title">您好，请登陆</div>
+      <el-form-item prop="account" label="账号">
+        <el-input v-model="dynamicValidateForm.account"></el-input>
+      </el-form-item>
+      <el-form-item label="密码" prop="pass">
+        <el-input type="password" v-model="dynamicValidateForm.pass" auto-complete="off"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="submitForm('dynamicValidateForm')">登陆</el-button>
+        <!-- <el-button @click="forgetPsw(dynamicValidateForm)">忘记密码</el-button> -->
+      </el-form-item>
+    </el-form>
   </div>
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { loginAdmin } from '@/api/login';
+import { saveLogin, TOKEN } from '@/util/session';
 
 @Component({
   components: {}
@@ -30,37 +29,22 @@ export default class Login extends Vue {
     account: ''
   };
   private submitForm(formName: string) {
-    // this.$refs[formName].validate((valid:boolean) => {
-    //   console.log('valid', valid);
     let valid: boolean = this.dynamicValidateForm.account !== '' && this.dynamicValidateForm.pass !== '';
     if (valid) {
       loginAdmin(this.dynamicValidateForm.account, this.dynamicValidateForm.pass)
         .then((res: {}) => {
-          // window.location.href='/';
+          saveLogin(TOKEN);
+          window.location.href = '/home';
         })
         .catch((err: { message: string }) => {
-          this.$notify({
-            title: '错误',
-            message: err.message,
-            type: 'warning'
-          });
-          // window.location.href='/';
+          this.$message.error(err.message);
         });
     } else {
-      this.$notify({
-        title: '错误',
-        message: '请填入正确的登陆信息',
-        type: 'error'
-      });
+      this.$message.error('请填写完整的发布数据');
+
       return false;
     }
-    // });
-    // alert('submit!');
-    // this.$router.push('/');
   }
-  // private forgetPsw() {
-  //   this.$router.push('/task');
-  // }
 }
 </script>
 <style lang="scss" scoped>

@@ -1,13 +1,11 @@
 <template>
   <div>
     <TopNav />
-
-    <div class="sign">
+    <div class="publicrefund">
       <el-form :model="refundForm" ref="refundForm" style="width: 350px" label-width="100px" class="demo-dynamic">
         <div class="sign-title">挖宝任务</div>
         <el-form-item label="宝贝ID">
           <el-input v-model="refundForm.treasureId" style="width: 180px"></el-input>
-          <!-- <input type="file"  /> -->
         </el-form-item>
         <el-form-item label="关键字1">
           <el-input v-model="refundForm.keyword1" auto-complete="off" style="width: 110px"></el-input>
@@ -54,7 +52,6 @@
 
         <el-form-item>
           <el-button type="primary" @click="submitForm('refundForm')">发布任务</el-button>
-          <!-- <el-button @click="forgetPsw(refundForm)">忘记密码</el-button> -->
         </el-form-item>
       </el-form>
     </div>
@@ -86,57 +83,80 @@ export default class PubilcRefund extends Vue {
     time_range: '',
     require: ''
   };
-  private uploadIng(file: any) {
-    const isLt5M = file.size / 1024 / 1024 / 1024 / 1024 / 1024 < 5;
+  private uploadIng(file: any, type: string) {
+    const isLt5M = file.size / 1024 / 1024 < 5;
     if (!isLt5M) {
-      this.$message.error('上传图片大小不能超过 5MB!');
+      this.$message.error('上传图片大小不能超过 2MB!');
     }
-    return setUploadImg(file);
+    setUploadImg(file)
+      .then(result => {
+        let url = JSON.parse(result.data).url;
+        if (type === 'mainPictureUrl') {
+          this.refundForm.mainPictureUrl = url;
+        } else if (type === 'verticalPictureUrl') {
+          this.refundForm.verticalPictureUrl = url;
+        }
+      })
+      .catch(() => {
+        this.$message.error('图片上传错误');
+      });
   }
   private beforeAvatarUpload0(file: any) {
-    this.refundForm.mainPictureUrl = this.uploadIng(file) || '';
+    this.uploadIng(file, 'mainPictureUrl');
   }
   private beforeAvatarUpload1(file: any) {
-    this.refundForm.verticalPictureUrl = this.uploadIng(file) || '';
+    this.uploadIng(file, 'verticalPictureUrl');
   }
   private handleAvatarSuccess() {
     // this.imageUrl = URL.createObjectURL(file.raw);
   }
   private setSelectTime() {
-    this.selectTime = '星期' + new Date(this.refundForm.executeTime).getDay();
+    let week: string = new Date(this.refundForm.executeTime).getDay().toString();
+    if (week === '0') {
+      week = '天';
+    }
+    this.selectTime = '星期' + week;
   }
   private submitForm(formName: string) {
-    // this.$refs[formName].validate((valid:boolean) => {
-    let valid: boolean = false; // = this.refundForm.account !== '' && this.refundForm.pass !== '';
-    if (valid) {
-      let hourStr = '';
-      this.hourArry.map((item, idx) => {
-        hourStr += item.val + ',';
-      });
-      this.refundForm.time_range = hourStr;
-      console.log('this.refundForm', this.refundForm);
+    let hourStr = '';
+    this.hourArry.map((item, idx) => {
+      hourStr += item.val + ',';
+    });
+    this.refundForm.time_range = hourStr;
+    if (
+      this.refundForm.treasureId === '' ||
+      this.refundForm.keyword1 === '' ||
+      this.refundForm.keywordRate1 === '' ||
+      this.refundForm.keyword2 === '' ||
+      this.refundForm.keywordRate2 === '' ||
+      this.refundForm.keyword3 === '' ||
+      this.refundForm.keywordRate3 === '' ||
+      this.refundForm.executeTime === '' ||
+      this.refundForm.mainPictureUrl === '' ||
+      this.refundForm.verticalPictureUrl === '' ||
+      this.refundForm.time_range === '' ||
+      this.refundForm.require === ''
+    ) {
+      this.$message.error('请填写完整的发布数据');
+      return;
+    } else {
       refundOrderPublic(this.refundForm)
         .then((res: {}) => {
-          // window.location.href = '/';
+          this.$message.success('任务发布成功～');
+          setTimeout(() => {
+            window.location.href = '/home';
+          }, 3000);
         })
         .catch((err: { message: string }) => {
-          this.$notify({
-            title: '错误',
-            message: err.message,
-            type: 'warning'
-          });
-          window.location.href = '/home';
+          this.$message.error(err.message);
         });
-    } else {
-    
-      return false;
     }
   }
 }
 </script>
 <style lang="scss">
 @import '../scss/theme.scss';
-.sign {
+.publicrefund {
   display: inline-block;
   font-size: 14px;
   text-align: center;
@@ -158,4 +178,5 @@ export default class PubilcRefund extends Vue {
     }
   }
 }
+@import '../scss/global.scss';
 </style>

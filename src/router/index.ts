@@ -5,6 +5,8 @@ import Task from '@/views/Task.vue';
 import Home from '@/views/Home.vue';
 import PublicRefund from '@/views/PublicRefund.vue';
 import PublicFree from '@/views/PublicFree.vue';
+import listRefund from '@/views/ListRefund.vue';
+import listFree from '@/views/ListFree.vue';
 import User from '@/views/User.vue';
 import { hasLogin, saveLogin } from '@/util/session';
 
@@ -23,25 +25,37 @@ const router = new Router({
       path: '/home',
       name: 'home',
       component: Home,
-      meta: { title: '我的主页' }
+      meta: { title: '我的主页', requiredAuth: true }
     },
     {
       path: '/user',
       name: 'user',
       component: User,
-      meta: { title: '个人中心' }
+      meta: { title: '个人中心', requiredAuth: true }
     },
     {
       path: '/publicrefund',
       name: 'publicrefund',
       component: PublicRefund,
-      meta: { title: '挖宝任务发布' }
+      meta: { title: '挖宝任务发布', requiredAuth: true }
     },
     {
       path: '/publicfree',
       name: 'publicfree',
       component: PublicFree,
-      meta: { title: '挖宝任务发布' }
+      meta: { title: '免单任务发布', requiredAuth: true }
+    },
+    {
+      path: '/listrefund',
+      name: 'listrefund',
+      component: listRefund,
+      meta: { title: '挖宝任务列表', requiredAuth: true }
+    },
+    {
+      path: '/listfree',
+      name: 'listfree',
+      component: listFree,
+      meta: { title: '免单任务列表', requiredAuth: true }
     },
     {
       path: '/task',
@@ -54,27 +68,17 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiredAuth)) {
-    // this route requires auth, check if logged in
-    // if not, redirect to autologin.
     if (!hasLogin()) {
-      saveLogin('youyoufu'); 
-      // next({
-      //   path: '/task',
-      //   query: { redirect: to.fullPath },
-      // });
+      window.location.href = '/';
     } else {
-      /* 路由发生变化修改页面title */
-      if (to.meta.title) {
-        document.title = to.meta.title;
-      }
-      next();
+      next(); // 确保一定要调用 next()
     }
   } else {
-    /* 路由发生变化修改页面title */
-    if (to.meta.title) {
-      document.title = to.meta.title;
-    }
     next(); // 确保一定要调用 next()
+  }
+  /* 路由发生变化修改页面title */
+  if (to.meta.title) {
+    document.title = to.meta.title;
   }
 });
 

@@ -1,11 +1,11 @@
 <template>
   <div>
     <TopNav />
-    <div class="sign">
+    <div class="publicfree">
       <el-form :model="freeForm" ref="freeForm" :inline="true">
         <div class="sign-title">发布免单任务</div>
         <div class="first-line">
-          <el-form-item :prop="freeForm.title" label="任务标题:" :rules="[{ required: true, message: '不能为空'}]">
+          <el-form-item :prop="freeForm.title" label="任务标题:">
             <el-input v-model="freeForm.title" style="width: 180px"></el-input>
           </el-form-item>
           <el-form-item label="任务订单总金额:">
@@ -162,53 +162,55 @@ export default class PubilcRefund extends Vue {
   private goodIndex: Array<string> = ['good0', 'good1'];
   private imageUrl: string = '';
   freeForm: freeOrderPublicInfo = {
-    title: '1',
-    amount: '2',
-    rate: '3',
-    total: '4',
-    orderPictureUrl: '5',
-    executeTime: '6',
-    time_range: '7',
+    title: '',
+    amount: '',
+    rate: '',
+    total: '',
+    orderPictureUrl: '',
+    executeTime: '',
+    time_range: '',
     goods: [
       {
-        treasureId: '8',
-        keyword1: '9',
-        keywordRate1: '1',
-        keyword2: '12',
-        keywordRate2: '13',
-        keyword3: '14',
-        keywordRate3: '15',
-        sku: '16',
-        mainPictureUrl: '17',
-        verticalPictureUrl: '18'
+        treasureId: '',
+        keyword1: '',
+        keywordRate1: '',
+        keyword2: '',
+        keywordRate2: '',
+        keyword3: '',
+        keywordRate3: '',
+        sku: '',
+        mainPictureUrl: '',
+        verticalPictureUrl: ''
       },
       {
-        treasureId: '21',
-        keyword1: '31',
-        keywordRate1: '412',
-        keyword2: '423',
-        keywordRate2: '423',
-        keyword3: '423',
-        keywordRate3: '423',
-        sku: '423',
-        mainPictureUrl: '423',
-        verticalPictureUrl: '432'
+        treasureId: '',
+        keyword1: '',
+        keywordRate1: '',
+        keyword2: '',
+        keywordRate2: '',
+        keyword3: '',
+        keywordRate3: '',
+        sku: '',
+        mainPictureUrl: '',
+        verticalPictureUrl: ''
       }
     ]
   };
   private setSelectTime() {
-    this.selectTime = '星期' + new Date(this.freeForm.executeTime).getDay();
+    let week: string = new Date(this.freeForm.executeTime).getDay().toString();
+    if (week === '0') {
+      week = '天';
+    }
+    this.selectTime = '星期' + week;
   }
   private uploadIng(file: any, type: string) {
-    const isLt5M = file.size / 1024 / 1024 / 1024 / 1024 / 1024 < 5;
+    const isLt5M = file.size / 1024 / 1024 < 5;
     if (!isLt5M) {
-      this.$message.error('上传图片大小不能超过 5MB!');
+      this.$message.error('上传图片大小不能超过 2MB!');
     }
     setUploadImg(file)
       .then(result => {
         let url = JSON.parse(result.data).url;
-        // console.log('aaaaaaaaaaa', url);
-        // return url;
         if (type === 'orderPictureUrl') {
           this.freeForm.orderPictureUrl = url;
         } else if (type === 'mainPictureUrl0') {
@@ -291,13 +293,12 @@ export default class PubilcRefund extends Vue {
     } else {
       freeOrderPublic(this.freeForm)
         .then((res: {}) => {
-          // window.location.href = '/';
+          this.$message.success('任务发布成功～');
+          setTimeout(() => {
+            window.location.href = '/home';
+          }, 3000);
         })
         .catch((err: { message: string }) => {
-          this.$message({
-            message: err.message,
-            duration: 0
-          });
           this.$message.error(err.message);
         });
     }
@@ -308,58 +309,60 @@ export default class PubilcRefund extends Vue {
 <style lang="scss" scoped>
 @import '../scss/theme.scss';
 
-.sign {
+.publicfree {
   display: inline-block;
   font-size: 14px;
-}
-.sign-title {
-  padding: 20px 0;
-  font-size: 24px;
-}
 
-.time {
-  display: inline-block;
-  width: 550px;
-}
-.time-item {
-  width: 100px;
-}
-.first-line {
-  float: left;
-}
+  .sign-title {
+    padding: 20px 0;
+    font-size: 24px;
+  }
 
-.goods {
-  min-height: 900px;
+  .time {
+    display: inline-block;
+    width: 550px;
+  }
+  .time-item {
+    width: 100px;
+  }
+  .first-line {
+    float: left;
+  }
+
+  .goods {
+    min-height: 900px;
+  }
+  .good0 {
+    text-align: left;
+    float: left;
+    width: 40%;
+    padding: 20px;
+    border: 1px solid #ebebeb;
+  }
+  .good1 {
+    text-align: left;
+    float: right;
+    width: 40%;
+    padding: 20px;
+    border: 1px solid #ebebeb;
+  }
+  .order {
+    border: 1px solid #ebebeb;
+    padding: 20px 10px;
+    text-align: left;
+  }
+  .order-left {
+    float: left;
+    width: 400px;
+  }
+  .order-right {
+    float: right;
+    width: 400px;
+  }
+  .good-img {
+    position: relative;
+    height: 200px;
+  }
 }
-.good0 {
-  text-align: left;
-  float: left;
-  width: 40%;
-  padding: 20px;
-  border: 1px solid #ebebeb;
-}
-.good1 {
-  text-align: left;
-  float: right;
-  width: 40%;
-  padding: 20px;
-  border: 1px solid #ebebeb;
-}
-.order {
-  border: 1px solid #ebebeb;
-  padding: 20px 10px;
-  text-align: left;
-}
-.order-left {
-  float: left;
-  width: 400px;
-}
-.order-right {
-  float: right;
-  width: 400px;
-}
-.good-img {
-  position: relative;
-  height: 200px;
-}
+@import '../scss/global.scss';
 </style>

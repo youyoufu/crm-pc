@@ -1,7 +1,7 @@
 <template>
   <div>
     <TopNav />
-  <div class="home">
+  <div class="listfree">
 <el-table
     :data="tableData"
     border
@@ -172,7 +172,7 @@ export default class Login extends Vue {
 </script>
 <style lang="scss" scoped>
 @import '../scss/theme.scss';
-.home {
+.listfree {
   margin-top: 10px;
   font-size: 24px;
   .tableimg {

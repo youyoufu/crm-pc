@@ -1,4 +1,4 @@
-export const API_PRE = 'http://192.168.1.5/public/index.php';
+export const API_PRE = 'http://134.175.2.105';
 
 /* 处理接口地址前缀 */
 export function stringifPath(path: string) {

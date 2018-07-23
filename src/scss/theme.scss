@@ -20,39 +20,3 @@ $timeColor: #8560a9;
 //标签颜色
 $channelColor: #d3c1e5;
 
-body {
-  font-size: 28px;
-}
-.el-message-box__wrapper{
-  width: 80px;
-}
-.el-message-box {
-  width: 100px;
-}
-
-.avatar-uploader {
-  position: absolute;
-  left: 85px;
-  top: 0;
-  width: 120px;
-}
-.el-upload {
-  border: 1px dashed #d9d9d9;
-  border-radius: 6px;
-  position: relative;
-  overflow: hidden;
-}
-.avatar-uploader-icon {
-  border: 1px dashed #d9d9d9;
-  font-size: 28px;
-  color: #8c939d;
-  width: 120px;
-  height: 120px;
-  line-height: 120px;
-  text-align: center;
-}
-.avatar {
-  width: 120px;
-  height: 120px;
-  display: block;
-}

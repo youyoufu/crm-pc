@@ -1,41 +1,53 @@
 <template>
   <div class="topNav">
     <div class="store-name">欢迎您，***旗舰店</div>
- <el-container>
-  <el-header>
-<el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-    <el-submenu index="1">
-    <template slot="title">挖宝任务</template>
-    <el-menu-item index="1-1"><a href="/publicfree">发布任务</a></el-menu-item>
-    <el-menu-item index="1-2">已发布任务</el-menu-item>
-    <el-menu-item index="1-3">挖宝订单明细</el-menu-item>
-    </el-submenu>
-  <el-submenu index="2">
-    <template slot="title">免单任务</template>
-    <el-menu-item index="2-1">发布免单任务</el-menu-item>
-    <el-menu-item index="2-2">已发布任务</el-menu-item>
-    <el-menu-item index="2-3">免单订单管理</el-menu-item>
-    <el-menu-item index="2-4">免单订单明细</el-menu-item>
-    </el-submenu>
-  <el-menu-item index="3">用户管理</el-menu-item>
-  <el-menu-item index="4"><a href="/login">评价管理</a></el-menu-item>
-    <el-submenu index="5">
-    <template slot="title">返款</template>
-    <el-menu-item index="5-1">批量返款</el-menu-item>
-    <el-menu-item index="5-2">自动返款</el-menu-item>
-    <el-menu-item index="5-3">用户提现流水</el-menu-item>
-    </el-submenu>
-      <el-submenu index="6">
-    <template slot="title">运营工具</template>
-    <el-menu-item index="6-1">导流和补单计算</el-menu-item>
-    <el-menu-item index="6-2">搜索数据监控</el-menu-item>
-    </el-submenu>
-  <el-menu-item index="7"><a href="/login" target="_blank">系统设置</a></el-menu-item>
+    <el-container>
+      <el-header>
+        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+          <el-submenu index="1">
+            <template slot="title">挖宝任务</template>
+            <el-menu-item index="1-1">
+              <a href="/publicrefund">发布任务</a>
+            </el-menu-item>
+            <el-menu-item index="1-2">
+              <a href="/listrefund">已发布任务</a>
+            </el-menu-item>
+            <el-menu-item index="1-3">挖宝订单明细</el-menu-item>
+          </el-submenu>
+          <el-submenu index="2">
+            <template slot="title">免单任务</template>
+            <el-menu-item index="2-1">
+              <a href="/publicfree">发布免单任务</a>
+            </el-menu-item>
+            <el-menu-item index="2-2">
+              <a href="/listfree">已发布任务</a>
+            </el-menu-item>
+            <el-menu-item index="2-3">免单订单管理</el-menu-item>
+            <el-menu-item index="2-4">免单订单明细</el-menu-item>
+          </el-submenu>
+          <el-menu-item index="3">用户管理</el-menu-item>
+          <el-menu-item index="4">
+            评价管理
+          </el-menu-item>
+          <el-submenu index="5">
+            <template slot="title">返款</template>
+            <el-menu-item index="5-1">批量返款</el-menu-item>
+            <el-menu-item index="5-2">自动返款</el-menu-item>
+            <el-menu-item index="5-3">用户提现流水</el-menu-item>
+          </el-submenu>
+          <el-submenu index="6">
+            <template slot="title">运营工具</template>
+            <el-menu-item index="6-1">导流和补单计算</el-menu-item>
+            <el-menu-item index="6-2">搜索数据监控</el-menu-item>
+          </el-submenu>
+          <el-menu-item index="7">
+            系统设置
+          </el-menu-item>
 
-</el-menu>
-  </el-header>
+        </el-menu>
+      </el-header>
 
-</el-container>
+    </el-container>
   </div>
 </template>
 

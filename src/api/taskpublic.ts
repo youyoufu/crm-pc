@@ -1,7 +1,7 @@
 import { internalFetch } from '@/util/fetch';
 import { stringifPath } from './index';
 const UPLOADPATH = '/uploadImage/upload';
-const refundOrderPublicPATH = '/taskOrder/refundOrderPublic';
+const refundOrderPublicPATH = '/refundTask/publish';
 const freeOrderPublicPATH = '/freeTask/publish';
 export const HourData: Array<{ time: string; val: string }> = [
   { time: '00点', val: '' },
@@ -85,11 +85,4 @@ export function setUploadImg(files: any) {
     method: 'POST',
     body: formData
   }).then(response => response.json());
-  // .then(result => {
-  //   let url = JSON.parse(result.data).url;
-  //   return url;
-  // })
-  // .catch((err: {}) => {
-  //   return '';
-  // });
 }

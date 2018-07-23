@@ -33,7 +33,7 @@ const checkCode = (res: ResData) => {
     return res.data;
   } else if (res.status === '3001') {
     removeCookie(TOKEN);
-    return (window.location.href = '/');
+    return (window.location.href = '/login');
   } else {
     throw res;
   }

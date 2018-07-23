@@ -3,29 +3,46 @@
   width: 100%;
   text-align: center;
 }
+
 body {
-  width: 90%;
-  margin: 0 auto;
-}
-.el-message {
-  width: 120px;
-  height: 30px;
+  font-size: 28px;
 }
 
-.el-icon-info:before{
+.el-message {
+  width: 80px;
+  height: 40px;
+}
+.el-icon-info:before {
   content: '';
 }
 .el-input__inner {
-  height: 25px!important;
-  line-height: 25px!important;
+  height: 25px !important;
+  line-height: 25px !important;
   padding: 0;
 }
-
-@keyframes circle_rotating {
-  0% {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(1turn);
-  }
+.avatar-uploader {
+  position: absolute;
+  left: 85px;
+  top: 0;
+  width: 120px;
+}
+.el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+}
+.avatar-uploader-icon {
+  border: 1px dashed #d9d9d9;
+  font-size: 28px;
+  color: #8c939d;
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
+  text-align: center;
+}
+.avatar {
+  width: 120px;
+  height: 120px;
+  display: block;
 }

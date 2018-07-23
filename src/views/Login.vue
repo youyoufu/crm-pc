@@ -1,5 +1,5 @@
 <template>
-  <div class="sign">
+  <div class="login">
     <el-form :model="dynamicValidateForm" ref="dynamicValidateForm" label-width="100px" class="demo-dynamic">
       <div class="sign-title">您好，请登陆</div>
       <el-form-item prop="account" label="账号">
@@ -41,14 +41,15 @@ export default class Login extends Vue {
         });
     } else {
       this.$message.error('请填写完整的发布数据');
-
       return false;
     }
   }
 }
 </script>
 <style lang="scss" scoped>
-.sign {
+@import '../scss/theme.scss';
+
+.login {
   display: inline-block;
   font-size: 24px;
   text-align: center;
@@ -59,4 +60,6 @@ export default class Login extends Vue {
     padding-bottom: 20px;
   }
 }
+@import '../scss/global.scss';
+
 </style>

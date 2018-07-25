@@ -1,5 +1,5 @@
 @mixin px2px($name, $val) {
-  #{$name}: $val * 1/2 * 1px;
+  #{$name}: 1px;//$val * 1/2 * 
   // [data-dpr="2"] & {
   //   #{$name}: $val * 1px;
   // }

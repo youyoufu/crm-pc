@@ -3,14 +3,14 @@
     <div class="store-name">欢迎您，***旗舰店</div>
     <el-container>
       <el-header>
-        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
           <el-submenu index="1">
             <template slot="title">挖宝任务</template>
             <el-menu-item index="1-1">
               <a href="/publicrefund">发布任务</a>
             </el-menu-item>
             <el-menu-item index="1-2">
-              <a href="/listrefund">已发布任务</a>
+              <a  href="/listrefund">已发布任务</a>
             </el-menu-item>
             <el-menu-item index="1-3">挖宝订单明细</el-menu-item>
           </el-submenu>
@@ -91,8 +91,12 @@ export default class TopNav extends Vue {
 
 <style lang="scss" scoped>
 @import '../scss/theme.scss';
-
+ a {
+    color: #fff;
+    text-decoration: none;
+  }
 .topNav {
+ 
   border-bottom: 1px solid #ebebeb;
   height: 40px;
   width: 100%;
@@ -101,16 +105,18 @@ export default class TopNav extends Vue {
   .el-header {
     padding: 0;
   }
+
   ul.el-menu--horizontal {
     border: none;
     font-size: 32px;
     font-weight: bold;
-    a {
-      text-decoration: none;
-    }
+  }
+  div.el-menu--horizontal {
+    top: 135px;
   }
   .store-name {
     text-align: center;
+    margin-bottom: 10px;
   }
 }
 </style>

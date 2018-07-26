@@ -117,6 +117,7 @@ export default class TopNav extends Vue {
   .store-name {
     text-align: center;
     margin-bottom: 10px;
+    padding: 20px;
   }
 }
 </style>

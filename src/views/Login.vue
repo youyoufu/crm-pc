@@ -55,11 +55,11 @@ export default class Login extends Vue {
   text-align: center;
   margin-top: 20px;
   padding: 100px;
-  width: 300px;
-  &-title {
-    padding-bottom: 20px;
+  width: 420px;
+  .sign-title {
+    margin-bottom: 20px;
   }
 }
-@import '../scss/global.scss';
 
+@import '../scss/global.scss';
 </style>

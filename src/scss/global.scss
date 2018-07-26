@@ -22,7 +22,7 @@ body {
 // }
 .avatar-uploader {
   position: absolute;
-  left: 85px;
+  left:140px;
   top: 0;
   width: 120px;
 }
@@ -33,16 +33,16 @@ body {
   overflow: hidden;
 }
 .avatar-uploader-icon {
-  border: 1px dashed #d9d9d9;
+  // border: 1px dashed #d9d9d9;
   font-size: 28px;
   color: #8c939d;
-  width: 120px;
-  height: 120px;
-  line-height: 120px;
+  width: 160px;
+  height: 160px;
+  line-height: 160px;
   text-align: center;
 }
 .avatar {
-  width: 120px;
-  height: 120px;
+  width: 160px;
+  height: 160px;
   display: block;
 }

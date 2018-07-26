@@ -72,16 +72,16 @@ export default class PubilcRefund extends Vue {
   refundForm: refundOrderPublicInfo = {
     treasureId: '',
     keyword1: '',
-    keywordRate1: '',
+    keywordRate1: '1',
     keyword2: '',
-    keywordRate2: '',
+    keywordRate2: '1',
     keyword3: '',
-    keywordRate3: '',
+    keywordRate3: '1',
     executeTime: '',
     mainPictureUrl: '',
     verticalPictureUrl: '',
     time_range: '',
-    require: ''
+    require: '任意规格'
   };
   private uploadIng(file: any, type: string) {
     const isLt5M = file.size / 1024 / 1024 < 5;
@@ -162,7 +162,7 @@ export default class PubilcRefund extends Vue {
   text-align: center;
   padding: 50px;
   width: 350px;
-  &-title {
+  .sign-title {
     padding-bottom: 20px;
     font-size: 24px;
   }

@@ -96,9 +96,8 @@ export default class TopNav extends Vue {
     text-decoration: none;
   }
 .topNav {
- 
   border-bottom: 1px solid #ebebeb;
-  height: 40px;
+  height: 90px;
   width: 100%;
   padding: 10px 0 40px;
   font-size: 24px;

@@ -9,10 +9,16 @@
             <el-input v-model="freeForm.title" style="width: 180px"></el-input>
           </el-form-item>
           <el-form-item label="任务订单总金额:">
-            <el-input v-model="freeForm.amount" style="width: 180px"></el-input>
+            <el-input v-model="freeForm.amount" style="width: 180px" :rules="[{ required: true, message: '订单总金额'},
+                      { type: 'number', message: '订单总金额为数字值'}]">
+            </el-input>
           </el-form-item>
           <el-form-item label="返现比例:">
-            <el-input v-model="freeForm.rate" style="width: 180px"></el-input>
+            <el-select v-model="freeForm.rate" placeholder="请选择">
+              <el-option v-for="item in selectRate" :key="item" :label="item" :value="item">
+              </el-option>
+            </el-select>
+            <!-- <el-input v-model="freeForm.rate" style="width: 180px"></el-input> -->
           </el-form-item>
         </div>
         <div class="goods">
@@ -161,10 +167,11 @@ export default class PubilcRefund extends Vue {
   private hourArry: Array<{ time: string; val: string }> = HourData;
   private goodIndex: Array<string> = ['good0', 'good1'];
   private imageUrl: string = '';
+  private selectRate: Array<string> = ['100%', '70%', '50%'];
   freeForm: freeOrderPublicInfo = {
     title: '',
     amount: '',
-    rate: '',
+    rate: '100%',
     total: '',
     orderPictureUrl: '',
     executeTime: '',
@@ -173,24 +180,24 @@ export default class PubilcRefund extends Vue {
       {
         treasureId: '',
         keyword1: '',
-        keywordRate1: '',
+        keywordRate1: '1',
         keyword2: '',
-        keywordRate2: '',
+        keywordRate2: '1',
         keyword3: '',
-        keywordRate3: '',
-        sku: '',
+        keywordRate3: '1',
+        sku: '任意规格',
         mainPictureUrl: '',
         verticalPictureUrl: ''
       },
       {
         treasureId: '',
         keyword1: '',
-        keywordRate1: '',
+        keywordRate1: '1',
         keyword2: '',
-        keywordRate2: '',
+        keywordRate2: '1',
         keyword3: '',
-        keywordRate3: '',
-        sku: '',
+        keywordRate3: '1',
+        sku: '任意规格',
         mainPictureUrl: '',
         verticalPictureUrl: ''
       }

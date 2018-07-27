@@ -2,6 +2,7 @@ import { internalFetch } from '@/util/fetch';
 import { stringifPath } from './index';
 const UPLOADPATH = '/uploadImage/upload';
 const refundOrderPublicPATH = '/refundTask/publish';
+const freeEditPATH = '/manageTaskOrder/getFreeTaskById';
 const freeOrderPublicPATH = '/freeTask/publish';
 export const HourData: Array<{ time: string; val: string }> = [
   { time: '00点', val: '' },
@@ -72,9 +73,15 @@ export function refundOrderPublic(object: refundOrderPublicInfo) {
   });
 }
 /*免单任务*/
-export function freeOrderPublic(object: freeOrderPublicInfo) {
+export function freeOrderPublic(object: freeOrderPublicInfo, id: string) {
   return internalFetch('POST')(true)(stringifPath(freeOrderPublicPATH), {
-    body: { ...object }
+    body: { ...object, id }
+  });
+}
+/*通过ID获取免单详情*/
+export function freeOrderDeatilPublic(id: string) {
+  return internalFetch('POST')(true)(stringifPath(freeEditPATH), {
+    body: {id }
   });
 }
 /*上传图片*/

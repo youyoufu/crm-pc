@@ -7,14 +7,17 @@
 body {
   font-size: 28px;
 }
-
-.el-message {
-  width: 80px;
-  height: 40px;
+.el-pagination{
+  width: 1200px;
+  padding-top: 20px;
 }
-.el-icon-info:before {
-  content: '';
-}
+// .el-message {
+//   width: 80px;
+//   height: 40px;
+// }
+// .el-icon-info:before {
+//   content: '';
+// }
 // .el-input__inner {
 //   height: 25px !important;
 //   line-height: 25px !important;

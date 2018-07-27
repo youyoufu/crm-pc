@@ -3,7 +3,7 @@
     <TopNav />
     <div class="publicfree">
       <el-form :model="freeForm" ref="freeForm" :inline="true">
-        <div class="sign-title">发布免单任务</div>
+        <div class="sign-title">{{curStatus}}免单任务</div>
         <div class="first-line">
           <el-form-item :prop="freeForm.title" label="任务标题:">
             <el-input v-model="freeForm.title" style="width: 180px"></el-input>
@@ -18,7 +18,6 @@
               <el-option v-for="item in selectRate" :key="item" :label="item" :value="item">
               </el-option>
             </el-select>
-            <!-- <el-input v-model="freeForm.rate" style="width: 180px"></el-input> -->
           </el-form-item>
         </div>
         <div class="goods">
@@ -155,8 +154,9 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { freeOrderPublic, freeOrderPublicInfo, HourData, setUploadImg } from '@/api/taskpublic';
+import { freeOrderPublic, freeOrderPublicInfo, HourData, setUploadImg, freeOrderDeatilPublic } from '@/api/taskpublic';
 import TopNav from '@/components/TopNav.vue';
+import { getQuery } from '@/util/cookie';
 
 @Component({
   components: { TopNav }
@@ -168,6 +168,9 @@ export default class PubilcRefund extends Vue {
   private goodIndex: Array<string> = ['good0', 'good1'];
   private imageUrl: string = '';
   private selectRate: Array<string> = ['100%', '70%', '50%'];
+  private tid: string = getQuery('tid') || '';
+  private isadd: string = getQuery('isadd') || '';
+  private curStatus: string = '新建';
   freeForm: freeOrderPublicInfo = {
     title: '',
     amount: '',
@@ -203,6 +206,22 @@ export default class PubilcRefund extends Vue {
       }
     ]
   };
+  private created() {
+    if (this.isadd === '0') {
+      this.curStatus = '复制';
+    } else if (this.tid !== '') {
+      this.curStatus = '编辑';
+    }
+    if (this.tid !== '') {
+      freeOrderDeatilPublic(this.tid)
+        .then((res: any) => {
+          this.freeForm = res;
+        })
+        .catch((err: { message: string }) => {
+          this.$message.error(err.message);
+        });
+    }
+  }
   private setSelectTime() {
     let week: string = new Date(this.freeForm.executeTime).getDay().toString();
     if (week === '0') {
@@ -298,11 +317,15 @@ export default class PubilcRefund extends Vue {
       this.$message.error('请填写完整的商品信息');
       return;
     } else {
-      freeOrderPublic(this.freeForm)
+      let id = '';
+      if (this.isadd === '0') {
+        id = this.tid;
+      }
+      freeOrderPublic(this.freeForm, id)
         .then((res: {}) => {
           this.$message.success('任务发布成功～');
           setTimeout(() => {
-            window.location.href = '/home';
+            window.location.href = '/listfree';
           }, 3000);
         })
         .catch((err: { message: string }) => {

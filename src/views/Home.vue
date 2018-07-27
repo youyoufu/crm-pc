@@ -13,7 +13,7 @@
         <el-table-column label="账号验证截图1" width="130">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top">
-              <img class="tablebigimg" :src="scope.row.check_first_url" />
+              <img class="tablebigimg"  width="50%" :src="scope.row.check_first_url" />
               <div slot="reference" class="name-wrapper">
                 <span size="medium">
                   <img class="tableimg" :src="scope.row.check_first_url" />
@@ -25,7 +25,7 @@
         <el-table-column label="账号验证截图2" width="130">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top">
-              <img class="tablebigimg" :src="scope.row.check_second_url" />
+              <img class="tablebigimg"  width="50%" :src="scope.row.check_second_url" />
               <div slot="reference" class="name-wrapper">
                 <span size="medium">
                   <img class="tableimg" :src="scope.row.check_second_url" />
@@ -46,7 +46,7 @@
         <el-table-column label="订单截图" width="125">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top">
-              <img class="tablebigimg" :src="scope.row.order_pic_url" />
+              <img class="tablebigimg" width="50%" :src="scope.row.order_pic_url" />
               <div slot="reference" class="name-wrapper">
                 <span size="medium">
                   <img class="tableimg" :src="scope.row.order_pic_url" />
@@ -58,7 +58,7 @@
         <el-table-column label="用户返款微信码" width="130">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top">
-              <img class="tablebigimg" :src="scope.row.wechat_code_url" />
+              <img class="tablebigimg" width="50%" :src="scope.row.wechat_code_url" />
               <div slot="reference" class="name-wrapper">
                 <span size="medium">
                   <img class="tableimg" :src="scope.row.wechat_code_url" />
@@ -211,10 +211,6 @@ export default class orderList extends Vue {
   .tableimg {
     width: 60px;
     height: 60px;
-  }
-  .tablebigimg {
-    width: 50%;
-    max-width: 500px;
   }
 }
 @import "../scss/global.scss";

@@ -48,6 +48,8 @@ export interface freeOrderPublicInfo {
   title: string;
   amount: string;
   rate: string;
+  gift: string;
+  content: string;
   goods: Array<{
     treasureId: string;
     keyword1: string;
@@ -81,7 +83,7 @@ export function freeOrderPublic(object: freeOrderPublicInfo, id: string) {
 /*通过ID获取免单详情*/
 export function freeOrderDeatilPublic(id: string) {
   return internalFetch('POST')(true)(stringifPath(freeEditPATH), {
-    body: {id }
+    body: { id }
   });
 }
 /*上传图片*/

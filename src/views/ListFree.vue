@@ -13,7 +13,7 @@
         <el-table-column label="订单截图参考" width="120">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top">
-              <img class="tablebigimg" width="100%" :src="scope.row.url" />
+              <img class="tablebigimg" :src="scope.row.url" />
               <div slot="reference" class="name-wrapper">
                 <span size="medium">
                   <img class="tableimg" :src="scope.row.url" />
@@ -135,6 +135,10 @@ export default class orderList extends Vue {
   .tableimg {
     width: 60px;
     height: 60px;
+  }
+  .tablebigimg{
+    width: 50%;
+    max-width: 500px;
   }
 }
 @import '../scss/global.scss';

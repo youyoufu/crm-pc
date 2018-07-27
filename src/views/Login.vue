@@ -34,7 +34,7 @@ export default class Login extends Vue {
       loginAdmin(this.dynamicValidateForm.account, this.dynamicValidateForm.pass)
         .then((res: any) => {
           saveLogin(res.id);
-          // window.location.href = '/home';
+          window.location.href = '/home';
         })
         .catch((err: { message: string }) => {
           this.$message.error(err.message);

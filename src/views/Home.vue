@@ -13,7 +13,7 @@
         <el-table-column label="账号验证截图1" width="130">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top">
-              <img class="tablebigimg" width="100%" :src="scope.row.check_first_url" />
+              <img class="tablebigimg" :src="scope.row.check_first_url" />
               <div slot="reference" class="name-wrapper">
                 <span size="medium">
                   <img class="tableimg" :src="scope.row.check_first_url" />
@@ -25,7 +25,7 @@
         <el-table-column label="账号验证截图2" width="130">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top">
-              <img class="tablebigimg" width="100%" :src="scope.row.check_second_url" />
+              <img class="tablebigimg" :src="scope.row.check_second_url" />
               <div slot="reference" class="name-wrapper">
                 <span size="medium">
                   <img class="tableimg" :src="scope.row.check_second_url" />
@@ -46,7 +46,7 @@
         <el-table-column label="订单截图" width="125">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top">
-              <img class="tablebigimg" width="100%" :src="scope.row.order_pic_url" />
+              <img class="tablebigimg" :src="scope.row.order_pic_url" />
               <div slot="reference" class="name-wrapper">
                 <span size="medium">
                   <img class="tableimg" :src="scope.row.order_pic_url" />
@@ -58,7 +58,7 @@
         <el-table-column label="用户返款微信码" width="130">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top">
-              <img class="tablebigimg" width="100%" :src="scope.row.wechat_code_url" />
+              <img class="tablebigimg" :src="scope.row.wechat_code_url" />
               <div slot="reference" class="name-wrapper">
                 <span size="medium">
                   <img class="tableimg" :src="scope.row.wechat_code_url" />
@@ -81,9 +81,14 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-import TopNav from '@/components/TopNav.vue';
-import { getOrderList, orderListData, getPageTotal, setAuditFreeOrder } from '@/api/tasklist';
+import { Component, Prop, Vue } from "vue-property-decorator";
+import TopNav from "@/components/TopNav.vue";
+import {
+  getOrderList,
+  orderListData,
+  getPageTotal,
+  setAuditFreeOrder
+} from "@/api/tasklist";
 
 @Component({
   components: {
@@ -92,7 +97,7 @@ import { getOrderList, orderListData, getPageTotal, setAuditFreeOrder } from '@/
 })
 export default class orderList extends Vue {
   private tableData: Array<orderListData> = [];
-  private pageCount: string = '0';
+  private pageCount: string = "0";
   private curPage: number = 1;
   private ss: boolean = false;
   private setPage(idx: number) {
@@ -106,7 +111,7 @@ export default class orderList extends Vue {
     getOrderList(page)
       .then((res: any) => {
         this.tableData = res;
-        getPageTotal('free_task_order')
+        getPageTotal("free_task_order")
           .then((total: any) => {
             this.pageCount = total;
           })
@@ -116,69 +121,69 @@ export default class orderList extends Vue {
         this.$message.error(err.message);
         this.tableData = [
           {
-            id:'111',
-            task_no: '111',
-            account: '222',
-            order_no: '333',
+            id: "111",
+            task_no: "111",
+            account: "222",
+            order_no: "333",
             check_first_url:
-              'https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg',
+              "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
             check_second_url:
-              'https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg',
-            status: '3',
+              "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
+            status: "3",
             order_pic_url:
-              'https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg',
+              "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
             wechat_code_url:
-              'https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg',
-            is_refund: '0'
+              "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
+            is_refund: "0"
           },
           {
-            id:'222',
-            task_no: 'aaa',
-            account: 'vvv',
-            order_no: 'ddd',
+            id: "222",
+            task_no: "aaa",
+            account: "vvv",
+            order_no: "ddd",
             check_first_url:
-              'https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg',
+              "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
             check_second_url:
-              'https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg',
-            status: '5',
+              "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
+            status: "5",
             order_pic_url:
-              'https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg',
+              "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
             wechat_code_url:
-              'https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg',
-            is_refund: '1'
+              "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
+            is_refund: "1"
           }
         ];
       });
   }
   private created() {
-    this.getListData('1');
+    this.getListData("1");
   }
   private handleClick(id: string, type: string, idx: number) {
-    let text = '';
-    if (type === '4') {
-      text = '通过该订单吗？';
-    } else if (type === '3') {
-      text = '否决该订单吗？';
-    } else if (type === '5') {
-      text = '手动返款吗？';
+    let text = "";
+    if (type === "4") {
+      text = "通过该订单吗？";
+    } else if (type === "3") {
+      text = "否决该订单吗？";
+    } else if (type === "5") {
+      text = "手动返款吗？";
     }
-    this.$confirm('你确定要' + text, '提示', {
-      confirmButtonText: '确定',
-      cancelButtonText: '取消',
-      type: 'warning'
+    this.$confirm("你确定要" + text, "提示", {
+      confirmButtonText: "确定",
+      cancelButtonText: "取消",
+      type: "warning"
     })
       .then(() => {
         setAuditFreeOrder(id, type)
           .then((res: any) => {
             this.$message({
-              type: 'success',
-              message: '操作成功!'
+              type: "success",
+              message: "操作成功!"
             });
           })
           .catch(() => {
             this.$message({
-              type: 'info',
-              message: '操作失败'
+              type: "info",
+              message: "操作失败"
             });
           });
       })
@@ -192,7 +197,7 @@ export default class orderList extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import '../scss/theme.scss';
+@import "../scss/theme.scss";
 .home {
   width: 100%;
   text-align: center;
@@ -207,6 +212,10 @@ export default class orderList extends Vue {
     width: 60px;
     height: 60px;
   }
+  .tablebigimg {
+    width: 50%;
+    max-width: 500px;
+  }
 }
-@import '../scss/global.scss';
+@import "../scss/global.scss";
 </style>

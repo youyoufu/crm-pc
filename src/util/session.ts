@@ -1,5 +1,5 @@
 import { getCookie, setCookie, removeCookie } from './cookie';
-export const TOKEN = 'X-BLACKCAT-TOKEN';
+export const TOKEN = 'my-store-token';
 
 /* 检查是否登陆 */
 export function hasLogin() {

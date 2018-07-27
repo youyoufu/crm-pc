@@ -3,7 +3,7 @@ import { stringifPath } from './index';
 const refundListPATH = '/refundTask/taskList';
 const orderListPath = '/manageTaskOrder/findTaskOrderList';
 const freeListPath = '/manageTaskOrder/findFreeTaskList';
-const auditFreeOrderPath = '/manageTaskOrder/auditFreeTaskOrdertaskOrderId';
+const auditFreeOrderPath = '/manageTaskOrder/auditFreeTaskOrder';
 const pagetotalPath = '/manageTaskOrder/findTableCount';
 
 /* 挖宝任务*/
@@ -48,8 +48,8 @@ export function getPageTotal(type: string) {
     body: { type }
   });
 }
-export function setAuditFreeOrder(id: string, status: string) {
+export function setAuditFreeOrder(taskOrderId: string, status: string) {
   return internalFetch('POST')(true)(stringifPath(auditFreeOrderPath), {
-    body: { id, status }
+    body: { taskOrderId, status }
   });
 }

@@ -49,11 +49,12 @@ const checkStatus = (res: Response) => {
 export function internalFetch(type: 'GET' | 'POST' | 'DELETE') {
   return (isGetToken: boolean = false) => {
     return (path: string, options: FetchParams = {}) => {
+      console.log(1111,isGetToken)
       let { headers, body } = options;
       headers = headers instanceof Headers ? headers : new Headers();
-      if (!isGetToken) {
+      // if (!isGetToken) {
         headers.set(TOKEN, getCookie(TOKEN));
-      }
+      // }
       let stringifyBody;
       if (body) {
         headers.set('Content-Type', 'application/json');

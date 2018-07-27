@@ -32,15 +32,14 @@ export default class Login extends Vue {
     let valid: boolean = this.dynamicValidateForm.account !== '' && this.dynamicValidateForm.pass !== '';
     if (valid) {
       loginAdmin(this.dynamicValidateForm.account, this.dynamicValidateForm.pass)
-        .then((res: {}) => {
-          saveLogin(TOKEN);
-          window.location.href = '/home';
+        .then((res: any) => {
+          saveLogin(res.id);
+          // window.location.href = '/home';
         })
         .catch((err: { message: string }) => {
           this.$message.error(err.message);
         });
     } else {
-      this.$message.error('请填写完整的发布数据');
       return false;
     }
   }

@@ -15,7 +15,7 @@
           </el-form-item>
           <el-form-item label="返现比例:">
             <el-select v-model="freeForm.rate" placeholder="请选择">
-              <el-option v-for="item in selectRate" :key="item" :label="item" :value="item">
+              <el-option v-for="item in selectRate" :key="item[1]" :label="item[0]" :value="item[1]">
               </el-option>
             </el-select>
           </el-form-item>
@@ -179,7 +179,7 @@ export default class PubilcRefund extends Vue {
   private hourArry: Array<{ time: string; val: string }> = HourData;
   private goodIndex: Array<string> = ["good0", "good1"];
   private imageUrl: string = "";
-  private selectRate: Array<string> = ["100%", "70%", "50%"];
+  private selectRate: Array<Array<string>> = [["100%",'100'], ["70%",'70'], ["50%",'50']];
   private tid: string = getQuery("tid") || "";
   private isadd: string = getQuery("isadd") || "";
   private curStatus: string = "新建";

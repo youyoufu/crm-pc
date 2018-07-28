@@ -12,8 +12,8 @@
         </el-table-column>
         <el-table-column label="订单截图参考" width="120">
           <template slot-scope="scope">
-            <el-popover trigger="hover" placement="top">
-              <img class="tablebigimg" width="50%" :src="scope.row.url" />
+            <el-popover trigger="hover" placement="top" width="200px">
+              <img class="tablebigimg" style="max-width:500px" :src="scope.row.url" />
               <div slot="reference" class="name-wrapper">
                 <span size="medium">
                   <img class="tableimg" :src="scope.row.url" />
@@ -33,7 +33,7 @@
           </template>
         </el-table-column>
       </el-table>
-      <el-pagination @current-change="setPage" background layout="pager" :total="pageCount">
+      <el-pagination @current-change="setPage" background layout="pager" page-size="20" :total="pageCount">
       </el-pagination>
     </div>
   </div>
@@ -136,6 +136,7 @@ export default class orderList extends Vue {
     width: 60px;
     height: 60px;
   }
+
 }
 @import '../scss/global.scss';
 </style>

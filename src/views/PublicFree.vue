@@ -180,7 +180,7 @@ export default class PubilcRefund extends Vue {
   private goodIndex: Array<string> = ["good0", "good1"];
   private imageUrl: string = "";
   private selectRate: Array<Array<string>> = [["100%",'100'], ["70%",'70'], ["50%",'50']];
-  private tid: string = getQuery("tid") || "";
+  private tid: string = getQuery("freeid") || "";
   private isadd: string = getQuery("isadd") || "";
   private curStatus: string = "新建";
   freeForm: freeOrderPublicInfo = {
@@ -188,7 +188,7 @@ export default class PubilcRefund extends Vue {
     amount: "",
     rate: "100%",
     content:'特别提示：本任务产品正参加聚划算、淘抢购活动，拍下后需要15分钟内付款，建议自行验证后立即付款。',
-    gift:'222',
+    gift:'',
     total: "",
     orderPictureUrl: "",
     executeTime: "",

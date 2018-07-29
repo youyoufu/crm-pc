@@ -22,7 +22,7 @@
             <el-menu-item index="2-2">
               <a href="/listfree">已发布任务</a>
             </el-menu-item>
-            <el-menu-item index="2-3">免单订单管理</el-menu-item>
+            <el-menu-item index="2-3"> <a href="/home">免单订单管理</a></el-menu-item>
             <el-menu-item index="2-4">免单订单明细</el-menu-item>
           </el-submenu>
           <el-menu-item index="3">用户管理</el-menu-item>

@@ -13,7 +13,7 @@
         <el-table-column label="账号验证截图1" width="130">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top">
-              <img class="tablebigimg"  width="50%" :src="scope.row.check_first_url" />
+              <img class="tablebigimg"  width="max-width:500px" :src="scope.row.check_first_url" />
               <div slot="reference" class="name-wrapper">
                 <span size="medium">
                   <img class="tableimg" :src="scope.row.check_first_url" />

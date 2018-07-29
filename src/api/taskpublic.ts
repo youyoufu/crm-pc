@@ -1,34 +1,36 @@
 import { internalFetch } from '@/util/fetch';
 import { stringifPath } from './index';
+import { getCookie } from '@/util/cookie';
+import { TOKEN } from '@/util/session';
 const UPLOADPATH = '/uploadImage/upload';
 const refundOrderPublicPATH = '/refundTask/publish';
 const freeEditPATH = '/manageTaskOrder/getFreeTaskById';
 const freeOrderPublicPATH = '/freeTask/publish';
 export const HourData: Array<{ time: string; val: string }> = [
-  { time: '00点', val: '' },
-  { time: '01点', val: '' },
-  { time: '02点', val: '' },
-  { time: '03点', val: '' },
-  { time: '04点', val: '' },
-  { time: '05点', val: '' },
-  { time: '06点', val: '' },
-  { time: '07点', val: '' },
-  { time: '08点', val: '' },
-  { time: '09点', val: '' },
-  { time: '10点', val: '' },
-  { time: '11点', val: '' },
-  { time: '12点', val: '' },
-  { time: '13点', val: '' },
-  { time: '14点', val: '' },
-  { time: '15点', val: '' },
-  { time: '16点', val: '' },
-  { time: '17点', val: '' },
-  { time: '18点', val: '' },
-  { time: '19点', val: '' },
-  { time: '20点', val: '' },
-  { time: '21点', val: '' },
-  { time: '22点', val: '' },
-  { time: '23点', val: '' }
+  { time: '00点', val: '1' },
+  { time: '01点', val: '1' },
+  { time: '02点', val: '1' },
+  { time: '03点', val: '1' },
+  { time: '04点', val: '1' },
+  { time: '05点', val: '1' },
+  { time: '06点', val: '1' },
+  { time: '07点', val: '1' },
+  { time: '08点', val: '2' },
+  { time: '09点', val: '2' },
+  { time: '10点', val: '2' },
+  { time: '11点', val: '2' },
+  { time: '12点', val: '2' },
+  { time: '13点', val: '2' },
+  { time: '14点', val: '2' },
+  { time: '15点', val: '2' },
+  { time: '16点', val: '2' },
+  { time: '17点', val: '2' },
+  { time: '18点', val: '2' },
+  { time: '19点', val: '2' },
+  { time: '20点', val: '2' },
+  { time: '21点', val: '2' },
+  { time: '22点', val: '2' },
+  { time: '23点', val: '2' }
 ];
 export interface refundOrderPublicInfo {
   treasureId: string;
@@ -88,9 +90,13 @@ export function freeOrderDeatilPublic(id: string) {
 }
 /*上传图片*/
 export function setUploadImg(files: any) {
+  let headers = new Headers();
+    headers.set(TOKEN, getCookie(TOKEN));
+
   let formData = new FormData();
   formData.append('files', files);
   return fetch(stringifPath(UPLOADPATH), {
+    headers,
     method: 'POST',
     body: formData
   }).then(response => response.json());

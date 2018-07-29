@@ -10,10 +10,10 @@
         </el-table-column>
         <el-table-column prop="order_no" label="订单编号" width="130">
         </el-table-column>
-        <el-table-column label="账号验证截图1" width="130">
+            <el-table-column label="账号验证截图1" width="130">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top">
-              <img class="tablebigimg"  width="max-width:500px" :src="scope.row.check_first_url" />
+              <img class="tablebigimg"  style="max-width:500px"  :src="scope.row.check_first_url" />
               <div slot="reference" class="name-wrapper">
                 <span size="medium">
                   <img class="tableimg" :src="scope.row.check_first_url" />
@@ -36,12 +36,12 @@
         </el-table-column>
         <el-table-column label="订单审批" width="210">
           <template slot-scope="scope">
-             <div v-if="scope.row.status==='2'">
+             <div v-if="scope.row.status===2">
               <el-button @click="handleClick(scope.row.id,'4',scope.$index)" size="small">审批通过</el-button>
               <el-button @click="handleClick(scope.row.id,'3',scope.$index)" size="small">审批不过</el-button>
             </div>
-            <span  v-if="scope.row.status==='4'">已通过</span>
-            <span  v-else-if="scope.row.status==='3'">未通过</span>
+            <span  v-if="scope.row.status===4">已通过</span>
+            <span  v-else-if="scope.row.status===3">未通过</span>
            
           </template>
         </el-table-column>
@@ -71,7 +71,7 @@
         </el-table-column>
         <el-table-column label="返款状态" width="130">
           <template slot-scope="scope">
-            <el-button v-if="scope.row.status!=='5'" @click="handleClick(scope.row.id,'5',scope.$index)" size="small">手动已返款确认</el-button>
+            <el-button v-if="scope.row.status!==5" @click="handleClick(scope.row.id,'5',scope.$index)" size="small">手动已返款确认</el-button>
             <span v-else>未返款</span>
           </template>
         </el-table-column>

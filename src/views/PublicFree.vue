@@ -19,13 +19,15 @@
               </el-option>
             </el-select>
           </el-form-item>
-            <el-form-item :prop="freeForm.gift" label="任务奖励:">
+          <el-form-item :prop="freeForm.gift" label="任务奖励:">
             <el-input v-model="freeForm.gift" style="width: 180px"></el-input>
           </el-form-item>
         </div>
-        <div>    <el-form-item :prop="freeForm.content" label="任务说明:">
+        <div>
+          <el-form-item :prop="freeForm.content" label="任务说明:">
             <el-input v-model="freeForm.content" style="width: 880px"></el-input>
-          </el-form-item></div>
+          </el-form-item>
+        </div>
         <div class="goods">
           <div class="good0">
             <el-form-item label="宝贝02-ID:">
@@ -159,77 +161,72 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import {
-  freeOrderPublic,
-  freeOrderPublicInfo,
-  HourData,
-  setUploadImg,
-  freeOrderDeatilPublic
-} from "@/api/taskpublic";
-import TopNav from "@/components/TopNav.vue";
-import { getQuery } from "@/util/cookie";
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import { freeOrderPublic, freeOrderPublicInfo, HourData, setUploadImg, freeOrderDeatilPublic } from '@/api/taskpublic';
+import TopNav from '@/components/TopNav.vue';
+import { getQuery } from '@/util/cookie';
 
 @Component({
   components: { TopNav }
 })
 export default class PubilcRefund extends Vue {
-  private value1: string = "";
-  private selectTime: string = "";
+  private value1: string = '';
+  private selectTime: string = '';
   private hourArry: Array<{ time: string; val: string }> = HourData;
-  private goodIndex: Array<string> = ["good0", "good1"];
-  private imageUrl: string = "";
-  private selectRate: Array<Array<string>> = [["100%",'100'], ["70%",'70'], ["50%",'50']];
-  private tid: string = getQuery("freeid") || "";
-  private isadd: string = getQuery("isadd") || "";
-  private curStatus: string = "新建";
+  private goodIndex: Array<string> = ['good0', 'good1'];
+  private imageUrl: string = '';
+  private selectRate: Array<Array<string>> = [['100%', '100'], ['70%', '70'], ['50%', '50']];
+  private tid: string = getQuery('freeid') || '';
+  private isadd: string = getQuery('isadd') || '';
+  private curStatus: string = '新建';
   freeForm: freeOrderPublicInfo = {
-    title: "",
-    amount: "",
-    rate: "100%",
-    content:'特别提示：本任务产品正参加聚划算、淘抢购活动，拍下后需要15分钟内付款，建议自行验证后立即付款。',
-    gift:'',
-    total: "",
-    orderPictureUrl: "",
-    executeTime: "",
-    time_range: "",
+    title: '',
+    amount: '',
+    rate: '100%',
+    content: '特别提示：本任务产品正参加聚划算、淘抢购活动，拍下后需要15分钟内付款，建议自行验证后立即付款。',
+    gift: '',
+    total: '',
+    orderPictureUrl: '',
+    executeTime: '',
+    time_range: '',
     goods: [
       {
-        treasureId: "",
-        keyword1: "",
-        keywordRate1: "1",
-        keyword2: "",
-        keywordRate2: "1",
-        keyword3: "",
-        keywordRate3: "1",
-        sku: "任意规格",
-        mainPictureUrl: "",
-        verticalPictureUrl: ""
+        treasureId: '',
+        keyword1: '',
+        keywordRate1: '1',
+        keyword2: '',
+        keywordRate2: '1',
+        keyword3: '',
+        keywordRate3: '1',
+        sku: '任意规格',
+        mainPictureUrl: '',
+        verticalPictureUrl: ''
       },
       {
-        treasureId: "",
-        keyword1: "",
-        keywordRate1: "1",
-        keyword2: "",
-        keywordRate2: "1",
-        keyword3: "",
-        keywordRate3: "1",
-        sku: "任意规格",
-        mainPictureUrl: "",
-        verticalPictureUrl: ""
+        treasureId: '',
+        keyword1: '',
+        keywordRate1: '1',
+        keyword2: '',
+        keywordRate2: '1',
+        keyword3: '',
+        keywordRate3: '1',
+        sku: '任意规格',
+        mainPictureUrl: '',
+        verticalPictureUrl: ''
       }
     ]
   };
   private created() {
-    if (this.isadd === "0") {
-      this.curStatus = "复制";
-    } else if (this.tid !== "") {
-      this.curStatus = "编辑";
+    if (this.isadd === '1') {
+      this.curStatus = '复制';
+    } else if (this.tid !== '') {
+      this.curStatus = '编辑';
     }
-    if (this.tid !== "") {
+    if (this.tid !== '') {
       freeOrderDeatilPublic(this.tid)
         .then((res: any) => {
           this.freeForm = res;
+          this.freeForm.executeTime='';
         })
         .catch((err: { message: string }) => {
           this.$message.error(err.message);
@@ -238,108 +235,108 @@ export default class PubilcRefund extends Vue {
   }
   private setSelectTime() {
     let week: string = new Date(this.freeForm.executeTime).getDay().toString();
-    if (week === "0") {
-      week = "天";
+    if (week === '0') {
+      week = '天';
     }
-    this.selectTime = "星期" + week;
+    this.selectTime = '星期' + week;
   }
   private uploadIng(file: any, type: string) {
     const isLt5M = file.size / 1024 / 1024 < 5;
     if (!isLt5M) {
-      this.$message.error("上传图片大小不能超过 2MB!");
+      this.$message.error('上传图片大小不能超过 2MB!');
     }
     setUploadImg(file)
       .then(result => {
         let url = JSON.parse(result.data).url;
-        if (type === "orderPictureUrl") {
+        if (type === 'orderPictureUrl') {
           this.freeForm.orderPictureUrl = url;
-        } else if (type === "mainPictureUrl0") {
+        } else if (type === 'mainPictureUrl0') {
           this.freeForm.goods[0].mainPictureUrl = url;
-        } else if (type === "mainPictureUrl1") {
+        } else if (type === 'mainPictureUrl1') {
           this.freeForm.goods[1].mainPictureUrl = url;
-        } else if (type === "verticalPictureUrl0") {
+        } else if (type === 'verticalPictureUrl0') {
           this.freeForm.goods[0].verticalPictureUrl = url;
-        } else if (type === "verticalPictureUrl1") {
+        } else if (type === 'verticalPictureUrl1') {
           this.freeForm.goods[1].verticalPictureUrl = url;
         }
       })
       .catch(() => {
-        this.$message.error("图片上传错误");
+        this.$message.error('图片上传错误');
       });
   }
   private beforeAvatarUpload4(file: any) {
-    this.uploadIng(file, "orderPictureUrl");
+    this.uploadIng(file, 'orderPictureUrl');
   }
   private beforeAvatarUpload0(file: any) {
-    this.uploadIng(file, "mainPictureUrl0");
+    this.uploadIng(file, 'mainPictureUrl0');
   }
   private beforeAvatarUpload1(file: any) {
-    this.uploadIng(file, "verticalPictureUrl0");
+    this.uploadIng(file, 'verticalPictureUrl0');
   }
   private beforeAvatarUpload2(file: any) {
-    this.uploadIng(file, "mainPictureUrl1");
+    this.uploadIng(file, 'mainPictureUrl1');
   }
   private beforeAvatarUpload3(file: any) {
-    this.uploadIng(file, "verticalPictureUrl1");
+    this.uploadIng(file, 'verticalPictureUrl1');
   }
   private handleAvatarSuccess() {
     // this.imageUrl = URL.createObjectURL(file.raw);
   }
   private submitForm(formName: string) {
-    let hourStr = "";
+    let hourStr = '';
     this.hourArry.map((item, idx) => {
-      hourStr += item.val + ",";
+      hourStr += item.val + ',';
     });
     this.freeForm.time_range = hourStr;
     if (
-      this.freeForm.title === "" ||
-      this.freeForm.amount === "" ||
-      this.freeForm.rate === "" ||
-      this.freeForm.total === "" ||
-      this.freeForm.orderPictureUrl === "" ||
-      this.freeForm.executeTime === "" ||
-      this.freeForm.time_range === ""
+      this.freeForm.title === '' ||
+      this.freeForm.amount === '' ||
+      this.freeForm.rate === '' ||
+      this.freeForm.total === '' ||
+      this.freeForm.orderPictureUrl === '' ||
+      this.freeForm.executeTime === '' ||
+      this.freeForm.time_range === ''
     ) {
-      this.$message.error("请填写完整的发布数据");
+      this.$message.error('请填写完整的发布数据');
       return;
     } else if (
-      this.freeForm.goods[0].treasureId === "" ||
-      this.freeForm.goods[0].keyword1 === "" ||
-      this.freeForm.goods[0].keywordRate1 === "" ||
-      this.freeForm.goods[0].keyword2 === "" ||
-      this.freeForm.goods[0].keywordRate2 === "" ||
-      this.freeForm.goods[0].keyword2 === "" ||
-      this.freeForm.goods[0].keywordRate2 === "" ||
-      this.freeForm.goods[0].sku === "" ||
-      this.freeForm.goods[0].mainPictureUrl === "" ||
-      this.freeForm.goods[0].verticalPictureUrl === ""
+      this.freeForm.goods[0].treasureId === '' ||
+      this.freeForm.goods[0].keyword1 === '' ||
+      this.freeForm.goods[0].keywordRate1 === '' ||
+      this.freeForm.goods[0].keyword2 === '' ||
+      this.freeForm.goods[0].keywordRate2 === '' ||
+      this.freeForm.goods[0].keyword2 === '' ||
+      this.freeForm.goods[0].keywordRate2 === '' ||
+      this.freeForm.goods[0].sku === '' ||
+      this.freeForm.goods[0].mainPictureUrl === '' ||
+      this.freeForm.goods[0].verticalPictureUrl === ''
     ) {
-      this.$message.error("请填写完整的商品信息");
+      this.$message.error('请填写完整的商品信息');
       return;
     } else if (
-      this.freeForm.goods[1].treasureId === "" ||
-      this.freeForm.goods[1].keyword1 === "" ||
-      this.freeForm.goods[1].keywordRate1 === "" ||
-      this.freeForm.goods[1].keyword2 === "" ||
-      this.freeForm.goods[1].keywordRate2 === "" ||
-      this.freeForm.goods[1].keyword2 === "" ||
-      this.freeForm.goods[1].keywordRate2 === "" ||
-      this.freeForm.goods[1].sku === "" ||
-      this.freeForm.goods[1].mainPictureUrl === "" ||
-      this.freeForm.goods[1].verticalPictureUrl === ""
+      this.freeForm.goods[1].treasureId === '' ||
+      this.freeForm.goods[1].keyword1 === '' ||
+      this.freeForm.goods[1].keywordRate1 === '' ||
+      this.freeForm.goods[1].keyword2 === '' ||
+      this.freeForm.goods[1].keywordRate2 === '' ||
+      this.freeForm.goods[1].keyword2 === '' ||
+      this.freeForm.goods[1].keywordRate2 === '' ||
+      this.freeForm.goods[1].sku === '' ||
+      this.freeForm.goods[1].mainPictureUrl === '' ||
+      this.freeForm.goods[1].verticalPictureUrl === ''
     ) {
-      this.$message.error("请填写完整的商品信息");
+      this.$message.error('请填写完整的商品信息');
       return;
     } else {
-      let id = "";
-      if (this.isadd === "0") {
-        id = this.tid;
+      let id = this.tid;
+      if (this.isadd === '1') {
+        id = '';
       }
       freeOrderPublic(this.freeForm, id)
         .then((res: {}) => {
-          this.$message.success("任务发布成功～");
+          this.$message.success('任务发布成功～');
           setTimeout(() => {
-            window.location.href = "/listfree";
+            window.location.href = '/listfree';
           }, 3000);
         })
         .catch((err: { message: string }) => {
@@ -351,7 +348,7 @@ export default class PubilcRefund extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "../scss/theme.scss";
+@import '../scss/theme.scss';
 
 .publicfree {
   display: inline-block;
@@ -408,5 +405,5 @@ export default class PubilcRefund extends Vue {
     height: 200px;
   }
 }
-@import "../scss/global.scss";
+@import '../scss/global.scss';
 </style>

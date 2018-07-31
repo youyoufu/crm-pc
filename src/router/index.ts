@@ -7,6 +7,7 @@ import PublicRefund from '@/views/PublicRefund.vue';
 import PublicFree from '@/views/PublicFree.vue';
 import listRefund from '@/views/ListRefund.vue';
 import listFree from '@/views/ListFree.vue';
+import returnmoney from '@/views/ReturnMoney.vue';
 import User from '@/views/User.vue';
 import { hasLogin, saveLogin } from '@/util/session';
 
@@ -26,6 +27,12 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: { title: '我的主页', requiredAuth: true }
+    },
+    {
+      path: '/returnmoney',
+      name: 'returnmoney',
+      component: returnmoney,
+      meta: { title: '批量微信支付返款', requiredAuth: true }
     },
     {
       path: '/user',

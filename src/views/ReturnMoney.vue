@@ -1,0 +1,107 @@
+<template>
+  <div>
+    <TopNav />
+    <div class="doreturn">
+      <el-input type="textarea" style="min-height: 33px;width: 300px;" :rows="20" placeholder="请输入订单号，一行一个" v-model="orderStr">
+      </el-input>
+     <el-button type="primary" @click="doReturn" plain>主要按钮</el-button>
+    </div>
+    <div class="rentrn">
+      <div class="title">批量返款结果</div>
+      <div class="tips">本次返款结果：成功返款***个订单，其中***个订单上次已返款，此次忽略。</div>
+      <el-table :data="tableData" border style="width: 1265px;margin:0 auto">
+        <el-table-column prop="title" label="返款记录ID" width="150">
+        </el-table-column>
+        <el-table-column prop="amount" label="订单号" width="120">
+        </el-table-column>
+        <el-table-column prop="refund_rate" label="用户OPENID" width="120">
+        </el-table-column>
+        <el-table-column prop="execute_time" label="用户手机号" width="120">
+        </el-table-column>
+        <el-table-column prop="gift" label="订单金额" width="120">
+        </el-table-column>
+        <el-table-column prop="execute_time" label="返款金额" width="120">
+        </el-table-column>
+        <el-table-column prop="gift" label="返款时间" width="120">
+        </el-table-column>
+        <el-table-column prop="gift" label="红包状态" width="120">
+        </el-table-column>
+      </el-table>
+      <el-pagination @current-change="setPage" background layout="pager" page-size="20" :total="pageCount">
+      </el-pagination>
+    </div>
+  </div>
+</template>
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import TopNav from '@/components/TopNav.vue';
+import { getFreeList, freeListData, getPageTotal } from '@/api/tasklist';
+
+@Component({
+  components: {
+    TopNav
+  }
+})
+export default class RentrnMoney extends Vue {
+  private orderStr:string='';
+  private tableData: Array<freeListData> = [];
+  private pageCount: string = '0';
+  private curPage: number = 1;
+  private setPage(idx: number) {
+    if (idx !== this.curPage) {
+      this.curPage = idx;
+      this.getListData(idx.toString());
+    }
+  }
+  private doReturn(){
+    console.log(1111);
+  }
+  private getListData(page: string) {
+    getFreeList(page)
+      .then((res: any) => {
+        this.tableData = res;
+        getPageTotal('free_task')
+          .then((total: any) => {
+            this.pageCount = total;
+          })
+          .catch((err: { message: string }) => {});
+      })
+      .catch((err: { message: string }) => {
+        this.$message.error(err.message);
+      });
+  }
+  private created() {
+    this.getListData('1');
+  }
+}
+</script>
+<style lang="scss" scoped>
+@import '../scss/theme.scss';
+.doreturn{
+ padding-top: 20px;
+ .el-button{
+ margin-left: 20px;
+ }
+}
+.rentrn {
+  width: 100%;
+  text-align: center;
+  margin: 10px auto;
+  position: absolute;
+  font-size: 12px;
+  .title {
+    font-size: 24px;
+    padding: 10px;
+  }
+  .tableimg {
+    width: 60px;
+    height: 60px;
+  }
+  .tips{
+    font-size:18px;
+    line-height: 1.5;
+    padding: 20px 0;
+  }
+}
+@import '../scss/global.scss';
+</style>

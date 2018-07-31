@@ -72,7 +72,7 @@
         <el-table-column label="返款状态" width="130">
           <template slot-scope="scope">
             <span  v-if="scope.row.status===5">已返款</span>
-            <el-button v-else-if="scope.row.status!==5" @click="handleClick(scope.row.id,'5',scope.$index)" size="small">手动已返款确认</el-button>
+            <el-button v-else-if="scope.row.status!==5" @click="handleClick(scope.row.id,'5',scope.$index)" size="small">已返款确认</el-button>
             <span v-else>未返款</span>
           </template>
         </el-table-column>

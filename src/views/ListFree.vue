@@ -8,7 +8,7 @@
         </el-table-column>
         <el-table-column prop="amount" label="任务订单总金额" width="120">
         </el-table-column>
-        <el-table-column prop="refund_rate" label="返点比例" width="120">
+        <el-table-column prop="refund_rate" label="返点比例(%)" width="120">
         </el-table-column>
         <el-table-column label="订单截图参考" width="120">
           <template slot-scope="scope">

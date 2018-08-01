@@ -70,41 +70,6 @@ export default class orderList extends Vue {
       })
       .catch((err: { message: string }) => {
         this.$message.error(err.message);
-        // this.tableData = [
-        //   {
-        //     id: 'aaa',
-        //     title: '111',
-        //     amount: '222',
-        //     refund_rate: '40%',
-        //     url:
-        //       'https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg',
-        //     total: '3222',
-        //     execute_time: '3222',
-        //     gift: '3222'
-        //   },
-        //   {
-        //     id: 'bbb',
-        //     title: '222',
-        //     amount: '222',
-        //     refund_rate: '40%',
-        //     url:
-        //       'https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg',
-        //     total: '3222',
-        //     execute_time: '3222',
-        //     gift: '3222'
-        //   },
-        //   {
-        //     id: '222',
-        //     title: '333',
-        //     amount: '222',
-        //     refund_rate: '40%',
-        //     url:
-        //       'https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg',
-        //     total: '3222',
-        //     execute_time: '3222',
-        //     gift: '3222'
-        //   }
-        // ];
       });
   }
   private created() {

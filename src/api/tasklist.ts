@@ -1,14 +1,16 @@
 import { internalFetch } from '@/util/fetch';
 import { stringifPath } from './index';
-const refundListPATH = '/refundTask/taskList';
+const refundListPATH = '/manageTaskOrder/findRefundTaskList';
 const orderListPath = '/manageTaskOrder/findTaskOrderList';
 const freeListPath = '/manageTaskOrder/findFreeTaskList';
 const auditFreeOrderPath = '/manageTaskOrder/auditFreeTaskOrder';
 const pagetotalPath = '/manageTaskOrder/findTableCount';
 
 /* 挖宝任务*/
-export function refundOrderPublic() {
-  return internalFetch('POST')(true)(stringifPath(refundListPATH));
+export function refundOrderList(page: string) {
+  return internalFetch('POST')(true)(stringifPath(refundListPATH), {
+    body: { page, page_size: 20 }
+  })
 }
 export interface orderListData {
   id: string;

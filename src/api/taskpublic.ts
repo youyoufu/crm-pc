@@ -5,6 +5,7 @@ import { TOKEN } from '@/util/session';
 const UPLOADPATH = '/uploadImage/upload';
 const refundOrderPublicPATH = '/refundTask/publish';
 const freeEditPATH = '/manageTaskOrder/getFreeTaskById';
+const refundEditPATH = '/manageTaskOrder/getRefundTaskById';
 const freeOrderPublicPATH = '/freeTask/publish';
 export const HourData: Array<{ time: string; val: string }> = [
   { time: '00点', val: '1' },
@@ -33,6 +34,7 @@ export const HourData: Array<{ time: string; val: string }> = [
   { time: '23点', val: '2' }
 ];
 export interface refundOrderPublicInfo {
+  title:string;
   treasureId: string;
   keyword1: string;
   keywordRate1: string;
@@ -71,9 +73,15 @@ export interface freeOrderPublicInfo {
   time_range: string;
 }
 /* 挖宝任务*/
-export function refundOrderPublic(object: refundOrderPublicInfo) {
+export function refundOrderPublic(object: refundOrderPublicInfo, id: string) {
   return internalFetch('POST')(true)(stringifPath(refundOrderPublicPATH), {
-    body: { ...object }
+    body: { ...object,id }
+  });
+}
+/*通过ID获取挖宝详情*/
+export function refundOrderDeatilPublic(id: string) {
+  return internalFetch('POST')(true)(stringifPath(refundEditPATH), {
+    body: { id }
   });
 }
 /*免单任务*/

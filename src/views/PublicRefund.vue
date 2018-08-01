@@ -3,24 +3,26 @@
     <TopNav />
     <div class="publicrefund">
       <el-form :model="refundForm" ref="refundForm" style="width: 350px" label-width="100px" class="demo-dynamic">
-        <div class="sign-title">挖宝任务</div>
-        <el-form-item label="宝贝ID">
+        <div class="sign-title">{{curStatus}}挖宝任务</div>
+        <el-form-item label="活动标题">
+          <el-input v-model="refundForm.title" style="width: 180px"></el-input>
+        </el-form-item>  <el-form-item label="宝贝ID">
           <el-input v-model="refundForm.treasureId" style="width: 180px"></el-input>
         </el-form-item>
         <el-form-item label="关键字1">
           <el-input v-model="refundForm.keyword1" auto-complete="off" style="width: 110px"></el-input>
           比例
-          <el-input v-model="refundForm.keywordRate1" auto-complete="off" style="width: 20px"></el-input>
+          <el-input v-model="refundForm.keywordRate1" auto-complete="off" style="width: 40px"></el-input>
         </el-form-item>
         <el-form-item label="关键字2">
           <el-input v-model="refundForm.keyword2" auto-complete="off" style="width: 110px"></el-input>
           比例
-          <el-input v-model="refundForm.keywordRate2" auto-complete="off" style="width: 20px"></el-input>
+          <el-input v-model="refundForm.keywordRate2" auto-complete="off" style="width: 40px"></el-input>
         </el-form-item>
         <el-form-item label="关键字3">
           <el-input v-model="refundForm.keyword3" auto-complete="off" style="width: 110px"></el-input>
           比例
-          <el-input v-model="refundForm.keywordRate3" auto-complete="off" style="width: 20px"></el-input>
+          <el-input v-model="refundForm.keywordRate3" auto-complete="off" style="width: 40px"></el-input>
         </el-form-item>
         <div class="good-img">
           <span class="good-img-text">产品主图方图：</span>
@@ -58,93 +60,127 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-import { refundOrderPublic, setUploadImg, refundOrderPublicInfo, HourData } from '@/api/taskpublic';
-import TopNav from '@/components/TopNav.vue';
+import { Component, Prop, Vue } from "vue-property-decorator";
+import {
+  refundOrderPublic,
+  setUploadImg,
+  refundOrderPublicInfo,refundOrderDeatilPublic,
+  HourData
+} from "@/api/taskpublic";
+import TopNav from "@/components/TopNav.vue";
+import { getQuery } from "@/util/cookie";
 
 @Component({
   components: { TopNav }
 })
 export default class PubilcRefund extends Vue {
-  private value1: string = '';
-  private selectTime: string = '';
+  private value1: string = "";
+  private selectTime: string = "";
   private hourArry: Array<{ time: string; val: string }> = HourData;
+  private tid: string = getQuery("freeid") || "";
+  private isadd: string = getQuery("isadd") || "";
+  private curStatus: string = "新建";
   refundForm: refundOrderPublicInfo = {
-    treasureId: '',
-    keyword1: '',
-    keywordRate1: '1',
-    keyword2: '',
-    keywordRate2: '1',
-    keyword3: '',
-    keywordRate3: '1',
-    executeTime: '',
-    mainPictureUrl: '',
-    verticalPictureUrl: '',
-    time_range: '',
-    require: '任意规格'
+    title:'',
+    treasureId: "",
+    keyword1: "",
+    keywordRate1: "1",
+    keyword2: "",
+    keywordRate2: "1",
+    keyword3: "",
+    keywordRate3: "1",
+    executeTime: "",
+    mainPictureUrl: "",
+    verticalPictureUrl: "",
+    time_range: "",
+    require: "任意规格"
   };
+    private created() {
+    if (this.isadd === '1') {
+      this.curStatus = '复制';
+    } else if (this.tid !== '') {
+      this.curStatus = '编辑';
+    }
+    if (this.tid !== '') {
+      refundOrderDeatilPublic(this.tid)
+        .then((res: any) => {
+          this.refundForm = res;
+          this.refundForm.executeTime='';
+        })
+        .catch((err: { message: string }) => {
+          this.$message.error(err.message);
+        });
+    }
+  }
   private uploadIng(file: any, type: string) {
     const isLt5M = file.size / 1024 / 1024 < 5;
     if (!isLt5M) {
-      this.$message.error('上传图片大小不能超过 2MB!');
+      this.$message.error("上传图片大小不能超过 2MB!");
     }
     setUploadImg(file)
       .then(result => {
         let url = JSON.parse(result.data).url;
-        if (type === 'mainPictureUrl') {
+        if (type === "mainPictureUrl") {
           this.refundForm.mainPictureUrl = url;
-        } else if (type === 'verticalPictureUrl') {
+        } else if (type === "verticalPictureUrl") {
           this.refundForm.verticalPictureUrl = url;
         }
       })
       .catch(() => {
-        this.$message.error('图片上传错误');
+        this.$message.error("图片上传错误");
       });
   }
   private beforeAvatarUpload0(file: any) {
-    this.uploadIng(file, 'mainPictureUrl');
+    this.uploadIng(file, "mainPictureUrl");
   }
   private beforeAvatarUpload1(file: any) {
-    this.uploadIng(file, 'verticalPictureUrl');
+    this.uploadIng(file, "verticalPictureUrl");
   }
   private handleAvatarSuccess() {
     // this.imageUrl = URL.createObjectURL(file.raw);
   }
   private setSelectTime() {
-    let week: string = new Date(this.refundForm.executeTime).getDay().toString();
-    if (week === '0') {
-      week = '天';
+    let week: string = new Date(this.refundForm.executeTime)
+      .getDay()
+      .toString();
+    if (week === "0") {
+      week = "天";
     }
-    this.selectTime = '星期' + week;
+    this.selectTime = "星期" + week;
   }
   private submitForm(formName: string) {
-    let hourStr = '';
+    let hourStr = "";
     this.hourArry.map((item, idx) => {
-      hourStr += item.val + ',';
+      hourStr += item.val + ",";
     });
     this.refundForm.time_range = hourStr;
     if (
-      this.refundForm.treasureId === '' ||
-      this.refundForm.keyword1 === '' ||
-      this.refundForm.keywordRate1 === '' ||
-      this.refundForm.keyword2 === '' ||
-      this.refundForm.keywordRate2 === '' ||
-      this.refundForm.keyword3 === '' ||
-      this.refundForm.keywordRate3 === '' ||
-      this.refundForm.executeTime === '' ||
-      this.refundForm.mainPictureUrl === '' ||
-      this.refundForm.verticalPictureUrl === '' ||
-      this.refundForm.time_range === '' ||
-      this.refundForm.require === ''
+      this.refundForm.title === "" ||
+      this.refundForm.treasureId === "" ||
+      this.refundForm.keyword1 === "" ||
+      this.refundForm.keywordRate1 === "" ||
+      this.refundForm.keyword2 === "" ||
+      this.refundForm.keywordRate2 === "" ||
+      this.refundForm.keyword3 === "" ||
+      this.refundForm.keywordRate3 === "" ||
+      this.refundForm.executeTime === "" ||
+      this.refundForm.mainPictureUrl === "" ||
+      this.refundForm.verticalPictureUrl === "" ||
+      this.refundForm.time_range === "" ||
+      this.refundForm.require === ""
     ) {
-      this.$message.error('请填写完整的发布数据');
+      this.$message.error("请填写完整的发布数据");
       return;
     } else {
-      refundOrderPublic(this.refundForm)
+      let id = this.tid;
+      if (this.isadd === "1") {
+        id = "";
+      }
+      refundOrderPublic(this.refundForm, id)
         .then((res: {}) => {
-          this.$message.success('任务发布成功～');
+          this.$message.success("任务发布成功～");
           setTimeout(() => {
-            window.location.href = '/home';
+            window.location.href = "/listrefund";
           }, 3000);
         })
         .catch((err: { message: string }) => {
@@ -155,7 +191,7 @@ export default class PubilcRefund extends Vue {
 }
 </script>
 <style lang="scss">
-@import '../scss/theme.scss';
+@import "../scss/theme.scss";
 .publicrefund {
   display: inline-block;
   font-size: 14px;
@@ -178,5 +214,5 @@ export default class PubilcRefund extends Vue {
     }
   }
 }
-@import '../scss/global.scss';
+@import "../scss/global.scss";
 </style>

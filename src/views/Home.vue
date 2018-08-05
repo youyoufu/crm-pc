@@ -122,40 +122,40 @@ export default class orderList extends Vue {
       })
       .catch((err: { message: string }) => {
         this.$message.error(err.message);
-        this.tableData = [
-          {
-            id: "111",
-            task_no: "111",
-            account: "222",
-            order_no: "333",
-            check_first_url:
-              "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
-            check_second_url:
-              "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
-            status: "3",
-            order_pic_url:
-              "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
-            wechat_code_url:
-              "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
-            is_refund: "0"
-          },
-          {
-            id: "222",
-            task_no: "aaa",
-            account: "vvv",
-            order_no: "ddd",
-            check_first_url:
-              "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
-            check_second_url:
-              "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
-            status: "5",
-            order_pic_url:
-              "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
-            wechat_code_url:
-              "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
-            is_refund: "1"
-          }
-        ];
+        // this.tableData = [
+        //   {
+        //     id: "111",
+        //     task_no: "111",
+        //     account: "222",
+        //     order_no: "333",
+        //     check_first_url:
+        //       "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
+        //     check_second_url:
+        //       "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
+        //     status: "3",
+        //     order_pic_url:
+        //       "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
+        //     wechat_code_url:
+        //       "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
+        //     is_refund: "0"
+        //   },
+        //   {
+        //     id: "222",
+        //     task_no: "aaa",
+        //     account: "vvv",
+        //     order_no: "ddd",
+        //     check_first_url:
+        //       "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
+        //     check_second_url:
+        //       "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
+        //     status: "5",
+        //     order_pic_url:
+        //       "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
+        //     wechat_code_url:
+        //       "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
+        //     is_refund: "1"
+        //   }
+        // ];
       });
   }
   private created() {

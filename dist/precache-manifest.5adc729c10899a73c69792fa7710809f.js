@@ -8,11 +8,11 @@ self.__precacheManifest = [
     "url": "/js/manifest.ce28c628.js"
   },
   {
-    "revision": "c81fb3bd366c833fe75f",
-    "url": "/js/app.c81fb3bd.js"
+    "revision": "2c206ae1c20f1ada74b0",
+    "url": "/js/app.2c206ae1.js"
   },
   {
-    "revision": "e46417c29105a78095529a95747affb8",
+    "revision": "024ad21650bd9071f4b39d152ea6caa1",
     "url": "/index.html"
   },
   {
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/fonts/element-icons.6f0a7632.ttf"
   },
   {
-    "revision": "c81fb3bd366c833fe75f",
-    "url": "/css/app.36d36515.css"
+    "revision": "2c206ae1c20f1ada74b0",
+    "url": "/css/app.26b3e822.css"
   }
 ];

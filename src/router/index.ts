@@ -9,6 +9,7 @@ import listRefund from '@/views/ListRefund.vue';
 import listFree from '@/views/ListFree.vue';
 import returnmoney from '@/views/ReturnMoney.vue';
 import User from '@/views/User.vue';
+import master from '@/views/Master.vue';
 import { hasLogin, saveLogin } from '@/util/session';
 
 Vue.use(Router);
@@ -69,6 +70,12 @@ const router = new Router({
       name: 'task',
       component: Task,
       meta: { requiredAuth: true, title: '任务测试' }
+    },
+    {
+      path: '/master',
+      name: 'master',
+      component: master,
+      meta: { requiredAuth: true, title: '超级管理员' }
     }
   ]
 });

@@ -96,8 +96,8 @@ export interface TaskOrderDetailData {
   content: string;
   create_time: string;
 }
-const getFreeTaskOrderCountPath = 'manageTaskOrderDetail/getFreeTaskOrderCount';
-const TaskOrderDetailPath = 'manageTaskOrderDetail/findFreeTaskOrderDetailPage';
+const getFreeTaskOrderCountPath = '/manageTaskOrderDetail/getFreeTaskOrderCount';
+const TaskOrderDetailPath = '/manageTaskOrderDetail/findFreeTaskOrderDetailPage';
 export function TaskOrderDetail(page: string) {
   return internalFetch('POST')(true)(stringifPath(TaskOrderDetailPath), {
     body: { page, page_size: 20 }
@@ -123,8 +123,23 @@ export function getFreeTaskOrderCount() {
 //    keyword  关键字
 //   `execute_time` date NOT NULL COMMENT '执行时间',
 //   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间'
-const getRefundTaskOrderCountPath = 'manageTaskOrderDetail/getRefundTaskOrderCount';
-const RefundTaskOrderDetailPage = 'manageTaskOrderDetail/findRefundTaskOrderDetailPage';
+export interface RefundTaskOrderDetailData {
+  account: string;
+  square_url: string;
+  long_url: string;
+  task_id: string;
+  task_no: string;
+  url: string;
+  amount: string;
+  order_no: string;
+  refund: string;
+  bonus_point: string;
+  execute_time: string;
+  status: string;
+  keyword: string;
+}
+const getRefundTaskOrderCountPath = '/manageTaskOrderDetail/getRefundTaskOrderCount';
+const RefundTaskOrderDetailPage = '/manageTaskOrderDetail/findRefundTaskOrderDetailPage';
 export function RefundTaskOrderDetail(page: string) {
   return internalFetch('POST')(true)(stringifPath(RefundTaskOrderDetailPage), {
     body: { page, page_size: 20 }

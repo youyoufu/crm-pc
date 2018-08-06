@@ -120,10 +120,10 @@ export default class orderDetailList extends Vue {
     }
   }
   private getListData(page: string) {
-    TaskOrderDetail()
+    TaskOrderDetail(page)
       .then((res: any) => {
         this.tableData = res;
-        getFreeTaskOrderCount(page)
+        getFreeTaskOrderCount()
           .then((total: any) => {
             this.pageCount = total;
           })

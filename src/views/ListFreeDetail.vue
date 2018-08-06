@@ -86,7 +86,7 @@
             <span v-else>未返款</span>
           </template>
         </el-table-column>
-        <el-table-column prop="account" label="创建时间" width="100">
+        <el-table-column prop="create_time" label="创建时间" width="100">
         </el-table-column>
       </el-table>
       <el-pagination @current-change="setPage" background layout="pager" page-size="20" :total="pageCount">

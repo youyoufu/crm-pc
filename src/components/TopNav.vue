@@ -29,7 +29,9 @@
               <a  href="/listfreedetail">免单订单明细</a>
               </el-menu-item>
           </el-submenu>
-          <el-menu-item index="3">用户管理</el-menu-item>
+          <el-menu-item index="3">
+              <a  href="/user">用户管理</a>
+            </el-menu-item>
           <el-menu-item index="4">
             评价管理
           </el-menu-item>
@@ -56,7 +58,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Emit, Vue } from 'vue-property-decorator';
+import { Component, Prop, Emit, Vue } from "vue-property-decorator";
 // import AppIcon from './AppIcon.vue';
 // import {PREFIX} from '@/store/modules/user/CONSTANTS';
 // import px2px from '@/util/px2px';
@@ -67,7 +69,7 @@ import { Component, Prop, Emit, Vue } from 'vue-property-decorator';
   // },
 })
 export default class TopNav extends Vue {
-  private activeIndex: string = '1';
+  private activeIndex: string = "1";
   private handleSelect(key: string, keyPath: string) {
     console.log(key, keyPath);
   }
@@ -94,11 +96,11 @@ export default class TopNav extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import '../scss/theme.scss';
- a {
-    color: #fff;
-    text-decoration: none;
-  }
+@import "../scss/theme.scss";
+a {
+  color: #fff;
+  text-decoration: none;
+}
 .topNav {
   border-bottom: 1px solid #ebebeb;
   height: 90px;

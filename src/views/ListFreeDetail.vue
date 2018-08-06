@@ -4,9 +4,9 @@
     <div class="listfree-detail">
       <div class="title">免单详情列表</div>
   <el-table :data="tableData" border style="width: 100%;margin:0 auto">
-        <el-table-column  prop="task_no" label="活动ID" width="100">
+        <el-table-column  prop="task_id" label="活动ID" width="100">
         </el-table-column>
-        <el-table-column  prop="task_id" label="活动编号" width="100">
+        <el-table-column  prop="task_no" label="活动编号" width="100">
         </el-table-column>
         <el-table-column prop="account" label="淘宝账号" width="100">
         </el-table-column>
@@ -40,15 +40,16 @@
             </el-popover>
           </template>
         </el-table-column>
-        <el-table-column label="订单审批" width="210">
+        <el-table-column label="订单状态" width="140">
           <template slot-scope="scope">
-             <div v-if="scope.row.status===2">
-              <el-button @click="handleClick(scope.row.id,'4',scope.$index)" size="small">审批通过</el-button>
-              <el-button @click="handleClick(scope.row.id,'3',scope.$index)" size="small">审批不过</el-button>
-            </div>
-            <span  v-if="scope.row.status===4">已通过</span>
-            <span  v-else-if="scope.row.status===3">未通过</span>
-           
+            <span  v-if="scope.row.status===0">领取任务</span>
+            <span  v-else-if="scope.row.status===1">淘口令验证成功</span>
+            <span  v-else-if="scope.row.status===2">提交订单号</span>
+            <span  v-else-if="scope.row.status===3">审核失败</span>
+            <span  v-else-if="scope.row.status===4">审核成功</span>
+            <span  v-else-if="scope.row.status===5">已返款</span>
+            <span  v-else-if="scope.row.status===9">关闭</span>
+
           </template>
         </el-table-column>
         <el-table-column label="订单截图" width="125">
@@ -78,13 +79,6 @@
         <el-table-column prop="amount" label="订单金额" width="100">
         </el-table-column>
         <el-table-column prop="refund" label="返款金额" width="100">
-        </el-table-column>
-        <el-table-column label="返款状态" width="130">
-          <template slot-scope="scope">
-            <span  v-if="scope.row.status===5">已返款</span>
-            <el-button v-else-if="scope.row.status!==5" @click="handleClick(scope.row.id,'5',scope.$index)" size="small">已返款确认</el-button>
-            <span v-else>未返款</span>
-          </template>
         </el-table-column>
         <el-table-column prop="create_time" label="创建时间" width="100">
         </el-table-column>

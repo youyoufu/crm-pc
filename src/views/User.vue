@@ -4,11 +4,11 @@
     <div class="user">
       <div class="title">用户列表</div>
   <el-table :data="tableData" border style="width: 1000px;margin:0 auto">
-        <el-table-column prop="account" label="淘宝账号" width="100">
+        <el-table-column prop="account" label="淘宝账号" width="120">
         </el-table-column>
            <el-table-column  prop="name" label="昵称" width="100">
         </el-table-column>
-              <el-table-column prop="phone" label="手机号" width="100">
+              <el-table-column prop="phone" label="手机号" width="120">
         </el-table-column>
            <el-table-column  prop="free_task_time" label="免单任务次数" width="120">
         </el-table-column>
@@ -16,9 +16,13 @@
         </el-table-column>
         <el-table-column  prop="bonus_point" label="积分" width="100">
         </el-table-column>
-        <el-table-column :prop="status==='1'?'有效':'无效'" label="账号状态" width="100">
+         <el-table-column label="用户状态" width="100">
+          <template slot-scope="scope">
+            <span  v-if="scope.row.status===0">删除</span>
+            <span  v-else-if="scope.row.status===1">有效</span>
+          </template>
         </el-table-column>
-        <el-table-column prop="create_time" label="创建时间" width="100">
+        <el-table-column prop="create_time" label="创建时间" width="239">
         </el-table-column>
       </el-table>
       <el-pagination @current-change="setPage" background layout="pager" page-size="20" :total="pageCount">

@@ -4,13 +4,13 @@
     <div class="listrefund-detail">
       <div class="title">挖宝详情列表</div>
   <el-table :data="tableData" border style="width: 100%;margin:0 auto">
-        <el-table-column  prop="task_no" label="活动ID" width="100">
+        <el-table-column  prop="task_id" label="活动ID" width="80">
         </el-table-column>
-        <el-table-column  prop="task_id" label="活动编号" width="100">
+        <el-table-column  prop="task_no" label="活动编号" width="160">
         </el-table-column>
-        <el-table-column prop="account" label="淘宝账号" width="100">
+        <el-table-column prop="account" label="淘宝账号" width="120">
         </el-table-column>
-           <el-table-column  prop="title" label="活动标题" width="100">
+           <el-table-column  prop="title" label="活动标题" width="150">
         </el-table-column>
         <el-table-column  prop="bonus_point" label="积分" width="100">
         </el-table-column>
@@ -52,9 +52,17 @@
         </el-table-column>
         <el-table-column prop="keyword" label="关键字" width="100">
         </el-table-column>
-        <el-table-column prop="execute_time" label="执行时间" width="100">
+         <el-table-column label="订单状态" width="100">
+          <template slot-scope="scope">
+            <span  v-if="scope.row.status===0">领取任务</span>
+            <span  v-else-if="scope.row.status===1">挖宝成功</span>
+            <span  v-else-if="scope.row.status===2">挖宝失败</span>
+
+          </template>
         </el-table-column>
-        <el-table-column prop="create_time" label="创建时间" width="100">
+        <el-table-column prop="execute_time" label="执行时间" width="120">
+        </el-table-column>
+        <el-table-column prop="create_time" label="创建时间" width="180">
         </el-table-column>
       </el-table>
       <el-pagination @current-change="setPage" background layout="pager" page-size="20" :total="pageCount">

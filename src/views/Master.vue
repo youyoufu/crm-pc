@@ -37,7 +37,7 @@
       <p class="title">
         <el-button type="primary" @click="clickBtn('reset')">重置</el-button>
       </p>
-      <p>设置时间为10天外，可以重新接任务</p>
+      <p>设置时间为10天外，可以重新接活动</p>
 
    </div>
   </div>

@@ -4,19 +4,19 @@
     <div class="listrefund">
       <div class="title">已发布免单列表</div>
       <el-table :data="tableData" border style="width: 1200px">
-        <el-table-column prop="title" label="任务标题" width="180">
+        <el-table-column prop="title" label="活动标题" width="180">
         </el-table-column>   
-        <el-table-column fixed prop="id" label="任务ID" width="150">
+        <el-table-column fixed prop="id" label="活动ID" width="150">
         </el-table-column>
         <el-table-column prop="bonus_point" label="积分" width="120">
         </el-table-column>
-        <el-table-column prop="content" label="任务要求" width="120">
+        <el-table-column prop="content" label="活动要求" width="120">
         </el-table-column>
         <el-table-column prop="execute_time" label="执行时间" width="120">
         </el-table-column>
-        <el-table-column prop="total" label="任务总数" width="120">
+        <el-table-column prop="total" label="活动总数" width="120">
         </el-table-column>
-        <el-table-column label="任务主图" width="130">
+        <el-table-column label="活动主图" width="130">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top">
               <img class="tablebigimg"  style="max-width:500px"  :src="scope.row.url" />

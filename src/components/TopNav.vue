@@ -5,22 +5,22 @@
       <el-header>
         <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
           <el-submenu index="1">
-            <template slot="title">挖宝任务</template>
+            <template slot="title">挖宝活动</template>
             <el-menu-item index="1-1">
-              <a href="/publicrefund">发布任务</a>
+              <a href="/publicrefund">发布活动</a>
             </el-menu-item>
             <el-menu-item index="1-2">
-              <a  href="/listrefund">已发布任务</a>
+              <a  href="/listrefund">已发布活动</a>
             </el-menu-item>
             <el-menu-item index="1-3">挖宝订单明细</el-menu-item>
           </el-submenu>
           <el-submenu index="2">
-            <template slot="title">免单任务</template>
+            <template slot="title">免单活动</template>
             <el-menu-item index="2-1">
-              <a href="/publicfree">发布免单任务</a>
+              <a href="/publicfree">发布免单活动</a>
             </el-menu-item>
             <el-menu-item index="2-2">
-              <a href="/listfree">已发布任务</a>
+              <a href="/listfree">已发布活动</a>
             </el-menu-item>
             <el-menu-item index="2-3"> <a href="/home">免单订单管理</a></el-menu-item>
             <el-menu-item index="2-4">免单订单明细</el-menu-item>

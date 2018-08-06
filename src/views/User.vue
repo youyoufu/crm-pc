@@ -3,10 +3,10 @@
     <div class="my">
       <div class="tips">Hello,*****</div>
       <div class="text mtop50">
-        免单任务：
+        免单活动：
         <span class="red">**</span>
         <span class="mright40">次</span>
-        挖宝任务：
+        挖宝活动：
         <span class="red">**</span>
         <span class="mright40">次</span>
         积分：
@@ -16,7 +16,7 @@
         您绑定的淘宝账户为：
         <span class="red">******</span>， 京东账户为：
         <span class="red">******</span>， 手机号为：
-        <span class="red">******</span>，做任务时，请注意使用对应的淘宝京东账户。
+        <span class="red">******</span>，做活动时，请注意使用对应的淘宝京东账户。
       </p>
       <p class="text mtop50">
         您的邀请码为：

@@ -45,31 +45,31 @@ const router = new Router({
       path: '/publicrefund',
       name: 'publicrefund',
       component: PublicRefund,
-      meta: { title: '挖宝任务发布', requiredAuth: true }
+      meta: { title: '挖宝活动发布', requiredAuth: true }
     },
     {
       path: '/publicfree',
       name: 'publicfree',
       component: PublicFree,
-      meta: { title: '免单任务发布', requiredAuth: true }
+      meta: { title: '免单活动发布', requiredAuth: true }
     },
     {
       path: '/listrefund',
       name: 'listrefund',
       component: listRefund,
-      meta: { title: '挖宝任务列表', requiredAuth: true }
+      meta: { title: '挖宝活动列表', requiredAuth: true }
     },
     {
       path: '/listfree',
       name: 'listfree',
       component: listFree,
-      meta: { title: '免单任务列表', requiredAuth: true }
+      meta: { title: '免单活动列表', requiredAuth: true }
     },
     {
       path: '/task',
       name: 'task',
       component: Task,
-      meta: { requiredAuth: true, title: '任务测试' }
+      meta: { requiredAuth: true, title: '活动测试' }
     },
     {
       path: '/master',

@@ -4,9 +4,9 @@
     <div class="listfree">
       <div class="title">已发布免单列表</div>
       <el-table :data="tableData" border style="width: 1265px;margin:0 auto">
-        <el-table-column prop="title" label="任务标题" width="150">
+        <el-table-column prop="title" label="活动标题" width="150">
         </el-table-column>
-        <el-table-column prop="amount" label="任务订单总金额" width="120">
+        <el-table-column prop="amount" label="活动订单总金额" width="120">
         </el-table-column>
         <el-table-column prop="refund_rate" label="返点比例(%)" width="120">
         </el-table-column>
@@ -24,7 +24,7 @@
         </el-table-column>
         <el-table-column prop="execute_time" label="执行时间" width="120">
         </el-table-column>
-        <el-table-column prop="gift" label="任务赠品" width="120">
+        <el-table-column prop="gift" label="活动赠品" width="120">
         </el-table-column>
         <el-table-column label="操作" width="150">
           <template slot-scope="scope">

@@ -3,12 +3,12 @@
     <TopNav />
     <div class="publicfree">
       <el-form :model="freeForm" ref="freeForm" :inline="true">
-        <div class="sign-title">{{curStatus}}免单任务</div>
+        <div class="sign-title">{{curStatus}}免单活动</div>
         <div class="first-line">
-          <el-form-item :prop="freeForm.title" label="任务标题:">
+          <el-form-item :prop="freeForm.title" label="活动标题:">
             <el-input v-model="freeForm.title" style="width: 180px"></el-input>
           </el-form-item>
-          <el-form-item label="任务订单总金额:">
+          <el-form-item label="活动订单总金额:">
             <el-input v-model="freeForm.amount" style="width: 180px" :rules="[{ required: true, message: '订单总金额'},
                       { type: 'number', message: '订单总金额为数字值'}]">
             </el-input>
@@ -19,12 +19,12 @@
               </el-option>
             </el-select>
           </el-form-item>
-          <el-form-item :prop="freeForm.gift" label="任务奖励:">
+          <el-form-item :prop="freeForm.gift" label="活动奖励:">
             <el-input v-model="freeForm.gift" style="width: 180px"></el-input>
           </el-form-item>
         </div>
         <div>
-          <el-form-item :prop="freeForm.content" label="任务说明:">
+          <el-form-item :prop="freeForm.content" label="活动说明:">
             <el-input v-model="freeForm.content" style="width: 880px"></el-input>
           </el-form-item>
         </div>
@@ -127,7 +127,7 @@
             </div>
             <div class="order-right">
               <p>
-                <el-form-item label="任务总量:">
+                <el-form-item label="活动总量:">
                   <el-input v-model="freeForm.total" style="width: 180px"></el-input>
                 </el-form-item>
               </p>
@@ -152,7 +152,7 @@
           </div>
           <div style="text-align:center">
             <el-form-item>
-              <el-button type="primary" @click="submitForm('freeForm')">发布任务</el-button>
+              <el-button type="primary" @click="submitForm('freeForm')">发布活动</el-button>
             </el-form-item>
           </div>
         </div>
@@ -183,7 +183,7 @@ export default class PubilcRefund extends Vue {
     title: '',
     amount: '',
     rate: '100%',
-    content: '特别提示：本任务产品正参加聚划算、淘抢购活动，拍下后需要15分钟内付款，建议自行验证后立即付款。',
+    content: '特别提示：本活动产品正参加聚划算、淘抢购活动，拍下后需要15分钟内付款，建议自行验证后立即付款。',
     gift: '',
     total: '',
     orderPictureUrl: '',
@@ -334,7 +334,7 @@ export default class PubilcRefund extends Vue {
       }
       freeOrderPublic(this.freeForm, id)
         .then((res: {}) => {
-          this.$message.success('任务发布成功～');
+          this.$message.success('活动发布成功～');
           setTimeout(() => {
             window.location.href = '/listfree';
           }, 3000);

@@ -72,7 +72,7 @@ export interface freeOrderPublicInfo {
   executeTime: string;
   time_range: string;
 }
-/* 挖宝任务*/
+/* 挖宝活动*/
 export function refundOrderPublic(object: refundOrderPublicInfo, id: string) {
   return internalFetch('POST')(true)(stringifPath(refundOrderPublicPATH), {
     body: { ...object,id }
@@ -84,7 +84,7 @@ export function refundOrderDeatilPublic(id: string) {
     body: { id }
   });
 }
-/*免单任务*/
+/*免单活动*/
 export function freeOrderPublic(object: freeOrderPublicInfo, id: string) {
   return internalFetch('POST')(true)(stringifPath(freeOrderPublicPATH), {
     body: { ...object, id }

@@ -3,7 +3,7 @@
     <TopNav />
     <div class="publicrefund">
       <el-form :model="refundForm" ref="refundForm" style="width: 350px" label-width="100px" class="demo-dynamic">
-        <div class="sign-title">{{curStatus}}挖宝任务</div>
+        <div class="sign-title">{{curStatus}}挖宝活动</div>
         <el-form-item label="活动标题">
           <el-input v-model="refundForm.title" style="width: 180px"></el-input>
         </el-form-item>  <el-form-item label="宝贝ID">
@@ -38,7 +38,7 @@
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
           </el-upload>
         </div>
-        <el-form-item label="任务要求">
+        <el-form-item label="活动要求">
           <el-input v-model="refundForm.require" style="width: 180px"></el-input>
         </el-form-item>
         <el-form-item label="24小时分布">
@@ -53,7 +53,7 @@
         </el-form-item>
 
         <el-form-item>
-          <el-button type="primary" @click="submitForm('refundForm')">发布任务</el-button>
+          <el-button type="primary" @click="submitForm('refundForm')">发布活动</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -178,7 +178,7 @@ export default class PubilcRefund extends Vue {
       }
       refundOrderPublic(this.refundForm, id)
         .then((res: {}) => {
-          this.$message.success("任务发布成功～");
+          this.$message.success("活动发布成功～");
           setTimeout(() => {
             window.location.href = "/listrefund";
           }, 3000);

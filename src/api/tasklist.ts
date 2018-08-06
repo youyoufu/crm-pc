@@ -6,7 +6,7 @@ const freeListPath = '/manageTaskOrder/findFreeTaskList';
 const auditFreeOrderPath = '/manageTaskOrder/auditFreeTaskOrder';
 const pagetotalPath = '/manageTaskOrder/findTableCount';
 
-/* 挖宝任务*/
+/* 挖宝活动*/
 export function refundOrderList(page: string) {
   return internalFetch('POST')(true)(stringifPath(refundListPATH), {
     body: { page, page_size: 20 }

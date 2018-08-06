@@ -96,13 +96,40 @@ export interface TaskOrderDetailData {
   content: string;
   create_time: string;
 }
-const getFreeTaskOrderCountPath='manageTaskOrderDetail/getFreeTaskOrderCount';
-const TaskOrderDetailPath='manageTaskOrderDetail/findFreeTaskOrderDetailPage';
-export function getFreeTaskOrderCount(page: string) {
-  return internalFetch('POST')(true)(stringifPath(getFreeTaskOrderCountPath), {
+const getFreeTaskOrderCountPath = 'manageTaskOrderDetail/getFreeTaskOrderCount';
+const TaskOrderDetailPath = 'manageTaskOrderDetail/findFreeTaskOrderDetailPage';
+export function TaskOrderDetail(page: string) {
+  return internalFetch('POST')(true)(stringifPath(TaskOrderDetailPath), {
     body: { page, page_size: 20 }
   });
 };
-export function TaskOrderDetail() {
-  return internalFetch('POST')(true)(stringifPath(TaskOrderDetailPath));
+export function getFreeTaskOrderCount() {
+  return internalFetch('POST')(true)(stringifPath(getFreeTaskOrderCountPath));
+}
+// 挖宝详情列表：
+// manageTaskOrderDetail/getRefundTaskOrderCount 查询总数量
+// manageTaskOrderDetail/findRefundTaskOrderDetailPage 查询分页数据 （参数:page 跟 page_size）
+
+//   `title` varchar(256) NOT NULL DEFAULT '' COMMENT '任务标题',
+//   `task_no` varchar(64) NOT NULL DEFAULT '' COMMENT '任务编号',
+//   `url` varchar(1024) NOT NULL DEFAULT '' COMMENT '任务图片URL',
+//   `refund` int(11) NOT NULL DEFAULT '0' COMMENT '返现金额',
+//   `content` varchar(512) NOT NULL DEFAULT '' COMMENT '任务要求',
+//   `status` smallint(1) NOT NULL DEFAULT '0' COMMENT '状态：0、领取任务，1、挖宝成功 2、挖宝失败',
+//   `bonus_point` int(11) NOT NULL DEFAULT '0' COMMENT '积分',
+//    account 淘宝账号
+//    square_url 方图
+//    long_url   长图
+//    keyword  关键字
+//   `execute_time` date NOT NULL COMMENT '执行时间',
+//   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间'
+const getRefundTaskOrderCountPath = 'manageTaskOrderDetail/getRefundTaskOrderCount';
+const RefundTaskOrderDetailPage = 'manageTaskOrderDetail/findRefundTaskOrderDetailPage';
+export function RefundTaskOrderDetail(page: string) {
+  return internalFetch('POST')(true)(stringifPath(RefundTaskOrderDetailPage), {
+    body: { page, page_size: 20 }
+  });
+};
+export function getRefundTaskOrderCount() {
+  return internalFetch('POST')(true)(stringifPath(getRefundTaskOrderCountPath));
 }

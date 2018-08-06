@@ -55,3 +55,54 @@ export function setAuditFreeOrder(taskOrderId: string, status: string) {
     body: { taskOrderId, status }
   });
 }
+/*免单列表详情*/
+// manageTaskOrderDetail/getFreeTaskOrderCount 查询总数量
+// manageTaskOrderDetail/findFreeTaskOrderDetailPage 查询分页数据 （参数:page 跟 page_size）
+//    account COMMENT '淘宝账号',
+//   `check_first_url` varchar(1024) NOT NULL DEFAULT '' COMMENT '校验第一张图URL',
+//   `check_second_url` varchar(1024) NOT NULL DEFAULT '' COMMENT '校验第二张图URL',
+//   `task_id` int(11) NOT NULL DEFAULT '0' COMMENT '任务ID',
+//   `task_no` varchar(64) NOT NULL DEFAULT '' COMMENT '任务编号',
+//   `url` varchar(1024) NOT NULL DEFAULT '' COMMENT '任务图片URL',
+//   `amount` int(11) NOT NULL DEFAULT '0' COMMENT '订单金额',
+//   `order_no` varchar(64) NOT NULL DEFAULT '' COMMENT '订单号',
+//   `refund` decimal(14,2) NOT NULL DEFAULT '0.00' COMMENT '返款金额',
+//   `bonus_point` int(11) NOT NULL DEFAULT '0' COMMENT '积分',
+//   `execute_time` date NOT NULL COMMENT '执行时间',
+//   `order_pic_url` varchar(1024) NOT NULL DEFAULT '' COMMENT '订单图片URL',
+//   `wechat_code_url` varchar(1024) NOT NULL DEFAULT '' COMMENT '微信收款码图片',
+//   `status` smallint(1) NOT NULL DEFAULT '0' COMMENT '任务状态 0、领取任务 1、淘口令验证成功 2、提交订单 3、审核失败 4、审核成功 5、返款 ',
+//   `title` varchar(128) NOT NULL DEFAULT '' COMMENT '任务标题',
+//   `gift` varchar(1024) NOT NULL DEFAULT '' COMMENT '任务赠品',
+//   `content` varchar(1024) NOT NULL DEFAULT '' COMMENT '任务说明',
+//   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间'
+export interface TaskOrderDetailData {
+  account: string;
+  check_first_url: string;
+  check_second_url: string;
+  task_id: string;
+  task_no: string;
+  url: string;
+  amount: string;
+  order_no: string;
+  refund: string;
+  bonus_point: string;
+  execute_time: string;
+  order_pic_url: string;
+  wechat_code_url: string;
+  status: string;
+  title: string;
+  gift: string;
+  content: string;
+  create_time: string;
+}
+const getFreeTaskOrderCountPath='manageTaskOrderDetail/getFreeTaskOrderCount';
+const TaskOrderDetailPath='manageTaskOrderDetail/findFreeTaskOrderDetailPage';
+export function getFreeTaskOrderCount(page: string) {
+  return internalFetch('POST')(true)(stringifPath(getFreeTaskOrderCountPath), {
+    body: { page, page_size: 20 }
+  });
+};
+export function TaskOrderDetail() {
+  return internalFetch('POST')(true)(stringifPath(TaskOrderDetailPath));
+}

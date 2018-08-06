@@ -7,6 +7,8 @@ import PublicRefund from '@/views/PublicRefund.vue';
 import PublicFree from '@/views/PublicFree.vue';
 import listRefund from '@/views/ListRefund.vue';
 import listFree from '@/views/ListFree.vue';
+import listrefunddetail from '@/views/ListRefundDetail.vue';
+import listfreedetail from '@/views/ListFreeDetail.vue';
 import returnmoney from '@/views/ReturnMoney.vue';
 import User from '@/views/User.vue';
 import master from '@/views/Master.vue';
@@ -58,6 +60,18 @@ const router = new Router({
       name: 'listrefund',
       component: listRefund,
       meta: { title: '挖宝活动列表', requiredAuth: true }
+    },
+    {
+      path: '/listrefunddetail',
+      name: 'listrefunddetail',
+      component: listrefunddetail,
+      meta: { title: '挖宝详情列表', requiredAuth: true }
+    },
+    {
+      path: '/listfreedetail',
+      name: 'listfreedetail',
+      component: listfreedetail,
+      meta: { title: '免单详情列表', requiredAuth: true }
     },
     {
       path: '/listfree',

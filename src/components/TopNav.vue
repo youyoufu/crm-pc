@@ -12,7 +12,9 @@
             <el-menu-item index="1-2">
               <a  href="/listrefund">已发布活动</a>
             </el-menu-item>
-            <el-menu-item index="1-3">挖宝订单明细</el-menu-item>
+            <el-menu-item index="1-3">
+              <a  href="/listrefunddetail">挖宝订单明细</a>
+              </el-menu-item>
           </el-submenu>
           <el-submenu index="2">
             <template slot="title">免单活动</template>
@@ -23,7 +25,9 @@
               <a href="/listfree">已发布活动</a>
             </el-menu-item>
             <el-menu-item index="2-3"> <a href="/home">免单订单管理</a></el-menu-item>
-            <el-menu-item index="2-4">免单订单明细</el-menu-item>
+            <el-menu-item index="2-4">
+              <a  href="/listfreedetail">免单订单明细</a>
+              </el-menu-item>
           </el-submenu>
           <el-menu-item index="3">用户管理</el-menu-item>
           <el-menu-item index="4">

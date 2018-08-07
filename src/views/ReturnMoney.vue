@@ -4,7 +4,7 @@
     <div class="doreturn">
       <el-input type="textarea" style="min-height: 33px;width: 300px;" :rows="20" placeholder="请输入订单号，一行一个" v-model="orderStr">
       </el-input>
-     <el-button type="primary" @click="doReturn" plain>主要按钮</el-button>
+     <el-button type="primary" @click="doReturn" plain>批量返款</el-button>
     </div>
     <div class="rentrn">
       <div class="title">批量返款结果</div>

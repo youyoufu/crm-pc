@@ -3,26 +3,36 @@
     <TopNav />
     <div class="user">
       <div class="title">用户列表</div>
-  <el-table :data="tableData" border style="width: 1000px;margin:0 auto">
-        <el-table-column prop="account" label="淘宝账号" width="120">
+      <el-table :data="tableData" border style="width: 100%;margin:0 auto">
+        <el-table-column prop="name" label="昵称" width="100">
         </el-table-column>
-           <el-table-column  prop="name" label="昵称" width="100">
+        <el-table-column prop="phone" label="手机号" width="120">
         </el-table-column>
-              <el-table-column prop="phone" label="手机号" width="120">
+        <el-table-column prop="" label="性别" width="80">
         </el-table-column>
-           <el-table-column  prop="free_task_time" label="免单任务次数" width="120">
+        <el-table-column prop="" label="省份" width="80">
         </el-table-column>
-             <el-table-column  prop="refund_task_time" label="挖宝次数" width="100">
+        <el-table-column prop="account" label="淘宝账户" width="120">
         </el-table-column>
-        <el-table-column  prop="bonus_point" label="积分" width="100">
+        <el-table-column prop="" label="京东账户" width="120">
         </el-table-column>
-         <el-table-column label="用户状态" width="100">
+        <el-table-column prop="" label="是否黑名单" width="120">
+        </el-table-column>
+        <el-table-column prop="" label="标签tag" width="120">
+        </el-table-column>
+        <el-table-column prop="free_task_time" label="免单任务次数" width="120">
+        </el-table-column>
+        <el-table-column prop="refund_task_time" label="挖宝次数" width="100">
+        </el-table-column>
+        <el-table-column prop="bonus_point" label="积分" width="100">
+        </el-table-column>
+        <el-table-column label="用户状态" width="100">
           <template slot-scope="scope">
-            <span  v-if="scope.row.status===0">删除</span>
-            <span  v-else-if="scope.row.status===1">有效</span>
+            <span v-if="scope.row.status===0">删除</span>
+            <span v-else-if="scope.row.status===1">有效</span>
           </template>
         </el-table-column>
-        <el-table-column prop="create_time" label="创建时间" width="239">
+        <el-table-column prop="create_time" label="创建时间" width="180">
         </el-table-column>
       </el-table>
       <el-pagination @current-change="setPage" background layout="pager" page-size="20" :total="pageCount">
@@ -32,13 +42,9 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import TopNav from "@/components/TopNav.vue";
-import {
-  getUserList,
-  getUserCount,
-  UserCntData
-} from "@/api/user";
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import TopNav from '@/components/TopNav.vue';
+import { getUserList, getUserCount, UserCntData } from '@/api/user';
 
 @Component({
   components: {
@@ -47,7 +53,7 @@ import {
 })
 export default class orderDetailList extends Vue {
   private tableData: Array<UserCntData> = [];
-  private pageCount: string = "0";
+  private pageCount: string = '0';
   private curPage: number = 1;
   private setPage(idx: number) {
     if (idx !== this.curPage) {
@@ -70,7 +76,7 @@ export default class orderDetailList extends Vue {
       });
   }
   private created() {
-    this.getListData("1");
+    this.getListData('1');
   }
   // private handleClick(row: any, type: string) {
   //   console.log(1111, row);
@@ -83,7 +89,7 @@ export default class orderDetailList extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../scss/theme.scss";
+@import '../scss/theme.scss';
 .user {
   width: 100%;
   text-align: center;
@@ -99,5 +105,5 @@ export default class orderDetailList extends Vue {
     height: 60px;
   }
 }
-@import "../scss/global.scss";
+@import '../scss/global.scss';
 </style>

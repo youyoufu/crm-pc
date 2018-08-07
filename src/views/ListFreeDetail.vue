@@ -3,23 +3,23 @@
     <TopNav />
     <div class="listfree-detail">
       <div class="title">免单详情列表</div>
-  <el-table :data="tableData" border style="width: 100%;margin:0 auto">
-        <el-table-column  prop="task_id" label="活动ID" width="100">
+      <el-table :data="tableData" border style="width: 100%;margin:0 auto">
+        <el-table-column prop="task_id" label="活动ID" width="100">
         </el-table-column>
-        <el-table-column  prop="task_no" label="活动编号" width="100">
+        <el-table-column prop="task_no" label="活动编号" width="100">
         </el-table-column>
         <el-table-column prop="account" label="淘宝账号" width="100">
         </el-table-column>
         <el-table-column prop="order_no" label="订单编号" width="100">
         </el-table-column>
-           <el-table-column  prop="title" label="活动标题" width="100">
+        <el-table-column prop="title" label="活动标题" width="100">
         </el-table-column>
-        <el-table-column  prop="gift" label="活动赠品" width="100">
+        <el-table-column prop="gift" label="活动赠品" width="100">
         </el-table-column>
-            <el-table-column label="账号验证1" width="100">
+        <el-table-column label="账号验证1" width="100">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top">
-              <img class="tablebigimg"  style="max-width:500px"  :src="scope.row.check_first_url" />
+              <img class="tablebigimg" style="max-width:500px" :src="scope.row.check_first_url" />
               <div slot="reference" class="name-wrapper">
                 <span size="medium">
                   <img class="tableimg" :src="scope.row.check_first_url" />
@@ -31,7 +31,7 @@
         <el-table-column label="账号验证2" width="100">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top">
-              <img class="tablebigimg"  style="max-width:500px"  :src="scope.row.check_second_url" />
+              <img class="tablebigimg" style="max-width:500px" :src="scope.row.check_second_url" />
               <div slot="reference" class="name-wrapper">
                 <span size="medium">
                   <img class="tableimg" :src="scope.row.check_second_url" />
@@ -40,21 +40,10 @@
             </el-popover>
           </template>
         </el-table-column>
-        <el-table-column label="订单状态" width="140">
-          <template slot-scope="scope">
-            <span  v-if="scope.row.status===0">领取任务</span>
-            <span  v-else-if="scope.row.status===1">淘口令验证成功</span>
-            <span  v-else-if="scope.row.status===2">提交订单号</span>
-            <span  v-else-if="scope.row.status===3">审核失败</span>
-            <span  v-else-if="scope.row.status===4">审核成功</span>
-            <span  v-else-if="scope.row.status===5">已返款</span>
-            <span  v-else-if="scope.row.status===9">关闭</span>
 
-          </template>
-        </el-table-column>
         <el-table-column label="订单截图" width="125">
           <template slot-scope="scope">
-            <el-popover trigger="hover"  placement="top">
+            <el-popover trigger="hover" placement="top">
               <img class="tablebigimg" style="max-width:500px" :src="scope.row.order_pic_url" />
               <div slot="reference" class="name-wrapper">
                 <span size="medium">
@@ -66,8 +55,8 @@
         </el-table-column>
         <el-table-column label="用户返款微信码" width="130">
           <template slot-scope="scope">
-            <el-popover trigger="hover"  placement="top">
-              <img class="tablebigimg" style="max-width:500px"  :src="scope.row.wechat_code_url" />
+            <el-popover trigger="hover" placement="top">
+              <img class="tablebigimg" style="max-width:500px" :src="scope.row.wechat_code_url" />
               <div slot="reference" class="name-wrapper">
                 <span size="medium">
                   <img class="tableimg" :src="scope.row.wechat_code_url" />
@@ -76,9 +65,26 @@
             </el-popover>
           </template>
         </el-table-column>
+        <el-table-column label="订单状态" width="140">
+          <template slot-scope="scope">
+            <span v-if="scope.row.status===0">领取任务</span>
+            <span v-else-if="scope.row.status===1">淘口令验证成功</span>
+            <span v-else-if="scope.row.status===2">提交订单号</span>
+            <span v-else-if="scope.row.status===3">审核失败</span>
+            <span v-else-if="scope.row.status===4">审核成功</span>
+            <span v-else-if="scope.row.status===5">已返款</span>
+            <span v-else-if="scope.row.status===9">关闭</span>
+          </template>
+        </el-table-column>
         <el-table-column prop="amount" label="订单金额" width="100">
         </el-table-column>
         <el-table-column prop="refund" label="返款金额" width="100">
+        </el-table-column>
+        <el-table-column label="返款状态" width="140">
+          <template slot-scope="scope">
+            <span v-if="scope.row.status===5">已返款</span>
+            <span v-else>未返款</span>
+          </template>
         </el-table-column>
         <el-table-column prop="create_time" label="创建时间" width="100">
         </el-table-column>
@@ -90,13 +96,9 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import TopNav from "@/components/TopNav.vue";
-import {
-  getFreeTaskOrderCount,
-  TaskOrderDetail,
-  TaskOrderDetailData
-} from "@/api/tasklist";
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import TopNav from '@/components/TopNav.vue';
+import { getFreeTaskOrderCount, TaskOrderDetail, TaskOrderDetailData } from '@/api/tasklist';
 
 @Component({
   components: {
@@ -105,7 +107,7 @@ import {
 })
 export default class orderDetailList extends Vue {
   private tableData: Array<TaskOrderDetailData> = [];
-  private pageCount: string = "0";
+  private pageCount: string = '0';
   private curPage: number = 1;
   private setPage(idx: number) {
     if (idx !== this.curPage) {
@@ -128,7 +130,7 @@ export default class orderDetailList extends Vue {
       });
   }
   private created() {
-    this.getListData("1");
+    this.getListData('1');
   }
   // private handleClick(row: any, type: string) {
   //   console.log(1111, row);
@@ -141,7 +143,7 @@ export default class orderDetailList extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../scss/theme.scss";
+@import '../scss/theme.scss';
 .listfree-detail {
   width: 100%;
   text-align: center;
@@ -157,5 +159,5 @@ export default class orderDetailList extends Vue {
     height: 60px;
   }
 }
-@import "../scss/global.scss";
+@import '../scss/global.scss';
 </style>

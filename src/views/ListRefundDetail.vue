@@ -14,18 +14,6 @@
         </el-table-column>
         <el-table-column  prop="bonus_point" label="积分" width="100">
         </el-table-column>
-        <el-table-column label="活动图片" width="125">
-          <template slot-scope="scope">
-            <el-popover trigger="hover"  placement="top">
-              <img class="tablebigimg" style="max-width:500px" :src="scope.row.url" />
-              <div slot="reference" class="name-wrapper">
-                <span size="medium">
-                  <img class="tableimg" :src="scope.row.url" />
-                </span>
-              </div>
-            </el-popover>
-          </template>
-        </el-table-column>       
          <el-table-column label="方图" width="100">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top">

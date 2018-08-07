@@ -1,4 +1,4 @@
-export const API_PRE = 'http://www.yupianzhou.com';
+export const API_PRE = 'http://www.niurouzhou.com';
 
 /* 处理接口地址前缀 */
 export function stringifPath(path: string) {

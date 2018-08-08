@@ -33,7 +33,7 @@ export default class Login extends Vue {
     if (valid) {
       loginAdmin(this.dynamicValidateForm.account, this.dynamicValidateForm.pass)
         .then((res: any) => {
-          saveLogin(res.id);
+          saveLogin(res.account);
           window.location.href = '/home';
         })
         .catch((err: { message: string }) => {

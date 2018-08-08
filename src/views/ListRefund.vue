@@ -3,7 +3,7 @@
     <TopNav />
     <div class="listrefund">
       <div class="title">已发布挖宝列表</div>
-      <el-table :data="tableData" border style="width: 1200px">
+      <el-table :data="tableData" border style="width: 100%">
         <el-table-column prop="title" label="活动标题" width="180">
         </el-table-column>   
         <el-table-column fixed prop="id" label="活动ID" width="150">

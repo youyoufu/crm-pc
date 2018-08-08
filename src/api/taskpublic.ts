@@ -42,6 +42,12 @@ export interface refundOrderPublicInfo {
   keywordRate2: string;
   keyword3: string;
   keywordRate3: string;
+  keyword4: string;
+  keywordRate4: string;
+  keyword5: string;
+  keywordRate5: string;
+  keyword6: string;
+  keywordRate6: string;
   executeTime: string;
   mainPictureUrl: string;
   verticalPictureUrl: string;
@@ -53,6 +59,8 @@ export interface freeOrderPublicInfo {
   amount: string;
   rate: string;
   gift: string;
+  extra_gift: string;
+  sex:string;
   content: string;
   goods: Array<{
     treasureId: string;
@@ -62,6 +70,12 @@ export interface freeOrderPublicInfo {
     keywordRate2: string;
     keyword3: string;
     keywordRate3: string;
+    keyword4: string;
+    keywordRate4: string;
+    keyword5: string;
+    keywordRate5: string;
+    keyword6: string;
+    keywordRate6: string;
     sku: string;
     mainPictureUrl: string;
     verticalPictureUrl: string;

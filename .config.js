@@ -3,5 +3,5 @@
 module.exports = {
   // devServer: 'http://localhost:3000',
   // devServer: 'http://www.niurouzhou.com/',
-  proServer: 'www.niurouzhou.com',
+  proServer: 'www.yupianzhou.com',
 };

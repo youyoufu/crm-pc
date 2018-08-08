@@ -6,31 +6,42 @@
         <div class="sign-title">{{curStatus}}免单活动</div>
         <div class="first-line">
           <el-form-item :prop="freeForm.title" label="活动标题:">
-            <el-input v-model="freeForm.title" style="width: 180px"></el-input>
+            <el-input v-model="freeForm.title" style="width: 160px"></el-input>
           </el-form-item>
-          <el-form-item label="活动订单总金额:">
-            <el-input v-model="freeForm.amount" style="width: 180px" :rules="[{ required: true, message: '订单总金额'},
+          <el-form-item :prop="freeForm.gift" label="产品/赠品:">
+            <el-input v-model="freeForm.gift" style="width: 160px"></el-input>
+          </el-form-item>
+          <el-form-item label="订单总金额:">
+            <el-input v-model="freeForm.amount" style="width: 100px" :rules="[{ required: true, message: '订单总金额'},
                       { type: 'number', message: '订单总金额为数字值'}]">
             </el-input>
           </el-form-item>
           <el-form-item label="返现比例:">
-            <el-select v-model="freeForm.rate" placeholder="请选择">
+            <el-select style="width: 100px" v-model="freeForm.rate" placeholder="请选择">
               <el-option v-for="item in selectRate" :key="item[1]" :label="item[0]" :value="item[1]">
               </el-option>
             </el-select>
           </el-form-item>
-          <el-form-item :prop="freeForm.gift" label="活动奖励:">
-            <el-input v-model="freeForm.gift" style="width: 180px"></el-input>
+
+          <el-form-item :prop="freeForm.extra_gift" label="额外奖励:">
+            <el-input v-model="freeForm.extra_gift" style="width: 100px"></el-input>
           </el-form-item>
+
         </div>
-        <div>
+        <div class="first-line">
           <el-form-item :prop="freeForm.content" label="活动说明:">
-            <el-input v-model="freeForm.content" style="width: 880px"></el-input>
+            <el-input v-model="freeForm.content" style="width: 680px"></el-input>
+          </el-form-item>
+          <el-form-item label="性别选择:">
+            <el-select style="width: 100px" v-model="freeForm.sex" placeholder="全部">
+              <el-option v-for="item in selectSex" :key="item[1]" :label="item[0]" :value="item[1]">
+              </el-option>
+            </el-select>
           </el-form-item>
         </div>
         <div class="goods">
           <div class="good0">
-            <el-form-item label="宝贝02-ID:">
+            <el-form-item label="宝贝01-ID:">
               <el-input v-model="freeForm.goods[0].treasureId" style="width: 180px"></el-input>
             </el-form-item>
             <p>
@@ -54,6 +65,27 @@
                 <el-input v-model="freeForm.goods[0].keywordRate3" auto-complete="off" style="width: 60px"></el-input>
               </el-form-item>
             </p>
+            <p>
+              <el-form-item label="关键字4">
+                <el-input v-model="freeForm.goods[0].keyword4" auto-complete="off" style="width: 110px"></el-input>
+                比例
+                <el-input v-model="freeForm.goods[0].keywordRate4" auto-complete="off" style="width: 60px"></el-input>
+              </el-form-item>
+            </p>
+            <p>
+              <el-form-item label="关键字5">
+                <el-input v-model="freeForm.goods[0].keyword5" auto-complete="off" style="width: 110px"></el-input>
+                比例
+                <el-input v-model="freeForm.goods[0].keywordRate5" auto-complete="off" style="width: 60px"></el-input>
+              </el-form-item>
+            </p>
+            <p>
+              <el-form-item label="关键字6">
+                <el-input v-model="freeForm.goods[0].keyword6" auto-complete="off" style="width: 110px"></el-input>
+                比例
+                <el-input v-model="freeForm.goods[0].keywordRate6" auto-complete="off" style="width: 60px"></el-input>
+              </el-form-item>
+            </p>
             <el-form-item label="下单规格:">
               <el-input v-model="freeForm.goods[0].sku" style="width: 180px"></el-input>
             </el-form-item>
@@ -73,7 +105,7 @@
             </div>
           </div>
           <div class="good1">
-            <el-form-item label="宝贝01-ID:">
+            <el-form-item label="宝贝02-ID:">
               <el-input v-model="freeForm.goods[1].treasureId" style="width: 180px"></el-input>
             </el-form-item>
             <p>
@@ -95,6 +127,27 @@
                 <el-input v-model="freeForm.goods[1].keyword3" auto-complete="off" style="width: 110px"></el-input>
                 比例
                 <el-input v-model="freeForm.goods[1].keywordRate3" auto-complete="off" style="width: 60px"></el-input>
+              </el-form-item>
+            </p>
+            <p>
+              <el-form-item label="关键字4">
+                <el-input v-model="freeForm.goods[1].keyword4" auto-complete="off" style="width: 110px"></el-input>
+                比例
+                <el-input v-model="freeForm.goods[1].keywordRate4" auto-complete="off" style="width: 60px"></el-input>
+              </el-form-item>
+            </p>
+            <p>
+              <el-form-item label="关键字5">
+                <el-input v-model="freeForm.goods[1].keyword5" auto-complete="off" style="width: 110px"></el-input>
+                比例
+                <el-input v-model="freeForm.goods[1].keywordRate5" auto-complete="off" style="width: 60px"></el-input>
+              </el-form-item>
+            </p>
+            <p>
+              <el-form-item label="关键字6">
+                <el-input v-model="freeForm.goods[1].keyword6" auto-complete="off" style="width: 110px"></el-input>
+                比例
+                <el-input v-model="freeForm.goods[1].keywordRate6" auto-complete="off" style="width: 60px"></el-input>
               </el-form-item>
             </p>
             <el-form-item label="下单规格:">
@@ -176,6 +229,7 @@ export default class PubilcRefund extends Vue {
   private goodIndex: Array<string> = ['good0', 'good1'];
   private imageUrl: string = '';
   private selectRate: Array<Array<string>> = [['100%', '100'], ['70%', '70'], ['50%', '50']];
+  private selectSex: Array<Array<string>> = [['全部', 'all'], ['男', 'male'], ['女', 'female']];
   private tid: string = getQuery('freeid') || '';
   private isadd: string = getQuery('isadd') || '';
   private curStatus: string = '新建';
@@ -185,6 +239,8 @@ export default class PubilcRefund extends Vue {
     rate: '100%',
     content: '特别提示：本活动产品正参加聚划算、淘抢购活动，拍下后需要15分钟内付款，建议自行验证后立即付款。',
     gift: '',
+    extra_gift: '0',
+    sex: 'all',
     total: '',
     orderPictureUrl: '',
     executeTime: '',
@@ -198,6 +254,12 @@ export default class PubilcRefund extends Vue {
         keywordRate2: '1',
         keyword3: '',
         keywordRate3: '1',
+        keyword4: '',
+        keywordRate4: '1',
+        keyword5: '',
+        keywordRate5: '1',
+        keyword6: '',
+        keywordRate6: '1',
         sku: '任意规格',
         mainPictureUrl: '',
         verticalPictureUrl: ''
@@ -210,6 +272,12 @@ export default class PubilcRefund extends Vue {
         keywordRate2: '1',
         keyword3: '',
         keywordRate3: '1',
+        keyword4: '',
+        keywordRate4: '1',
+        keyword5: '',
+        keywordRate5: '1',
+        keyword6: '',
+        keywordRate6: '1',
         sku: '任意规格',
         mainPictureUrl: '',
         verticalPictureUrl: ''
@@ -226,7 +294,7 @@ export default class PubilcRefund extends Vue {
       freeOrderDeatilPublic(this.tid)
         .then((res: any) => {
           this.freeForm = res;
-          this.freeForm.executeTime='';
+          this.freeForm.executeTime = '';
         })
         .catch((err: { message: string }) => {
           this.$message.error(err.message);
@@ -293,6 +361,9 @@ export default class PubilcRefund extends Vue {
       this.freeForm.amount === '' ||
       this.freeForm.rate === '' ||
       this.freeForm.total === '' ||
+      this.freeForm.gift === '' ||
+      this.freeForm.extra_gift === '' ||
+      this.freeForm.sex === '' ||
       this.freeForm.orderPictureUrl === '' ||
       this.freeForm.executeTime === '' ||
       this.freeForm.time_range === ''
@@ -305,8 +376,14 @@ export default class PubilcRefund extends Vue {
       this.freeForm.goods[0].keywordRate1 === '' ||
       this.freeForm.goods[0].keyword2 === '' ||
       this.freeForm.goods[0].keywordRate2 === '' ||
-      this.freeForm.goods[0].keyword2 === '' ||
-      this.freeForm.goods[0].keywordRate2 === '' ||
+      this.freeForm.goods[0].keyword3 === '' ||
+      this.freeForm.goods[0].keywordRate3 === '' ||
+      this.freeForm.goods[0].keyword4 === '' ||
+      this.freeForm.goods[0].keywordRate4 === '' ||
+      this.freeForm.goods[0].keyword4 === '' ||
+      this.freeForm.goods[0].keywordRate4 === '' ||
+      this.freeForm.goods[0].keyword5 === '' ||
+      this.freeForm.goods[0].keywordRate5 === '' ||
       this.freeForm.goods[0].sku === '' ||
       this.freeForm.goods[0].mainPictureUrl === '' ||
       this.freeForm.goods[0].verticalPictureUrl === ''
@@ -319,8 +396,14 @@ export default class PubilcRefund extends Vue {
       this.freeForm.goods[1].keywordRate1 === '' ||
       this.freeForm.goods[1].keyword2 === '' ||
       this.freeForm.goods[1].keywordRate2 === '' ||
-      this.freeForm.goods[1].keyword2 === '' ||
-      this.freeForm.goods[1].keywordRate2 === '' ||
+      this.freeForm.goods[1].keyword3 === '' ||
+      this.freeForm.goods[1].keywordRate3 === '' ||
+      this.freeForm.goods[1].keyword4 === '' ||
+      this.freeForm.goods[1].keywordRate4 === '' ||
+      this.freeForm.goods[1].keyword4 === '' ||
+      this.freeForm.goods[1].keywordRate4 === '' ||
+      this.freeForm.goods[1].keyword5 === '' ||
+      this.freeForm.goods[1].keywordRate5 === '' ||
       this.freeForm.goods[1].sku === '' ||
       this.freeForm.goods[1].mainPictureUrl === '' ||
       this.freeForm.goods[1].verticalPictureUrl === ''
@@ -367,11 +450,12 @@ export default class PubilcRefund extends Vue {
     width: 100px;
   }
   .first-line {
-    float: left;
+    text-align: left;
   }
 
   .goods {
-    min-height: 900px;
+    overflow: hidden;
+    padding-bottom: 20px;
   }
   .good0 {
     text-align: left;

@@ -9,7 +9,7 @@
     <div class="rentrn">
       <div class="title">批量返款结果</div>
       <div class="tips">本次返款结果：成功返款{{tableData.success_num}}个订单，失败{{tableData.fail_num}}个订单，其中{{tableData.last_refund_num}}个订单上次已返款，此次忽略。</div>
-      <el-table :data="tableData.refund_list" border style="width: 1265px;margin:0 auto">
+      <el-table :data="tableData.refund_list" border style="width: 100%;margin:0 auto">
         <el-table-column prop="id" label="返款记录ID" width="150">
         </el-table-column>
         <el-table-column prop="order_no" label="订单号" width="120">

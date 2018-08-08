@@ -3,7 +3,7 @@
     <TopNav />
     <div class="home">
       <div class="title">客户订单列表</div>
-      <el-table :data="tableData" border style="width: 1265px;margin:0 auto">
+      <el-table :data="tableData" border style="width: 100%;margin:0 auto">
         <el-table-column fixed prop="task_no" label="活动ID" width="150">
         </el-table-column>
         <el-table-column prop="account" label="用户淘宝账号" width="130">

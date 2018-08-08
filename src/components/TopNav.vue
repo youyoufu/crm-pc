@@ -1,6 +1,6 @@
 <template>
   <div class="topNav">
-    <div class="store-name">欢迎您，***旗舰店</div>
+    <div class="store-name">hello,店主</div>
     <el-container>
       <el-header>
         <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">

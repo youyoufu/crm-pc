@@ -2,9 +2,9 @@
   <div>
     <TopNav />
     <div class="home">
-      <div class="title">客户订单列表</div>
+      <div class="title">免单订单列表</div>
       <el-table :data="tableData" border style="width: 100%;margin:0 auto">
-        <el-table-column fixed prop="task_no" label="活动ID" width="150">
+        <el-table-column fixed prop="task_no" label="活动ID" width="200">
         </el-table-column>
         <el-table-column prop="account" label="用户淘宝账号" width="130">
         </el-table-column>
@@ -34,14 +34,14 @@
             </el-popover>
           </template>
         </el-table-column>
-        <el-table-column label="订单审批" width="210">
+        <el-table-column label="订单审批" width="170">
           <template slot-scope="scope">
              <div v-if="scope.row.status===2">
-              <el-button @click="handleClick(scope.row.id,'4',scope.$index)" size="small">审批通过</el-button>
-              <el-button @click="handleClick(scope.row.id,'3',scope.$index)" size="small">审批不过</el-button>
+              <el-button @click="handleClick(scope.row.id,'4',scope.$index)" size="small">通过</el-button>
+              <el-button @click="handleClick(scope.row.id,'3',scope.$index)" size="small">不通过</el-button>
             </div>
             <span  v-if="scope.row.status===4">已通过</span>
-            <span  v-else-if="scope.row.status===3">未通过</span>
+            <span  v-else-if="scope.row.status===3">不通过</span>
            
           </template>
         </el-table-column>

@@ -12,6 +12,14 @@
         </el-table-column>
         <el-table-column prop="order_no" label="订单编号" width="140">
         </el-table-column>
+        <el-table-column prop="create_time" label="创建时间" width="180">
+        </el-table-column>
+        <el-table-column prop="amount" label="订单金额" width="100">
+        </el-table-column>
+        <el-table-column prop="refund" label="返款金额" width="100">
+        </el-table-column>
+        <el-table-column prop="extra_gift" label="额外奖励" width="100">
+        </el-table-column>
         <el-table-column prop="title" label="活动标题" width="100">
         </el-table-column>
         <el-table-column prop="gift" label="活动赠品" width="100">
@@ -40,7 +48,6 @@
             </el-popover>
           </template>
         </el-table-column>
-
         <el-table-column label="订单截图" width="125">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top">
@@ -76,20 +83,13 @@
             <span v-else-if="scope.row.status===9">关闭</span>
           </template>
         </el-table-column>
-        <el-table-column prop="amount" label="订单金额" width="100">
-        </el-table-column>
-        <el-table-column prop="refund" label="返款金额" width="100">
-        </el-table-column>
         <el-table-column label="返款状态" width="100">
           <template slot-scope="scope">
             <span v-if="scope.row.status===5">已返款</span>
             <span v-else>未返款</span>
           </template>
         </el-table-column>
-        <el-table-column prop="extra_gift" label="额外奖励" width="100">
-        </el-table-column>
-        <el-table-column prop="create_time" label="创建时间" width="180">
-        </el-table-column>
+
       </el-table>
       <el-pagination @current-change="setPage" background layout="pager" page-size="20" :total="pageCount">
         <!-- prev, , next -->

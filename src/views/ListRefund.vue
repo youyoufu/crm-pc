@@ -99,10 +99,9 @@ export default class RefundList extends Vue {
 <style lang="scss" scoped>
 @import "../scss/theme.scss";
 .listrefund {
-  margin-top: 10px;
+  margin: 10px auto;
   font-size: 24px;
    .title {
-    font-size: 24px;
     padding: 10px;
   }
   .tableimg {

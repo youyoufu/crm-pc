@@ -4,7 +4,7 @@
     <div class="home">
       <div class="title">免单订单列表</div>
       <el-table :data="tableData" border style="width: 100%;margin:0 auto">
-        <el-table-column fixed prop="task_no" label="活动ID" width="200">
+        <el-table-column  prop="task_no" label="活动ID" width="200">
         </el-table-column>
         <el-table-column prop="account" label="用户淘宝账号" width="130">
         </el-table-column>

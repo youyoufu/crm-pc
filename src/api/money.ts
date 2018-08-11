@@ -12,9 +12,9 @@ export function submitMoney(order_no: string) {
 }
 
 /* 获取返款列表 */
-export function getMoneyList(batch_no: string) {
+export function getMoneyList(batch_no: string,page:string) {
   return internalFetch('POST')(true)(stringifPath(getMoneyListPATH), {
-    body: { batch_no }
+    body: { batch_no, page, page_size: 20 }
   });
 }
 export function getMoneyPages(batch_no: string) {

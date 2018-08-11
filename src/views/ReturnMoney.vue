@@ -75,7 +75,7 @@ export default class RentrnMoney extends Vue {
       });
   }
   private getListData(page: string) {
-    getMoneyList(page)
+    getMoneyList( this.bid ,page)
       .then((res: any) => {
         this.tableData = res;
         getMoneyPages(this.bid)

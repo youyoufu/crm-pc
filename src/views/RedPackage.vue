@@ -18,8 +18,14 @@
         </el-table-column>
         <el-table-column prop="refund_time" label="返款时间" width="120">
         </el-table-column>
-        <el-table-column :prop="status==='1'?'发送失败':'发送成功'" label="红包状态" width="120">
+        <el-table-column label="红包状态" width="140">
+          <template slot-scope="scope">
+            <span v-if="scope.row.status===0">发送红包失败</span>
+            <span v-else-if="scope.row.status===1">发送红包成功</span>
+            <span v-else-if="scope.row.status===2">失败，订单已返款</span>
+          </template>
         </el-table-column>
+
       </el-table>
       <el-pagination @current-change="setPage" background layout="pager" page-size="20" :total="pageCount">
       </el-pagination>

@@ -16,11 +16,9 @@
         </el-table-column>
         <el-table-column prop="amount" label="订单金额" width="100">
         </el-table-column>
-        <el-table-column prop="refund" label="返款金额" width="100">
-        </el-table-column>
         <el-table-column prop="extra_gift" label="额外奖励" width="100">
         </el-table-column>
-        <el-table-column prop="title" label="活动标题" width="100">
+        <el-table-column prop="refund" label="返款金额" width="100">
         </el-table-column>
         <el-table-column prop="gift" label="活动赠品" width="100">
         </el-table-column>

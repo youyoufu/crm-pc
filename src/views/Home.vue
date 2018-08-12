@@ -2,7 +2,7 @@
   <div>
     <TopNav />
     <div class="home">
-      <div class="title">免单订单管理</div>
+      <div class="title">待处理订单</div>
       <el-table :data="tableData" border style="width: 100%;margin:0 auto">
         <el-table-column prop="task_no" label="活动编号" width="180">
         </el-table-column>
@@ -14,11 +14,9 @@
         </el-table-column>
         <el-table-column prop="amount" label="订单金额" width="100">
         </el-table-column>
-        <el-table-column prop="refund" label="返款金额" width="100">
-        </el-table-column>
         <el-table-column prop="extra_gift" label="额外奖励" width="100">
         </el-table-column>
-        <el-table-column prop="title" label="活动标题" width="100">
+        <el-table-column prop="refund" label="返款金额" width="100">
         </el-table-column>
         <el-table-column prop="gift" label="活动赠品" width="100">
         </el-table-column>

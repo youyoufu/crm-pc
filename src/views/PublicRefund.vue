@@ -240,6 +240,12 @@ export default class PubilcRefund extends Vue {
       float: left;
     }
   }
+   .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+  }
 }
 @import '../scss/global.scss';
 </style>

@@ -28,44 +28,55 @@
     <div class="block textinput">
       <p class="title">新增用户配置</p>
     <p><span>商家简称：</span>
-        <el-input  v-model="mobile1" />
+        <el-input  v-model="sellerForm.name" />
       </p>
           <p><span>公众号原始ID：</span>
-        <el-input v-model="mobile1" />
+        <el-input v-model="sellerForm.account" />
       </p>
           <p><span>手机号：</span>
-        <el-input v-model="mobile1" />
+        <el-input v-model="sellerForm.phone" />
       </p>
      <p><span>密码：</span>
-        <el-input  v-model="mobile1" />
+        <el-input  v-model="sellerForm.password" />
       </p>
         <p><span>公众号appid：</span>
-        <el-input  v-model="mobile1" />
+        <el-input  v-model="sellerForm.app_id" />
       </p>
          <p><span>公众号AppSecret：</span>
-        <el-input v-model="mobile1" />
+        <el-input v-model="sellerForm.app_secret" />
       </p>
            <p class="title">
-        <el-button type="button" @click="clickBtn('del')">新增或更新商户</el-button>
+        <el-button type="button" @click="submitAddSeller()">新增或更新商户</el-button>
       </p>
       <p>运营注意：微信公众号授权域名www.niurouzhou.com</p>
     </div>
     <div class="block textinput">
       <p class="title">商户增加微信支付</p>
   <p>公众号原始ID：
-        <el-input type="number"  v-model="mobile1" />
+        <el-input  v-model="payForm.account" />
       </p>
         <p>微信支付商号：
-        <el-input type="number"  v-model="mobile1" />
+        <el-input  v-model="payForm.mch_id" />
       </p>
         <p>微信支付Key:
-        <el-input type="number"  v-model="mobile1" />
+        <el-input  v-model="payForm.sign_key" />
       </p>
-        <p>证书上传：
-        <el-input type="number"  v-model="mobile1" />
-      </p>
+      <div class="upload-block">
+     <div>  <span>证书上传：</span>
+          <el-upload  action="" accept="" name="key_url" :on-success="handleAvatarSuccess" :before-upload="beforeUpload0">
+            <el-button slot="trigger" size="small" type="button">上传apiclient_key.pem 证书</el-button>
+          </el-upload>    
+          {{payForm.key_url}}
+    </div> <div>   <span>证书上传：</span>
+          <el-upload action="" accept="" name="cert_url" :on-success="handleAvatarSuccess" :before-upload="beforeUpload0">
+              <el-button slot="trigger" size="small" type="button">上传apiclient_cert.pem证书</el-button>
+          </el-upload>
+           {{payForm.cert_url}}
+      </div>
+           </div>
+
          <p class="title">
-        <el-button type="button" @click="clickBtn('del')">新增或更新商户微信支付</el-button>
+        <el-button type="button" @click="submitAddSellerPay()">新增或更新商户微信支付</el-button>
       </p>
       <p>删除账号资料，微信登录跟新用户一样</p>
     </div>
@@ -94,7 +105,15 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { resetTenDay, deleteUser } from "@/api/master";
+import {
+  resetTenDay,
+  deleteUser,
+  addSellerInfo,
+  addSellerPayInfo,
+  addSellerPay,
+  addSeller,
+  setUploadFile
+} from "@/api/master";
 
 @Component({
   components: {}
@@ -102,6 +121,89 @@ import { resetTenDay, deleteUser } from "@/api/master";
 export default class Master extends Vue {
   private mobile1: string = "";
   private mobile2: string = "";
+  private payForm: addSellerPayInfo = {
+    mch_id: "",
+    account: "",
+    sign_key: "",
+    key_url: "",
+    cert_url: ""
+  };
+  private sellerForm: addSellerInfo = {
+    name: "",
+    account: "",
+    phone: "",
+    password: "",
+    app_id: "",
+    app_secret: ""
+  };
+  private uploadFile(file: any, type: string) {
+    setUploadFile(file)
+      .then(result => {
+        let url = JSON.parse(result.data).url;
+        if (type === "key_url") {
+          this.payForm.key_url = url;
+        } else if (type === "cert_url") {
+          this.payForm.cert_url = url;
+        }
+      })
+      .catch(() => {
+        this.$message.error("图片上传错误");
+      });
+  }
+  private beforeUpload0(file: any) {
+    this.uploadFile(file, "key_url");
+  }
+  private beforeUpload1(file: any) {
+    this.uploadFile(file, "cert_url");
+  }
+  private submitAddSellerPay() {
+    if (
+      this.payForm.mch_id === "" ||
+      this.payForm.account === "" ||
+      this.payForm.sign_key === "" ||
+      this.payForm.key_url === "" ||
+      this.payForm.cert_url === ""
+    ) {
+      this.$message.error("请填写完整的商家信息");
+      return;
+    } else {
+      addSellerPay(this.payForm)
+        .then((res: {}) => {
+          this.$message.success("商家支付信息添加成功");
+          // setTimeout(() => {
+          //   window.location.href = "/listrefund";
+          // }, 3000);
+        })
+        .catch((err: { message: string }) => {
+          this.$message.error(err.message);
+        });
+    }
+  }
+  private submitAddSeller() {
+    if (
+      this.sellerForm.name === "" ||
+      this.sellerForm.account === "" ||
+      this.sellerForm.phone === "" ||
+      this.sellerForm.password === "" ||
+      this.sellerForm.app_id === "" ||
+      this.sellerForm.app_secret === ""
+    ) {
+      this.$message.error("请填写完整的商家信息");
+      return;
+    } else {
+      addSeller(this.sellerForm)
+        .then((res: {}) => {
+          this.$message.success("商家添加成功");
+          // setTimeout(() => {
+          //   window.location.href = "/listrefund";
+          // }, 3000);
+        })
+        .catch((err: { message: string }) => {
+          this.$message.error(err.message);
+        });
+    }
+  }
+
   private clickBtn(type: string) {
     if (type === "del") {
       if (this.mobile1.length !== 11) {
@@ -132,8 +234,6 @@ export default class Master extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../scss/theme.scss";
-
 .master {
   width: 1400px;
   margin-top: 10px;
@@ -173,10 +273,22 @@ export default class Master extends Vue {
     height: 25px;
     line-height: 25px;
   }
-  .height300{
+  .height300 {
     height: 300px;
   }
+  .upload-block {
+    span {
+      font-size: 14px;
+      line-height: 2;
+      float: left;
+    }
+    button {
+      width: 220px;
+      margin-left: 70px;
+    }
+    .el-upload--text {
+      border: 0 !important;
+    }
+  }
 }
-
-@import "../scss/global.scss";
 </style>

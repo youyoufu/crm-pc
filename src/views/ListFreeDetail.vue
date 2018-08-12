@@ -2,9 +2,9 @@
   <div>
     <TopNav />
     <div class="listfree-detail">
-      <div class="title">免单详情列表</div>
+      <div class="title">免单订单明细</div>
       <el-table :data="tableData" border style="width: 100%;margin:0 auto">
-        <el-table-column prop="task_id" label="活动ID" width="100">
+        <el-table-column prop="id" label="活动ID" width="100">
         </el-table-column>
         <el-table-column prop="task_no" label="活动编号" width="180">
         </el-table-column>

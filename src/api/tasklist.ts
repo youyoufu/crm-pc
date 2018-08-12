@@ -23,6 +23,12 @@ export interface orderListData {
   order_pic_url: string;
   wechat_code_url: string;
   is_refund: string;
+  title: string;
+  gift: string;
+  content: string;
+  extra_gift: string;
+  create_time: string;
+  refund:string;
 }
 
 export interface freeListData {

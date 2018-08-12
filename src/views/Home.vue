@@ -2,13 +2,25 @@
   <div>
     <TopNav />
     <div class="home">
-      <div class="title">免单订单列表</div>
+      <div class="title">免单订单管理</div>
       <el-table :data="tableData" border style="width: 100%;margin:0 auto">
-        <el-table-column  prop="task_no" label="活动ID" width="200">
+        <el-table-column prop="task_no" label="活动编号" width="180">
         </el-table-column>
-        <el-table-column prop="account" label="用户淘宝账号" width="130">
+        <el-table-column prop="account" label="淘宝账号" width="130">
         </el-table-column>
         <el-table-column prop="order_no" label="订单编号" width="130">
+        </el-table-column>
+         <el-table-column prop="create_time" label="创建时间" width="180">
+        </el-table-column>
+        <el-table-column prop="amount" label="订单金额" width="100">
+        </el-table-column>
+        <el-table-column prop="refund" label="返款金额" width="100">
+        </el-table-column>
+        <el-table-column prop="extra_gift" label="额外奖励" width="100">
+        </el-table-column>
+        <el-table-column prop="title" label="活动标题" width="100">
+        </el-table-column>
+        <el-table-column prop="gift" label="活动赠品" width="100">
         </el-table-column>
             <el-table-column label="账号验证截图1" width="130">
           <template slot-scope="scope">
@@ -122,40 +134,6 @@ export default class orderList extends Vue {
       })
       .catch((err: { message: string }) => {
         this.$message.error(err.message);
-        // this.tableData = [
-        //   {
-        //     id: "111",
-        //     task_no: "111",
-        //     account: "222",
-        //     order_no: "333",
-        //     check_first_url:
-        //       "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
-        //     check_second_url:
-        //       "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
-        //     status: "3",
-        //     order_pic_url:
-        //       "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
-        //     wechat_code_url:
-        //       "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
-        //     is_refund: "0"
-        //   },
-        //   {
-        //     id: "222",
-        //     task_no: "aaa",
-        //     account: "vvv",
-        //     order_no: "ddd",
-        //     check_first_url:
-        //       "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
-        //     check_second_url:
-        //       "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
-        //     status: "5",
-        //     order_pic_url:
-        //       "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
-        //     wechat_code_url:
-        //       "https://img1.360buyimg.com/imgb/s136x136_jfs/t20029/83/2466782170/262318/6002985/5b4b525eNec79fd8a.jpg",
-        //     is_refund: "1"
-        //   }
-        // ];
       });
   }
   private created() {
@@ -163,19 +141,7 @@ export default class orderList extends Vue {
   }
   private handleClick(id: string, type: string, idx: number) {
     let text = "";
-    // if (type === "4") {
-    //   text = "通过该订单吗？";
-    // } else if (type === "3") {
-    //   text = "否决该订单吗？";
-    // } else if (type === "5") {
-    //   text = "手动返款吗？";
-    // }
-    // this.$confirm("你确定要" + text, "提示", {
-    //   confirmButtonText: "确定",
-    //   cancelButtonText: "取消",
-    //   type: "warning"
-    // })
-    //   .then(() => {
+
     setAuditFreeOrder(id, type)
       .then((res: any) => {
         this.$message({
@@ -190,13 +156,7 @@ export default class orderList extends Vue {
           message: "操作失败"
         });
       });
-    // })
-    // .catch(() => {
-    //   // this.$message({
-    //   //   type: 'info',
-    //   //   message: '取消操作'
-    //   // });
-    // });
+
   }
 }
 </script>

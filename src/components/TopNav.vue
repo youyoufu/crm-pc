@@ -39,7 +39,9 @@
             <template slot="title">返款</template>
             <el-menu-item index="5-1"> <a  href="/returnmoney">批量返款</a></el-menu-item>
             <el-menu-item index="5-2">自动返款</el-menu-item>
-            <el-menu-item index="5-3">用户提现流水</el-menu-item>
+            <el-menu-item index="5-3">
+              <a  href="/redpackage">红包返现明细</a>
+            </el-menu-item>
           </el-submenu>
           <el-submenu index="6">
             <template slot="title">运营工具</template>

@@ -10,6 +10,7 @@ import listFree from '@/views/ListFree.vue';
 import listrefunddetail from '@/views/ListRefundDetail.vue';
 import listfreedetail from '@/views/ListFreeDetail.vue';
 import returnmoney from '@/views/ReturnMoney.vue';
+import redpackage from '@/views/RedPackage.vue';
 import User from '@/views/User.vue';
 import master from '@/views/Master.vue';
 import { hasLogin, saveLogin } from '@/util/session';
@@ -90,6 +91,12 @@ const router = new Router({
       name: 'master',
       component: master,
       meta: { requiredAuth: true, title: '超级管理员' }
+    },
+    {
+      path: '/redpackage',
+      name: 'redpackage',
+      component: redpackage,
+      meta: { requiredAuth: true, title: '红包返现明细' }
     }
   ]
 });

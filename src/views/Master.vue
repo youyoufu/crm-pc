@@ -122,7 +122,7 @@ export default class Master extends Vue {
       }
       resetTenDay(this.mobile2)
         .then(() => {
-          this.$message.success("账号已冻结");
+          this.$message.success("重置成功");
         })
         .catch((err: { message: string }) => {
           this.$message.error(err.message);

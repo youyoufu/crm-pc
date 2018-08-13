@@ -286,9 +286,7 @@ export default class Master extends Vue {
       width: 220px;
       margin-left: 70px;
     }
-    .el-upload--text {
-      border: 0 !important;
-    }
+  
   }
 }
 </style>

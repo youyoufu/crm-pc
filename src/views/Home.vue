@@ -5,13 +5,14 @@
       <div class="title">待处理免单返现订单</div>
       <el-table :data="tableData" border style="width: 100%;margin:0 auto">
          <el-table-column prop="id" label="活动ID" width="100">
-        </el-table-column> <el-table-column prop="task_no" label="活动订单编号" width="180">
+        </el-table-column> 
+        <el-table-column prop="task_no" label="活动订单编号" width="180">
         </el-table-column>
         <el-table-column prop="order_no" label="平台订单编号" width="130">
         </el-table-column>
       <el-table-column prop="account" label="淘宝账号" width="130">
         </el-table-column>
-           <el-table-column prop="phone" label="手机号" width="100">
+           <el-table-column prop="phone" label="手机号" width="120">
         </el-table-column>
               <el-table-column prop="create_time" label="创建时间" width="180">
         </el-table-column>
@@ -134,7 +135,7 @@ export default class orderList extends Vue {
           .catch((err: { message: string }) => {});
       })
       .catch((err: { message: string }) => {
-        this.$message.error(err.message);
+        this.$message.warning(err.message);
       });
   }
   private created() {

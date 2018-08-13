@@ -71,14 +71,13 @@ export default class orderList extends Vue {
           .catch((err: { message: string }) => {});
       })
       .catch((err: { message: string }) => {
-        this.$message.error(err.message);
+        this.$message.warning(err.message);
       });
   }
   private created() {
     this.getListData('1');
   }
   private handleClick(row: any, type: string) {
-    console.log(1111, row);
     if (type === 'edit') {
       window.location.href = '/publicfree?freeid=' + row.id;
     } else if (type === 'copy') {

@@ -128,7 +128,7 @@ export default class orderDetailList extends Vue {
           .catch((err: { message: string }) => {});
       })
       .catch((err: { message: string }) => {
-        this.$message.error(err.message);
+        this.$message.warning(err.message);
       });
   }
   private created() {

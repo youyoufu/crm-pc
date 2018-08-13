@@ -29,6 +29,7 @@ export interface orderListData {
   extra_gift: string;
   create_time: string;
   refund:string;
+  phone:string;
 }
 
 export interface freeListData {
@@ -103,6 +104,8 @@ export interface TaskOrderDetailData {
   content: string;
   extra_gift: string;
   create_time: string;
+  phone:string;
+
 }
 const getFreeTaskOrderCountPath = '/manageTaskOrderDetail/getFreeTaskOrderCount';
 const TaskOrderDetailPath = '/manageTaskOrderDetail/findFreeTaskOrderDetailPage';

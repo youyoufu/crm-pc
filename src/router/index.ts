@@ -12,6 +12,7 @@ import listfreedetail from '@/views/ListFreeDetail.vue';
 import returnmoney from '@/views/ReturnMoney.vue';
 import redpackage from '@/views/RedPackage.vue';
 import User from '@/views/User.vue';
+import tips from '@/views/Tips.vue';
 import master from '@/views/Master.vue';
 import { hasLogin, saveLogin } from '@/util/session';
 
@@ -97,6 +98,12 @@ const router = new Router({
       name: 'redpackage',
       component: redpackage,
       meta: { requiredAuth: true, title: '红包返现明细' }
+    },
+    {
+      path: '/tips',
+      name: 'tips',
+      component: tips,
+      meta: { requiredAuth: true }
     }
   ]
 });

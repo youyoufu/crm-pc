@@ -96,7 +96,7 @@ export default class PubilcRefund extends Vue {
   private hourArry: Array<{ time: string; val: string }> = HourData;
   private tid: string = getQuery('freeid') || '';
   private isadd: string = getQuery('isadd') || '';
-  private curStatus: string = '新建';
+  private curStatus: string = '发布';
   refundForm: refundOrderPublicInfo = {
     title: '',
     treasureId: '',

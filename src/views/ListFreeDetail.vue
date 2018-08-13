@@ -2,15 +2,17 @@
   <div>
     <TopNav />
     <div class="listfree-detail">
-      <div class="title">免单订单明细</div>
+      <div class="title"> 免单返现订单明细</div>
       <el-table :data="tableData" border style="width: 100%;margin:0 auto">
         <el-table-column prop="id" label="活动ID" width="100">
         </el-table-column>
-        <el-table-column prop="task_no" label="活动编号" width="180">
+        <el-table-column prop="task_no" label="活动订单编号" width="180">
         </el-table-column>
+        <el-table-column prop="order_no" label="平台订单编号" width="140">
+        </el-table-column>    
         <el-table-column prop="account" label="淘宝账号" width="100">
         </el-table-column>
-        <el-table-column prop="order_no" label="订单编号" width="140">
+        <el-table-column prop="phone" label="手机号" width="130">
         </el-table-column>
         <el-table-column prop="create_time" label="创建时间" width="180">
         </el-table-column>
@@ -18,7 +20,7 @@
         </el-table-column>
         <el-table-column prop="extra_gift" label="额外奖励" width="100">
         </el-table-column>
-        <el-table-column prop="refund" label="返款金额" width="100">
+        <el-table-column prop="refund" label="应返款金额" width="100">
         </el-table-column>
         <el-table-column prop="gift" label="活动赠品" width="100">
         </el-table-column>

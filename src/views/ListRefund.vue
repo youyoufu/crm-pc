@@ -58,7 +58,7 @@ export default class RefundList extends Vue {
       execute_time: "",
       total: "",
       url: "",
-      title:''
+      title: ""
     }
   ];
   private pageCount: string = "0";
@@ -101,7 +101,8 @@ export default class RefundList extends Vue {
 .listrefund {
   margin: 10px auto;
   font-size: 24px;
-   .title {
+  .title {
+    text-align: center;
     padding: 10px;
   }
   .tableimg {

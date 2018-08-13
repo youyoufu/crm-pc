@@ -7,46 +7,51 @@
           <el-submenu index="1">
             <template slot="title">挖宝活动</template>
             <el-menu-item index="1-1">
-              <a href="/publicrefund">发布活动</a>
+              <a href="/publicrefund">发布新挖宝活动</a>
             </el-menu-item>
             <el-menu-item index="1-2">
-              <a  href="/listrefund">已发布活动</a>
+              <a  href="/listrefund">已发布的挖宝活动</a>
             </el-menu-item>
             <el-menu-item index="1-3">
-              <a  href="/listrefunddetail">挖宝订单明细</a>
+              <a  href="/listrefunddetail">挖宝活动订单明细</a>
               </el-menu-item>
           </el-submenu>
           <el-submenu index="2">
-            <template slot="title">免单活动</template>
+            <template slot="title">免单返现活动</template>
             <el-menu-item index="2-1">
-              <a href="/publicfree">发布免单活动</a>
+              <a href="/publicfree">发布新活动</a>
             </el-menu-item>
             <el-menu-item index="2-2">
               <a href="/listfree">已发布活动</a>
             </el-menu-item>
-            <el-menu-item index="2-3"> <a href="/home">待处理订单</a></el-menu-item>
+            <el-menu-item index="2-3"> <a href="/home">待处理活动订单</a></el-menu-item>
             <el-menu-item index="2-4">
-              <a  href="/listfreedetail">免单订单明细</a>
+              <a  href="/listfreedetail">活动订单明细</a>
               </el-menu-item>
           </el-submenu>
-          <el-menu-item index="3">
-              <a  href="/user">用户管理</a>
+               <el-submenu index="3">
+            <template slot="title">
+              用户管理
+            </template>
+            <el-menu-item index="3-1">
+              用户数据大盘
             </el-menu-item>
-          <el-menu-item index="4">
-            评价管理
-          </el-menu-item>
+            <el-menu-item index="3-2">
+              <a href="/user">用户查询和管理</a>
+            </el-menu-item>
+          </el-submenu>
           <el-submenu index="5">
-            <template slot="title">返款</template>
-            <el-menu-item index="5-1"> <a  href="/returnmoney">批量返款</a></el-menu-item>
-            <el-menu-item index="5-2">自动返款</el-menu-item>
+            <template slot="title">返现管理</template>
+            <el-menu-item index="5-1"> <a  href="/returnmoney">批量返现</a></el-menu-item>
+            <el-menu-item index="5-2"><a  href="/tips">全自动返现</a></el-menu-item>
             <el-menu-item index="5-3">
-              <a  href="/redpackage">红包返现明细</a>
+              <a  href="/redpackage">返现明细</a>
             </el-menu-item>
           </el-submenu>
           <el-submenu index="6">
-            <template slot="title">运营工具</template>
-            <el-menu-item index="6-1">导流和补单计算</el-menu-item>
-            <el-menu-item index="6-2">搜索数据监控</el-menu-item>
+            <template slot="title">数据化运营</template>
+            <el-menu-item index="6-1">实时数据</el-menu-item>
+            <el-menu-item index="6-2">导流和补单计算</el-menu-item>
           </el-submenu>
           <el-menu-item index="7">
             系统设置

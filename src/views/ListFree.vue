@@ -4,7 +4,8 @@
     <div class="listfree">
       <div class="title">已发布免单列表</div>
       <el-table :data="tableData" border style="width: 100%;margin:0 auto">
-        <el-table-column prop="title" label="活动标题" width="150">
+            <el-table-column prop="id" label="活动ID" width="100">
+        </el-table-column> <el-table-column prop="title" label="活动标题" width="150">
         </el-table-column>
         <el-table-column prop="amount" label="订单总金额" width="120">
         </el-table-column>

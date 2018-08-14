@@ -63,12 +63,12 @@
       </p>
       <div class="upload-block">
      <div>  <span>证书上传：</span>
-          <el-upload  action="" accept="" name="key_url" :on-success="handleAvatarSuccess" :before-upload="beforeUpload0">
+          <el-upload class="uploadfile"  action="" accept="" name="key_url" :on-success="handleAvatarSuccess" :before-upload="beforeUpload0">
             <el-button slot="trigger" size="small" type="button">上传apiclient_key.pem 证书</el-button>
           </el-upload>    
           {{payForm.key_url}}
     </div> <div>   <span>证书上传：</span>
-          <el-upload action="" accept="" name="cert_url" :on-success="handleAvatarSuccess" :before-upload="beforeUpload0">
+          <el-upload class="uploadfile" action="" accept="" name="cert_url" :on-success="handleAvatarSuccess" :before-upload="beforeUpload0">
               <el-button slot="trigger" size="small" type="button">上传apiclient_cert.pem证书</el-button>
           </el-upload>
            {{payForm.cert_url}}

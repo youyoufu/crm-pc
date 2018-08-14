@@ -13,6 +13,14 @@
         </el-table-column>
          <el-table-column prop="extra_gift" label="额外奖励" width="100">
         </el-table-column>
+           <el-table-column prop="refund" label="应返现金额" width="100">
+        </el-table-column>
+              <el-table-column prop="total_count" label="活动总量" width="120">
+        </el-table-column>
+          <el-table-column prop="receive_count" label="已领活动量" width="100">
+        </el-table-column>
+          <el-table-column prop="finish_count" label="用户已完成量" width="100">
+        </el-table-column>
         <el-table-column label="订单截图参考" width="120">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" width="200px">

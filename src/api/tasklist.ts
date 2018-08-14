@@ -42,6 +42,10 @@ export interface freeListData {
   execute_time: string;
   gift: string;
   extra_gift: string;
+  total_count:string;
+  receive_count:string;
+  finish_count:string;
+  refund:string;
 }
 export function getOrderList(page: string) {
   return internalFetch('POST')(true)(stringifPath(orderListPath), {
@@ -105,7 +109,6 @@ export interface TaskOrderDetailData {
   extra_gift: string;
   create_time: string;
   phone:string;
-
 }
 const getFreeTaskOrderCountPath = '/manageTaskOrderDetail/getFreeTaskOrderCount';
 const TaskOrderDetailPath = '/manageTaskOrderDetail/findFreeTaskOrderDetailPage';

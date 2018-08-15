@@ -19,7 +19,7 @@
         </el-table-column>
           <el-table-column prop="receive_count" label="已领活动量" width="100">
         </el-table-column>
-          <el-table-column prop="finish_count" label="用户已完成量" width="100">
+          <el-table-column prop="finish_count" label="用户已完成量" width="120">
         </el-table-column>
         <el-table-column label="订单截图参考" width="120">
           <template slot-scope="scope">

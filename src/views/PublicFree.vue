@@ -30,7 +30,13 @@
         </div>
         <div class="first-line">
           <el-form-item :prop="freeForm.content" label="活动说明:">
-            <el-input v-model="freeForm.content" style="width: 680px"></el-input>
+            <el-input v-model="freeForm.content" style="width: 600px"></el-input>
+          </el-form-item>
+          <el-form-item label="冷却时间:">
+            <el-select style="width: 100px" v-model="freeForm.frozen_day">
+              <el-option v-for="item in selectFrozenDay" :key="item" :label="item" :value="item">
+              </el-option>
+            </el-select>
           </el-form-item>
           <el-form-item label="性别选择:">
             <el-select style="width: 100px" v-model="freeForm.sex" placeholder="全部">
@@ -230,6 +236,7 @@ export default class PubilcRefund extends Vue {
   private imageUrl: string = '';
   private selectRate: Array<Array<string>> = [['100%', '100'], ['70%', '70'], ['50%', '50']];
   private selectSex: Array<Array<string>> = [['全部', 'all'], ['男', 'male'], ['女', 'female']];
+  private selectFrozenDay: Array<string> = ['15', '10', '1'];
   private tid: string = getQuery('freeid') || '';
   private isadd: string = getQuery('isadd') || '';
   private curStatus: string = '发布';
@@ -244,6 +251,7 @@ export default class PubilcRefund extends Vue {
     total: '',
     orderPictureUrl: '',
     executeTime: '',
+    frozen_day: '15',
     time_range: '',
     goods: [
       {

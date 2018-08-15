@@ -1,6 +1,6 @@
 <template>
   <div class="master">
-      <div class="title">超级管理</div>
+    <div class="title">超级管理</div>
     <div class="block">
       <p class="title">系统大盘看板</p>
       <p>昨日商家总订单量：
@@ -27,55 +27,64 @@
     </div>
     <div class="block textinput">
       <p class="title">新增用户配置</p>
-    <p><span>商家简称：</span>
-        <el-input  v-model="sellerForm.name" />
+      <p>
+        <span>商家简称：</span>
+        <el-input v-model="sellerForm.name" />
       </p>
-          <p><span>公众号原始ID：</span>
+      <p>
+        <span>公众号原始ID：</span>
         <el-input v-model="sellerForm.account" />
       </p>
-          <p><span>手机号：</span>
+      <p>
+        <span>手机号：</span>
         <el-input v-model="sellerForm.phone" />
       </p>
-     <p><span>密码：</span>
-        <el-input  v-model="sellerForm.password" />
+      <p>
+        <span>密码：</span>
+        <el-input v-model="sellerForm.password" />
       </p>
-        <p><span>公众号appid：</span>
-        <el-input  v-model="sellerForm.app_id" />
+      <p>
+        <span>公众号appid：</span>
+        <el-input v-model="sellerForm.app_id" />
       </p>
-         <p><span>公众号AppSecret：</span>
+      <p>
+        <span>公众号AppSecret：</span>
         <el-input v-model="sellerForm.app_secret" />
       </p>
-           <p class="title">
+      <p class="title">
         <el-button type="button" @click="submitAddSeller()">新增或更新商户</el-button>
       </p>
       <p>运营注意：微信公众号授权域名www.niurouzhou.com</p>
     </div>
     <div class="block textinput">
       <p class="title">商户增加微信支付</p>
-  <p>公众号原始ID：
-        <el-input  v-model="payForm.account" />
+      <p>公众号原始ID：
+        <el-input v-model="payForm.account" />
       </p>
-        <p>微信支付商号：
-        <el-input  v-model="payForm.mch_id" />
+      <p>微信支付商号：
+        <el-input v-model="payForm.mch_id" />
       </p>
-        <p>微信支付Key:
-        <el-input  v-model="payForm.sign_key" />
+      <p>微信支付Key:
+        <el-input v-model="payForm.sign_key" />
       </p>
       <div class="upload-block">
-     <div>  <span>证书上传：</span>
-          <el-upload class="uploadfile"  action="" accept="" name="key_url" :on-success="handleAvatarSuccess" :before-upload="beforeUpload0">
+        <div>
+          <span>证书上传：</span>
+          <el-upload class="uploadfile" action="" accept="" name="key_url" :on-success="handleAvatarSuccess" :before-upload="beforeUpload0">
             <el-button slot="trigger" size="small" type="button">上传apiclient_key.pem 证书</el-button>
-          </el-upload>    
-          {{payForm.key_url}}
-    </div> <div>   <span>证书上传：</span>
-          <el-upload class="uploadfile" action="" accept="" name="cert_url" :on-success="handleAvatarSuccess" :before-upload="beforeUpload0">
-              <el-button slot="trigger" size="small" type="button">上传apiclient_cert.pem证书</el-button>
           </el-upload>
-           {{payForm.cert_url}}
+          {{payForm.key_url}}
+        </div>
+        <div>
+          <span>证书上传：</span>
+          <el-upload class="uploadfile" action="" accept="" name="cert_url" :on-success="handleAvatarSuccess" :before-upload="beforeUpload0">
+            <el-button slot="trigger" size="small" type="button">上传apiclient_cert.pem证书</el-button>
+          </el-upload>
+          {{payForm.cert_url}}
+        </div>
       </div>
-           </div>
 
-         <p class="title">
+      <p class="title">
         <el-button type="button" @click="submitAddSellerPay()">新增或更新商户微信支付</el-button>
       </p>
       <p>删除账号资料，微信登录跟新用户一样</p>
@@ -83,7 +92,7 @@
     <div class="block height300">
       <p class="title">删除测试账号</p>
       <p>手机号：
-        <el-input type="number"  v-model="mobile1" />
+        <el-input type="number" v-model="mobile1" />
       </p>
       <p class="title">
         <el-button type="button" @click="clickBtn('del')">删除账号</el-button>
@@ -94,17 +103,44 @@
     <div class="block height300">
       <p class="title">重置冷却时间</p>
       <p>手机号：
-        <el-input type="number"  v-model="mobile2" />
+        <el-input type="number" v-model="mobile2" />
       </p>
       <p class="title">
         <el-button type="button" @click="clickBtn('reset')">重置</el-button>
       </p>
       <p>设置时间为10天外，可以重新接活动</p>
     </div>
+    <div class="block height300">
+      <p class="title">更新认证口令</p>
+      <p>验证口令-1：
+        <el-input aria-placeholder="单行输入" v-model="taobao_key" />
+      </p>
+      <p>验证口令-2：
+        <el-input aria-placeholder="默认为空，用户端不显示" v-model="taobao_key_backup" />
+      </p>
+      <p class="title">
+        <el-button type="button" @click="updateTaoBaoKey()">更新口令</el-button>
+      </p>
+      <p>默认用户端只显示验证口令，如遇淘宝平台规则改变，就启用双口令，用户复制两次口令，分开截图。</p>
+    </div>
+    <!-- <div class="block height300">
+      <p class="title">系统超级开关</p>
+      <p>验证等级：
+        <el-input type="number" v-model="mobile1" />
+      </p>
+      <p>冷却时间：
+        <el-input type="number" v-model="mobile1" />
+      </p>
+      <p class="title">
+        <el-button type="button" @click="clickBtn('del')">删除账号</el-button>
+      </p>
+      <p>删除账号资料，微信登录跟新用户一样</p>
+
+    </div> -->
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from 'vue-property-decorator';
 import {
   resetTenDay,
   deleteUser,
@@ -112,64 +148,77 @@ import {
   addSellerPayInfo,
   addSellerPay,
   addSeller,
-  setUploadFile
-} from "@/api/master";
+  setUploadFile,
+  updateCheckTBKey
+} from '@/api/master';
 
 @Component({
   components: {}
 })
 export default class Master extends Vue {
-  private mobile1: string = "";
-  private mobile2: string = "";
+  private mobile1: string = '';
+  private mobile2: string = '';
+   private taobao_key: string = '';
+  private taobao_key_backup: string = '';
   private payForm: addSellerPayInfo = {
-    mch_id: "",
-    account: "",
-    sign_key: "",
-    key_url: "",
-    cert_url: ""
+    mch_id: '',
+    account: '',
+    sign_key: '',
+    key_url: '',
+    cert_url: ''
   };
   private sellerForm: addSellerInfo = {
-    name: "",
-    account: "",
-    phone: "",
-    password: "",
-    app_id: "",
-    app_secret: ""
+    name: '',
+    account: '',
+    phone: '',
+    password: '',
+    app_id: '',
+    app_secret: ''
   };
+  private updateTaoBaoKey(){
+    updateCheckTBKey(this.taobao_key,this.taobao_key_backup)
+      .then(result => {
+        this.$message.success('口令重置成功！');
+   
+      })
+      .catch(() => {
+        this.$message.error('口令重置失败！');
+      });
+  }
   private uploadFile(file: any, type: string) {
     setUploadFile(file)
       .then(result => {
         let url = JSON.parse(result.data).url;
-        if (type === "key_url") {
+        if (type === 'key_url') {
           this.payForm.key_url = url;
-        } else if (type === "cert_url") {
+        } else if (type === 'cert_url') {
           this.payForm.cert_url = url;
         }
       })
       .catch(() => {
-        this.$message.error("图片上传错误");
+        this.$message.error('图片上传错误');
       });
   }
   private beforeUpload0(file: any) {
-    this.uploadFile(file, "key_url");
+    this.uploadFile(file, 'key_url');
   }
   private beforeUpload1(file: any) {
-    this.uploadFile(file, "cert_url");
+    this.uploadFile(file, 'cert_url');
   }
   private submitAddSellerPay() {
     if (
-      this.payForm.mch_id === "" ||
-      this.payForm.account === "" ||
-      this.payForm.sign_key === "" ||
-      this.payForm.key_url === "" ||
-      this.payForm.cert_url === ""
+      this.payForm.mch_id === '' ||
+      this.payForm.account === '' ||
+      this.payForm.sign_key === '' ||
+      this.payForm.key_url === '' ||
+      this.payForm.cert_url === ''
     ) {
-      this.$message.error("请填写完整的商家信息");
+      this.$message.error('请填写完整的商家信息');
       return;
     } else {
       addSellerPay(this.payForm)
         .then((res: {}) => {
-          this.$message.success("商家支付信息添加成功");
+          this.$message.success('商家支付信息添加成功');
           // setTimeout(() => {
           //   window.location.href = "/listrefund";
           // }, 3000);
@@ -181,19 +230,19 @@ export default class Master extends Vue {
   }
   private submitAddSeller() {
     if (
-      this.sellerForm.name === "" ||
-      this.sellerForm.account === "" ||
-      this.sellerForm.phone === "" ||
-      this.sellerForm.password === "" ||
-      this.sellerForm.app_id === "" ||
-      this.sellerForm.app_secret === ""
+      this.sellerForm.name === '' ||
+      this.sellerForm.account === '' ||
+      this.sellerForm.phone === '' ||
+      this.sellerForm.password === '' ||
+      this.sellerForm.app_id === '' ||
+      this.sellerForm.app_secret === ''
     ) {
-      this.$message.error("请填写完整的商家信息");
+      this.$message.error('请填写完整的商家信息');
       return;
     } else {
       addSeller(this.sellerForm)
         .then((res: {}) => {
-          this.$message.success("商家添加成功");
+          this.$message.success('商家添加成功');
           // setTimeout(() => {
           //   window.location.href = "/listrefund";
           // }, 3000);
@@ -205,26 +254,26 @@ export default class Master extends Vue {
   }
 
   private clickBtn(type: string) {
-    if (type === "del") {
+    if (type === 'del') {
       if (this.mobile1.length !== 11) {
-        this.$message.warning("请填写正确的手机号码");
+        this.$message.warning('请填写正确的手机号码');
         return;
       }
       deleteUser(this.mobile1)
         .then(() => {
-          this.$message.success("账号删除成功");
+          this.$message.success('账号删除成功');
         })
         .catch((err: { message: string }) => {
           this.$message.error(err.message);
         });
-    } else if (type === "reset") {
+    } else if (type === 'reset') {
       if (this.mobile2.length !== 11) {
-        this.$message.warning("请填写正确的手机号码");
+        this.$message.warning('请填写正确的手机号码');
         return;
       }
       resetTenDay(this.mobile2)
         .then(() => {
-          this.$message.success("重置成功");
+          this.$message.success('重置成功');
         })
         .catch((err: { message: string }) => {
           this.$message.error(err.message);
@@ -235,6 +284,7 @@ export default class Master extends Vue {
 </script>
 <style lang="scss" scoped>
 .master {
+  text-align: center;
   width: 1400px;
   margin-top: 10px;
   font-size: 24px;
@@ -286,7 +336,6 @@ export default class Master extends Vue {
       width: 220px;
       margin-left: 70px;
     }
-  
   }
 }
 </style>

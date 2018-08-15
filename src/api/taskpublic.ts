@@ -34,7 +34,7 @@ export const HourData: Array<{ time: string; val: string }> = [
   { time: '23点', val: '2' }
 ];
 export interface refundOrderPublicInfo {
-  title:string;
+  title: string;
   treasureId: string;
   keyword1: string;
   keywordRate1: string;
@@ -60,7 +60,8 @@ export interface freeOrderPublicInfo {
   rate: string;
   gift: string;
   extra_gift: string;
-  sex:string;
+  frozen_day: string;
+  sex: string;
   content: string;
   goods: Array<{
     treasureId: string;
@@ -89,7 +90,7 @@ export interface freeOrderPublicInfo {
 /* 挖宝活动*/
 export function refundOrderPublic(object: refundOrderPublicInfo, id: string) {
   return internalFetch('POST')(true)(stringifPath(refundOrderPublicPATH), {
-    body: { ...object,id }
+    body: { ...object, id }
   });
 }
 /*通过ID获取挖宝详情*/
@@ -113,7 +114,7 @@ export function freeOrderDeatilPublic(id: string) {
 /*上传图片*/
 export function setUploadImg(files: any) {
   let headers = new Headers();
-    headers.set(TOKEN, getCookie(TOKEN));
+  headers.set(TOKEN, getCookie(TOKEN));
 
   let formData = new FormData();
   formData.append('files', files);

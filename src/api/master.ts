@@ -7,17 +7,18 @@ const delPATH = '/manageUserInfo/deleteUserByPhone';
 const addSellerPATH = '/manageSeller/addOrUpdateSeller';
 const addSellerPayPATH = '/manageSeller/addOrUpdateSellerWeChatPay';
 const uploadFilePATH = '/uploadImage/uploadFile';
+const updateCheckTBKeyPATH = '/manageAdmin/updateCheckTBKey';
 
 export function resetTenDay(phone: string) {
   return internalFetch('POST')(true)(stringifPath(PATH), {
     body: { phone }
   });
-};
+}
 export function deleteUser(phone: string) {
   return internalFetch('POST')(true)(stringifPath(delPATH), {
     body: { phone }
   });
-};
+}
 export interface addSellerInfo {
   name: string;
   account: string;
@@ -38,12 +39,18 @@ export function addSellerPay(object: addSellerPayInfo) {
   return internalFetch('POST')(true)(stringifPath(addSellerPayPATH), {
     body: { object }
   });
-};
+}
 export function addSeller(object: addSellerInfo) {
   return internalFetch('POST')(true)(stringifPath(addSellerPATH), {
     body: { object }
   });
-};
+}
+
+export function updateCheckTBKey(taobao_key: string, taobao_key_backup: string) {
+  return internalFetch('POST')(true)(stringifPath(updateCheckTBKeyPATH), {
+    body: { taobao_key, taobao_key_backup }
+  });
+}
 
 /*上传图片*/
 export function setUploadFile(files: any) {

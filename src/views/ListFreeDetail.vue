@@ -3,13 +3,30 @@
     <TopNav />
     <div class="listfree-detail">
       <div class="title"> 免单返现订单明细</div>
+      <el-form :inline="true">
+        <div class="first-line">
+          <el-form-item :prop="task_id" label="活动ID:">
+            <el-input v-model="task_id" style="width: 160px"></el-input>
+          </el-form-item>
+          <el-form-item :prop="order_no" label="平台订单号:">
+            <el-input v-model="order_no" style="width: 200px"></el-input>
+          </el-form-item>
+          <el-form-item :prop="phone" label="手机号:">
+            <el-input v-model="phone" style="width: 160px"></el-input>
+          </el-form-item>
+          <el-form-item :prop="account" label="淘宝账号:">
+            <el-input v-model="account" style="width: 200px"></el-input>
+          </el-form-item>
+          <el-button type="button" @click="searchFun()">搜索</el-button>
+        </div>
+      </el-form>
       <el-table :data="tableData" border style="width: 100%;margin:0 auto">
         <el-table-column prop="id" label="活动ID" width="100">
         </el-table-column>
         <el-table-column prop="task_no" label="活动订单编号" width="180">
         </el-table-column>
         <el-table-column prop="order_no" label="平台订单编号" width="140">
-        </el-table-column>    
+        </el-table-column>
         <el-table-column prop="account" label="淘宝账号" width="100">
         </el-table-column>
         <el-table-column prop="phone" label="手机号" width="130">
@@ -89,10 +106,8 @@
             <span v-else>未返款</span>
           </template>
         </el-table-column>
-
       </el-table>
-      <el-pagination @current-change="setPage" background layout="pager" page-size="20" :total="pageCount">
-        <!-- prev, , next -->
+        <el-pagination @current-change="setPage" background layout="pager" page-size=20 :total=pageCount>
       </el-pagination>
     </div>
   </div>
@@ -109,16 +124,23 @@ import { getFreeTaskOrderCount, TaskOrderDetail, TaskOrderDetailData } from '@/a
 })
 export default class orderDetailList extends Vue {
   private tableData: Array<TaskOrderDetailData> = [];
-  private pageCount: string = '0';
+  private pageCount: number = 0;
   private curPage: number = 1;
+  private order_no: string = '';
+  private phone: string = '';
+  private account: string = '';
+  private task_id: string = '';
+  private searchFun() {
+    this.getListData(this.curPage);
+  }
   private setPage(idx: number) {
     if (idx !== this.curPage) {
       this.curPage = idx;
-      this.getListData(idx.toString());
+      this.getListData(idx);
     }
   }
-  private getListData(page: string) {
-    TaskOrderDetail(page)
+  private getListData(page: number) {
+    TaskOrderDetail(page.toString(),this.task_id,this.order_no,this.phone,this.account)
       .then((res: any) => {
         this.tableData = res;
         getFreeTaskOrderCount()
@@ -132,16 +154,8 @@ export default class orderDetailList extends Vue {
       });
   }
   private created() {
-    this.getListData('1');
+    this.getListData(1);
   }
-  // private handleClick(row: any, type: string) {
-  //   console.log(1111, row);
-  //   if (type === 'edit') {
-  //     window.location.href = '/publicfree?freeid=' + row.id;
-  //   } else if (type === 'copy') {
-  //     window.location.href = '/publicfree?freeid=' + row.id + '&isadd=1';
-  //   }
-  // }
 }
 </script>
 <style lang="scss" scoped>
@@ -159,6 +173,10 @@ export default class orderDetailList extends Vue {
   .tableimg {
     width: 60px;
     height: 60px;
+  }
+   .first-line{
+    padding-top: 10px;
+    // border-bottom: 1px solid #999;
   }
 }
 @import '../scss/global.scss';

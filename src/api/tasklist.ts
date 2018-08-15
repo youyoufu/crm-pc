@@ -10,7 +10,7 @@ const pagetotalPath = '/manageTaskOrder/findTableCount';
 export function refundOrderList(page: string) {
   return internalFetch('POST')(true)(stringifPath(refundListPATH), {
     body: { page, page_size: 20 }
-  })
+  });
 }
 export interface orderListData {
   id: string;
@@ -28,8 +28,8 @@ export interface orderListData {
   content: string;
   extra_gift: string;
   create_time: string;
-  refund:string;
-  phone:string;
+  refund: string;
+  phone: string;
 }
 
 export interface freeListData {
@@ -42,14 +42,14 @@ export interface freeListData {
   execute_time: string;
   gift: string;
   extra_gift: string;
-  total_count:string;
-  receive_count:string;
-  finish_count:string;
-  refund:string;
+  total_count: string;
+  receive_count: string;
+  finish_count: string;
+  refund: string;
 }
-export function getOrderList(page: string) {
+export function getOrderList(page: string, task_id: string, order_no: string, phone: string, account: string) {
   return internalFetch('POST')(true)(stringifPath(orderListPath), {
-    body: { page, page_size: 20 }
+    body: { page, page_size: 20, task_id, order_no, phone, account }
   });
 }
 export function getFreeList(page: string) {
@@ -108,15 +108,15 @@ export interface TaskOrderDetailData {
   content: string;
   extra_gift: string;
   create_time: string;
-  phone:string;
+  phone: string;
 }
 const getFreeTaskOrderCountPath = '/manageTaskOrderDetail/getFreeTaskOrderCount';
 const TaskOrderDetailPath = '/manageTaskOrderDetail/findFreeTaskOrderDetailPage';
-export function TaskOrderDetail(page: string) {
+export function TaskOrderDetail(page: string, task_id: string, order_no: string, phone: string, account: string) {
   return internalFetch('POST')(true)(stringifPath(TaskOrderDetailPath), {
-    body: { page, page_size: 20 }
+    body: { page, page_size: 20, task_id, order_no, phone, account }
   });
-};
+}
 export function getFreeTaskOrderCount() {
   return internalFetch('POST')(true)(stringifPath(getFreeTaskOrderCountPath));
 }
@@ -158,7 +158,7 @@ export function RefundTaskOrderDetail(page: string) {
   return internalFetch('POST')(true)(stringifPath(RefundTaskOrderDetailPage), {
     body: { page, page_size: 20 }
   });
-};
+}
 export function getRefundTaskOrderCount() {
   return internalFetch('POST')(true)(stringifPath(getRefundTaskOrderCountPath));
 }

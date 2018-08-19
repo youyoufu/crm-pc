@@ -26,7 +26,7 @@
       </p>
     </div>
     <div class="block textinput">
-      <p class="title">新增用户配置</p>
+      <p class="title">新增商户配置</p>
       <p>
         <span>商家简称：</span>
         <el-input v-model="sellerForm.name" />
@@ -189,6 +189,7 @@ export default class Master extends Vue {
     setUploadFile(file)
       .then(result => {
         let url = JSON.parse(result.data).url;
+        console.log(url);
         if (type === 'key_url') {
           this.payForm.key_url = url;
         } else if (type === 'cert_url') {
@@ -196,7 +197,7 @@ export default class Master extends Vue {
         }
       })
       .catch(() => {
-        this.$message.error('图片上传错误');
+        this.$message.error('上传错误');
       });
   }
   private beforeUpload0(file: any) {

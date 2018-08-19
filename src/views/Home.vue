@@ -21,7 +21,7 @@
         </div>
       </el-form>
       <el-table :data="tableData" border style="width: 100%;margin:0 auto">
-        <el-table-column prop="id" label="活动ID" width="100">
+        <el-table-column prop="task_id" label="活动ID" width="100">
         </el-table-column>
         <el-table-column prop="task_no" label="活动订单编号" width="180">
         </el-table-column>

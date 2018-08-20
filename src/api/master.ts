@@ -56,7 +56,7 @@ export function updateCheckTBKey(taobao_key: string, taobao_key_backup: string) 
 export function setUploadFile(files: any) {
   let headers = new Headers();
   headers.set(TOKEN, getCookie(TOKEN));
-
+console.log(1111);
   let formData = new FormData();
   formData.append('files', files);
   return fetch(stringifPath(uploadFilePATH), {

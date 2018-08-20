@@ -73,14 +73,12 @@
           <el-upload class="uploadfile" action="" accept="" name="key_url" :on-success="handleAvatarSuccess" :before-upload="beforeUpload0">
             <el-button slot="trigger" size="small" type="button">上传apiclient_key.pem 证书</el-button>
           </el-upload>
-          {{payForm.key_url}}
         </div>
         <div>
           <span>证书上传：</span>
           <el-upload class="uploadfile" action="" accept="" name="cert_url" :on-success="handleAvatarSuccess" :before-upload="beforeUpload0">
             <el-button slot="trigger" size="small" type="button">上传apiclient_cert.pem证书</el-button>
           </el-upload>
-          {{payForm.cert_url}}
         </div>
       </div>
 
@@ -158,7 +156,7 @@ import {
 export default class Master extends Vue {
   private mobile1: string = '';
   private mobile2: string = '';
-   private taobao_key: string = '';
+  private taobao_key: string = '';
   private taobao_key_backup: string = '';
   private payForm: addSellerPayInfo = {
     mch_id: '',
@@ -175,21 +173,23 @@ export default class Master extends Vue {
     app_id: '',
     app_secret: ''
   };
-  private updateTaoBaoKey(){
-    updateCheckTBKey(this.taobao_key,this.taobao_key_backup)
+  private updateTaoBaoKey() {
+    updateCheckTBKey(this.taobao_key, this.taobao_key_backup)
       .then(result => {
         this.$message.success('口令重置成功！');
-   
       })
       .catch(() => {
         this.$message.error('口令重置失败！');
       });
   }
+  private handleAvatarSuccess() {
+    this.$message.success('文件上传成功');
+  }
   private uploadFile(file: any, type: string) {
     setUploadFile(file)
       .then(result => {
-        let url = JSON.parse(result.data).url;
-        console.log(url);
+        let url = result.data.url;
+        this.$message.success('文件上传成功');
         if (type === 'key_url') {
           this.payForm.key_url = url;
         } else if (type === 'cert_url') {
@@ -197,7 +197,7 @@ export default class Master extends Vue {
         }
       })
       .catch(() => {
-        this.$message.error('上传错误');
+        this.$message.error('文件上传错误');
       });
   }
   private beforeUpload0(file: any) {

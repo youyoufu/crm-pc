@@ -76,7 +76,7 @@
         </div>
         <div>
           <span>证书上传：</span>
-          <el-upload class="uploadfile" action="" accept="" name="cert_url" :on-success="handleAvatarSuccess" :before-upload="beforeUpload0">
+          <el-upload class="uploadfile" action="" accept="" name="cert_url" :on-success="handleAvatarSuccess" :before-upload="beforeUpload1">
             <el-button slot="trigger" size="small" type="button">上传apiclient_cert.pem证书</el-button>
           </el-upload>
         </div>
@@ -207,6 +207,7 @@ export default class Master extends Vue {
     this.uploadFile(file, 'cert_url');
   }
   private submitAddSellerPay() {
+    console.log(2222)
     if (
       this.payForm.mch_id === '' ||
       this.payForm.account === '' ||
@@ -214,7 +215,7 @@ export default class Master extends Vue {
       this.payForm.key_url === '' ||
       this.payForm.cert_url === ''
     ) {
-      this.$message.error('请填写完整的商家信息');
+      this.$message.error('请填写完整的商家支付信息');
       return;
     } else {
       addSellerPay(this.payForm)

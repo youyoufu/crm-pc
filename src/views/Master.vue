@@ -51,6 +51,15 @@
         <span>公众号AppSecret：</span>
         <el-input v-model="sellerForm.app_secret" />
       </p>
+      <div class="upload-block">
+        <div>
+          <span>域名验证：</span>
+          <el-upload class="uploadfile" action="" accept="" name="domain_url" :on-success="handleAvatarSuccess" :before-upload="beforeUpload2">
+            <el-button slot="trigger" size="small" type="button">上传域名验证证书</el-button>
+          </el-upload>
+        </div>
+
+      </div>
       <p class="title">
         <el-button type="button" @click="submitAddSeller()">新增或更新商户</el-button>
       </p>
@@ -78,6 +87,12 @@
           <span>证书上传：</span>
           <el-upload class="uploadfile" action="" accept="" name="cert_url" :on-success="handleAvatarSuccess" :before-upload="beforeUpload1">
             <el-button slot="trigger" size="small" type="button">上传apiclient_cert.pem证书</el-button>
+          </el-upload>
+        </div>
+        <div>
+          <span>MP_verify</span>
+          <el-upload class="uploadfile" action="" accept="" name="mp_verify_url" :on-success="handleAvatarSuccess" :before-upload="beforeUpload3">
+            <el-button slot="trigger" size="small" type="button">上传MP_verify证书</el-button>
           </el-upload>
         </div>
       </div>
@@ -163,7 +178,8 @@ export default class Master extends Vue {
     account: '',
     sign_key: '',
     key_url: '',
-    cert_url: ''
+    cert_url: '',
+    mp_verify_url: ''
   };
   private sellerForm: addSellerInfo = {
     name: '',
@@ -194,11 +210,19 @@ export default class Master extends Vue {
           this.payForm.key_url = url;
         } else if (type === 'cert_url') {
           this.payForm.cert_url = url;
+        } else if (type === 'domain_url') {
+          // this.payForm.domain_url = url;
+        } else if (type === 'mp_verify_url') {
+          this.payForm.mp_verify_url = url;
         }
       })
       .catch(() => {
         this.$message.error('文件上传错误');
       });
+  }
+
+  private beforeUpload2(file: any) {
+    this.uploadFile(file, 'domain_url');
   }
   private beforeUpload0(file: any) {
     this.uploadFile(file, 'key_url');
@@ -206,14 +230,17 @@ export default class Master extends Vue {
   private beforeUpload1(file: any) {
     this.uploadFile(file, 'cert_url');
   }
+  private beforeUpload3(file: any) {
+    this.uploadFile(file, 'mp_verify_url');
+  }
   private submitAddSellerPay() {
-    console.log(2222)
     if (
       this.payForm.mch_id === '' ||
       this.payForm.account === '' ||
       this.payForm.sign_key === '' ||
       this.payForm.key_url === '' ||
-      this.payForm.cert_url === ''
+      this.payForm.cert_url === '' ||
+      this.payForm.mp_verify_url === ''
     ) {
       this.$message.error('请填写完整的商家支付信息');
       return;

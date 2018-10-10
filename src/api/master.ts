@@ -26,6 +26,7 @@ export interface addSellerInfo {
   password: string;
   app_id: string;
   app_secret: string;
+  mp_verify_url: string;
 }
 
 export interface addSellerPayInfo {
@@ -34,7 +35,6 @@ export interface addSellerPayInfo {
   sign_key: string;
   key_url: string;
   cert_url: string;
-  mp_verify_url: string;
 }
 export function addSellerPay(object: addSellerPayInfo) {
   return internalFetch('POST')(true)(stringifPath(addSellerPayPATH), {

@@ -53,12 +53,11 @@
       </p>
       <div class="upload-block">
         <div>
-          <span>域名验证：</span>
-          <el-upload class="uploadfile" action="" accept="" name="domain_url" :on-success="handleAvatarSuccess" :before-upload="beforeUpload2">
-            <el-button slot="trigger" size="small" type="button">上传域名验证证书</el-button>
+          <span>MP_verify</span>
+          <el-upload class="uploadfile" action="" accept="" name="mp_verify_url" :on-success="handleAvatarSuccess" :before-upload="beforeUpload2">
+            <el-button slot="trigger" size="small" type="button">上传MP_verify证书</el-button>
           </el-upload>
         </div>
-
       </div>
       <p class="title">
         <el-button type="button" @click="submitAddSeller()">新增或更新商户</el-button>
@@ -89,14 +88,7 @@
             <el-button slot="trigger" size="small" type="button">上传apiclient_cert.pem证书</el-button>
           </el-upload>
         </div>
-        <div>
-          <span>MP_verify</span>
-          <el-upload class="uploadfile" action="" accept="" name="mp_verify_url" :on-success="handleAvatarSuccess" :before-upload="beforeUpload3">
-            <el-button slot="trigger" size="small" type="button">上传MP_verify证书</el-button>
-          </el-upload>
-        </div>
       </div>
-
       <p class="title">
         <el-button type="button" @click="submitAddSellerPay()">新增或更新商户微信支付</el-button>
       </p>
@@ -178,8 +170,7 @@ export default class Master extends Vue {
     account: '',
     sign_key: '',
     key_url: '',
-    cert_url: '',
-    mp_verify_url: ''
+    cert_url: ''
   };
   private sellerForm: addSellerInfo = {
     name: '',
@@ -187,7 +178,8 @@ export default class Master extends Vue {
     phone: '',
     password: '',
     app_id: '',
-    app_secret: ''
+    app_secret: '',
+    mp_verify_url: ''
   };
   private updateTaoBaoKey() {
     updateCheckTBKey(this.taobao_key, this.taobao_key_backup)
@@ -210,10 +202,8 @@ export default class Master extends Vue {
           this.payForm.key_url = url;
         } else if (type === 'cert_url') {
           this.payForm.cert_url = url;
-        } else if (type === 'domain_url') {
-          // this.payForm.domain_url = url;
         } else if (type === 'mp_verify_url') {
-          this.payForm.mp_verify_url = url;
+          this.sellerForm.mp_verify_url = url;
         }
       })
       .catch(() => {
@@ -222,7 +212,7 @@ export default class Master extends Vue {
   }
 
   private beforeUpload2(file: any) {
-    this.uploadFile(file, 'domain_url');
+    this.uploadFile(file, 'mp_verify_url');
   }
   private beforeUpload0(file: any) {
     this.uploadFile(file, 'key_url');
@@ -230,17 +220,13 @@ export default class Master extends Vue {
   private beforeUpload1(file: any) {
     this.uploadFile(file, 'cert_url');
   }
-  private beforeUpload3(file: any) {
-    this.uploadFile(file, 'mp_verify_url');
-  }
   private submitAddSellerPay() {
     if (
       this.payForm.mch_id === '' ||
       this.payForm.account === '' ||
       this.payForm.sign_key === '' ||
       this.payForm.key_url === '' ||
-      this.payForm.cert_url === '' ||
-      this.payForm.mp_verify_url === ''
+      this.payForm.cert_url === ''
     ) {
       this.$message.error('请填写完整的商家支付信息');
       return;
